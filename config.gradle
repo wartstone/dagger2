@@ -1,0 +1,18 @@
+ext {
+    compileSdkVersion = 25
+    buildToolsVersion = "25.0.2"
+    applicationId = "com.henong.android.customer"
+    minSdkVersion = 15
+    targetSdkVersion = 25
+    versionCode = 25
+    versionName = "1.2.0" //此处的versionName  只有当打包时没有传入VERSION_NAME才会生效
+    supportVersion = "25.3.1"
+    butterknife = "8.6.0"
+    dependencies = [
+            "design"         : "com.android.support:design:25.3.1",
+            "support-v4"     : "com.android.support:support-v4:25.3.1",
+            "appcompat-v7"   : "com.android.support:appcompat-v7:25.3.1'",
+            "recyclerview-v7": "com.android.support:recyclerview-v7:25.3.1",
+            "butterknife"    : "com.jakewharton:butterknife:8.6.0"
+    ]
+}

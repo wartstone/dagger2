@@ -1,0 +1,6 @@
+// lib
+include ':lib_base', ':app'
+include ':lib_core'
+
+// project
+include ':project:jewelry'

@@ -1,0 +1,12 @@
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+ndb-core/build/*
+ndb-library/build/*IMLibrary/build
+/repository/*
+app/ndb_signature.keystore
