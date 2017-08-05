@@ -10,18 +10,18 @@ import javax.inject.Inject;
 
 public class HomeWorkPresenter implements HomeWorkContract.Presenter {
 
-    @Inject
-    private HomeWorkContract.View mView;
-    @Inject
-    private HomeWorkContract.Model mModel;
-    @Inject
-    private Context mContext;
+
+    protected HomeWorkContract.View mView;
+
+    protected HomeWorkContract.Model mModel;
+
+    protected Context mContext;
 
     public HomeWorkPresenter(HomeWorkContract.Model model, HomeWorkContract.View view, Context context) {
         mView = view;
         mModel = model;
         mContext = context;
-        mView.setPresenter(this);
+        //mView.setPresenter(this);
 
 
     }

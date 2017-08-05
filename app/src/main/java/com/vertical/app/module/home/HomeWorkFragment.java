@@ -14,7 +14,7 @@ public class HomeWorkFragment extends SupportFragment implements HomeWorkContrac
         return fragment;
     }
 
-    @Override
+
     public void setPresenter(HomeWorkContract.Presenter presenter) {
         mPresenter = presenter;
     }

@@ -1,4 +1,4 @@
-apply plugin: 'com.android.library'
+apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
@@ -27,6 +27,7 @@ dependencies {
     compile project(':lib_core')
 
     compile 'me.yokeyword:fragmentation:0.10.7'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
 
     // test
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
