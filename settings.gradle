@@ -1,5 +1,5 @@
 // lib
-include ':lib_base', ':app'
+include ':lib_base', ':app', ':lib_api', ':lib_compiler', ':lib_annotation'
 include ':lib_core'
 
 // project

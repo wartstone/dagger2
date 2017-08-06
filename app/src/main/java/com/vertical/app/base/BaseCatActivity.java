@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.vertical.app.R;
 import com.vertical.app.di.CatDIComponent;
 import com.vertical.app.di.CatDIModule;
-import com.vertical.app.di.DaggerCatDIComponent;
+//import com.vertical.app.di.DaggerCatDIComponent;
 import com.vertical.base.BasePresenter;
 import com.vertical.base.BaseView;
 import com.vertical.core.base.BaseRxActivity;
@@ -64,9 +64,11 @@ public abstract class BaseCatActivity<T extends BasePresenter> extends BaseRxAct
     }
 
     protected CatDIComponent getActivityComponent() {
-        return DaggerCatDIComponent.builder()
-                .catDIModule(new CatDIModule())
-                .build();
+//        return DaggerCatDIComponent.builder()
+//                .catDIModule(new CatDIModule())
+//                .build();
+
+        return null;
     }
 
     private void initParentViews() {
