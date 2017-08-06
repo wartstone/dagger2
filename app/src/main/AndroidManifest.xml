@@ -19,8 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".module.member.MemberActivity"></activity>
-        <activity android:name=".module.home.HomeActivity"/>
+        <activity android:name=".module.member.MemberActivity" />
+        <activity android:name=".module.home.HomeActivity" />
+        <activity android:name=".module.market.Market2Activity"></activity>
     </application>
 
 </manifest>
