@@ -7,13 +7,13 @@ import android.widget.TextView;
 import com.vertical.app.R;
 import com.vertical.app.base.BaseCatActivity;
 
-import butterknife.BindView;
+//import butterknife.BindView;
 
 
 public class MemberActivity extends BaseCatActivity<MemberContract.Presenter> implements MemberContract.View {
     private final String TAG = "MemberActivity";
 
-    @BindView(R.id.detail_content)
+//    @BindView(R.id.detail_content)
     TextView mContent;
 
     @Override
@@ -24,7 +24,7 @@ public class MemberActivity extends BaseCatActivity<MemberContract.Presenter> im
 
     @Override
     protected void inject() {
-        getActivityComponent().inject(this);
+        //getActivityComponent().inject(this);
     }
 
     @Override

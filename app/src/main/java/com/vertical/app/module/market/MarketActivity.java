@@ -7,13 +7,13 @@ import android.widget.Button;
 
 //import com.vertical.annotation.LSBindView;
 //import com.vertical.api.LSCViewBinder;
-import com.vertical.annotation.LSBindView;
-import com.vertical.api.LSCViewBinder;
+//import com.vertical.annotation.LSBindView;
+//import com.vertical.api.LSCViewBinder;
 import com.vertical.app.R;
 
 public class MarketActivity extends Activity {
 
-    @LSBindView(R.id.market_button)
+//    @LSBindView(R.id.market_button)
     public Button mButton;
 
     @Override
@@ -21,7 +21,7 @@ public class MarketActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_market);
 
-        LSCViewBinder.bind(this);
+//        LSCViewBinder.bind(this);
 
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,6 +33,7 @@ public class MarketActivity extends Activity {
 
     @Override
     protected void onDestroy() {
-        LSCViewBinder.unBind(this);
+        super.onDestroy();
+//        LSCViewBinder.unBind(this);
     }
 }
