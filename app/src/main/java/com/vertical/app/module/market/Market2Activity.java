@@ -8,9 +8,7 @@ import android.widget.TextView;
 import com.vertical.annotation.LSYao;
 import com.vertical.app.R;
 
-@LSYao(
-        name = "LS",
-        text = "Hello !!! Welcome ")
+@LSYao
 public class Market2Activity extends Activity {
 
     @Override

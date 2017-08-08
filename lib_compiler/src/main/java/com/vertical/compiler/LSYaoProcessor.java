@@ -5,6 +5,7 @@ import com.squareup.javapoet.AnnotationSpec;
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
+import com.squareup.javapoet.ParameterSpec;
 import com.squareup.javapoet.ParameterizedTypeName;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
@@ -12,7 +13,6 @@ import com.vertical.annotation.LSYao;
 
 import java.io.IOException;
 import java.io.Writer;
-import java.lang.reflect.Modifier;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.logging.Level;
@@ -27,11 +27,13 @@ import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
+import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
 import javax.tools.JavaFileObject;
+import static com.google.auto.common.MoreElements.getPackage;
 
 /**
  * Created by katedshan on 17/8/7.
@@ -70,8 +72,8 @@ public class LSYaoProcessor extends AbstractProcessor{
     }
 
     @Override
-    public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
-        if (set == null || set.isEmpty())
+    public boolean process(Set<? extends TypeElement> sets, RoundEnvironment roundEnvironment) {
+        if (sets == null || sets.isEmpty())
         {
             info(">>> set is null... <<<");
             return true;
@@ -87,8 +89,25 @@ public class LSYaoProcessor extends AbstractProcessor{
             return true;
         }
 
+        for(Element rootElement : roundEnvironment.getRootElements()) {
+            if(rootElement instanceof TypeElement) {
+                info(">>> rootElement is TypeElement... <<<");
+            } else if(rootElement.getEnclosingElement() instanceof TypeElement) {
+                info(">>> rootElement getEnclosingElement is TypeElement... <<<");
+            } else {
+                info(">>> rootElement is not... <<<");
+            }
+        }
+
         // 遍历所有被注解了@Factory的元素
         for (Element annotatedElement : elements) {
+            if(annotatedElement instanceof TypeElement) {
+                info(">>> annotatedElement is TypeElement... <<<");
+            } else if(annotatedElement.getEnclosingElement() instanceof TypeElement) {
+                info(">>> annotatedElement getEnclosingElement is TypeElement... <<<");
+            } else {
+                info(">>> annotatedElement is not... <<<");
+            }
 
             // 检查被注解为@Factory的元素是否是一个类
             if (annotatedElement.getKind() != ElementKind.CLASS) {
@@ -107,36 +126,37 @@ public class LSYaoProcessor extends AbstractProcessor{
         return true;
     }
 
-    private void analyzeAnnotated(Element classElement) throws ClassNotFoundException {
-        MethodSpec.Builder bindViewMethod = MethodSpec.methodBuilder("inject")
-                .addParameter(classElement.getClass(), "activity");
+    private void analyzeAnnotated(Element element) throws ClassNotFoundException {
+        TypeElement enclosingElement = (TypeElement) element;
 
-        AnnotationSpec spec = AnnotationSpec.builder(ClassName.get("dagger", "Component"))
-                                            .addMember("modules", "$L", ClassName.get("com.vertical.app.di", "CatDIModule"))
-                                            .build();
+        String elementPackage = getPackage(enclosingElement).getQualifiedName().toString();
+        String className = enclosingElement.getQualifiedName().toString().substring(
+                elementPackage.length() + 1).replace('.', '$');
 
-        //generaClass
-        TypeSpec injectClass = TypeSpec.classBuilder(classElement.getSimpleName() + "_LS")
-                .addAnnotation(spec)
-                .addModifiers(new javax.lang.model.element.Modifier[Modifier.PUBLIC])
-                .addMethod(bindViewMethod.build())
+        ClassName bindingClassName = ClassName.get(elementPackage, className);
+
+        AnnotationSpec annotationSpec = AnnotationSpec.builder(ClassName.get("dagger", "Component"))
+                                                    .addMember("modules", "$L.class", ClassName.get("com.vertical.app.di", "CatDIModule"))
+                                                    .build();
+        ParameterSpec parameterSpec = ParameterSpec.builder(bindingClassName, "activity").build();
+
+        //generaInterface
+        TypeSpec injectClass = TypeSpec.interfaceBuilder("CatDIComponentEx")
+                .addModifiers(Modifier.PUBLIC)
+                .addAnnotation(annotationSpec)
+                .addMethod(MethodSpec.methodBuilder("inject")
+                        .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
+                        .addParameter(parameterSpec)
+                        .build())
                 .build();
 
         String packageName = "com.vertical.app.di";
-        info(">>> analyzeAnnotated, start12... <<<");
-        //info(">>> analyzeAnnotated, start12... %s<<<", injectClass.toString());
-        if(injectClass == null) {
-            info(">>> analyzeAnnotated, null  <<<");
-        } else {
-            info(">>> analyzeAnnotated, not null  <<<");
-        }
 
         try {
             JavaFile.builder(packageName, injectClass).build().writeTo(mFiler);
             //info(classElement, "[Lingshan] analyzeAnnotated injectClass = " + injectClass.toString());
-            //Logger.getGlobal().log(Level.ALL, "Lingshan");
         } catch (IOException e) {
-            error(classElement, "[Lingshan] analyzeAnnotated exception : " + e);
+            error(element, "[Lingshan] analyzeAnnotated exception : " + e);
         }
     }
 
@@ -144,6 +164,12 @@ public class LSYaoProcessor extends AbstractProcessor{
             LSYao annotation = classElement.getAnnotation(LSYao.class);
             String name = annotation.name();
             String text = annotation.text();
+
+            MethodSpec bindViewMethod = MethodSpec.methodBuilder("inject")
+                                                    .addModifiers(new javax.lang.model.element.Modifier[]{javax.lang.model.element.Modifier.PUBLIC, javax.lang.model.element.Modifier.ABSTRACT})
+                                                    .addParameter(classElement.getClass(), "activity")
+                                                    .returns(TypeName.VOID)
+                                                    .build();
 
 //        TypeElement superClassName = mElementUtils.getTypeElement(name);
             String newClassName = "CatDIComponentEx";
@@ -156,7 +182,9 @@ public class LSYaoProcessor extends AbstractProcessor{
                     .append("@PerActivity\n")
                     .append("@Component(modules = CatDIModule.class)\n")
                     .append(String.format("public interface %s {\n", newClassName))
-                    .append("void inject(MemberActivity activity);\n}\n");
+                    //.append("void inject(MemberActivity activity);\n}\n")
+                    .append(bindViewMethod.toString())
+                    .append("}\n");
 
 
             try { // write the file
