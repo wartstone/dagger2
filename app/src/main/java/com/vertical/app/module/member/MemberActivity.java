@@ -4,12 +4,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.vertical.annotation.AutoWire;
 import com.vertical.app.R;
 import com.vertical.app.base.BaseCatActivity;
 
 //import butterknife.BindView;
 
-
+@AutoWire(presenter = MemberPresenter.class, contract = MemberContract.class)
 public class MemberActivity extends BaseCatActivity<MemberContract.Presenter> implements MemberContract.View {
     private final String TAG = "MemberActivity";
 
@@ -24,7 +25,7 @@ public class MemberActivity extends BaseCatActivity<MemberContract.Presenter> im
 
     @Override
     protected void inject() {
-        //getActivityComponent().inject(this);
+        getActivityComponent().inject(this);
     }
 
     @Override
@@ -39,7 +40,7 @@ public class MemberActivity extends BaseCatActivity<MemberContract.Presenter> im
 
     @Override
     public void showContent() {
-        mContent.setText("dependency injected");
+        //mContent.setText("dependency injected");
         Log.d(TAG, "showconent");
     }
 }

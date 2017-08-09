@@ -14,6 +14,6 @@ public class MemberPresenter extends BaseCatPresenter<MemberContract.View> imple
 
     @Override
     public void getContent() {
-
+        mView.showContent();
     }
 }

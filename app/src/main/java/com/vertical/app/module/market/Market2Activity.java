@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.vertical.annotation.LSYao;
+import com.vertical.annotation.AutoWire;
 import com.vertical.app.R;
+import com.vertical.app.module.member.MemberPresenter;
 
-@LSYao
 public class Market2Activity extends Activity {
 
     @Override

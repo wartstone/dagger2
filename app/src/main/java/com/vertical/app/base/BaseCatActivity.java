@@ -9,8 +9,10 @@ import android.widget.TextView;
 
 import com.vertical.app.R;
 //import com.vertical.app.di.CatDIComponent;
-import com.vertical.app.di.CatDIModule;
+import com.vertical.app.di.CatDIComponentEx;
 //import com.vertical.app.di.DaggerCatDIComponent;
+import com.vertical.app.di.CatDIModuleEx;
+import com.vertical.app.di.DaggerCatDIComponentEx;
 import com.vertical.base.BasePresenter;
 import com.vertical.base.BaseView;
 import com.vertical.core.base.BaseRxActivity;
@@ -63,13 +65,13 @@ public abstract class BaseCatActivity<T extends BasePresenter> extends BaseRxAct
         if (mPresenter != null) mPresenter.unsubscribe();
     }
 
-//    protected CatDIComponent getActivityComponent() {
-////        return DaggerCatDIComponent.builder()
-////                .catDIModule(new CatDIModule())
-////                .build();
-//
+    protected CatDIComponentEx getActivityComponent() {
+        return DaggerCatDIComponentEx.builder()
+                .catDIModuleEx(new CatDIModuleEx())
+                .build();
+
 //        return null;
-//    }
+    }
 
     private void initParentViews() {
         LayoutInflater inflater = LayoutInflater.from(BaseCatActivity.this);

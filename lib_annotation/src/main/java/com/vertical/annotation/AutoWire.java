@@ -6,13 +6,13 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Created by katedshan on 17/8/7.
+ * Created by ls on 17/8/7.
  */
 
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.CLASS)
-public @interface LSYao {
-    String name() default "undefined";
+public @interface AutoWire {
+    Class<?> presenter();
 
-    String text() default "";
+    Class<?> contract();
 }

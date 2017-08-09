@@ -6,17 +6,14 @@ import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.ParameterSpec;
-import com.squareup.javapoet.ParameterizedTypeName;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
-import com.vertical.annotation.LSYao;
+import com.vertical.annotation.AutoWire;
 
 import java.io.IOException;
 import java.io.Writer;
 import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Filer;
@@ -26,12 +23,10 @@ import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
-import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
-import javax.tools.Diagnostic;
 import javax.tools.JavaFileObject;
 import static com.google.auto.common.MoreElements.getPackage;
 
@@ -40,11 +35,15 @@ import static com.google.auto.common.MoreElements.getPackage;
  */
 
 @AutoService(Processor.class)
-public class LSYaoProcessor extends AbstractProcessor{
+public class AutoWireProcessor extends AbstractProcessor{
     private Types mTypeUtils;
     private Elements mElementUtils;
     private Filer mFiler;
     private Messager mMessager;
+    private ProcessingEnvironment mProcessEnv;
+
+    private ComponentGenerator mComponenetGenerator;
+    private ModuleGenerator mModuleGenerator;
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnvironment) {
@@ -55,6 +54,8 @@ public class LSYaoProcessor extends AbstractProcessor{
         mElementUtils = processingEnv.getElementUtils();
         mFiler = processingEnv.getFiler();
         mMessager = processingEnv.getMessager();
+        mComponenetGenerator = new ComponentGenerator(mFiler, mMessager);
+        mModuleGenerator = new ModuleGenerator(mFiler, mMessager, mTypeUtils);
     }
 
     @Override
@@ -67,64 +68,26 @@ public class LSYaoProcessor extends AbstractProcessor{
     public Set<String> getSupportedAnnotationTypes() {
         //支持的注解
         Set<String> annotations = new LinkedHashSet<>();
-        annotations.add(LSYao.class.getCanonicalName());
+        annotations.add(AutoWire.class.getCanonicalName());
         return annotations;
     }
 
     @Override
     public boolean process(Set<? extends TypeElement> sets, RoundEnvironment roundEnvironment) {
-        if (sets == null || sets.isEmpty())
-        {
-            info(">>> set is null... <<<");
+        if (sets == null || sets.isEmpty()) {
+            MessagerUtil.getInstance(mMessager).info(">>> set is null... <<<");
             return true;
         }
 
-        info(">>> Found field, start... <<<");
+        Set<? extends Element> elements = roundEnvironment.getElementsAnnotatedWith(AutoWire.class);
 
-        Set<? extends Element> elements = roundEnvironment.getElementsAnnotatedWith(LSYao.class);
-
-        if (elements == null || elements.isEmpty())
-        {
-            info(">>> elements is null... <<<");
-            return true;
-        }
-
-        for(Element rootElement : roundEnvironment.getRootElements()) {
-            if(rootElement instanceof TypeElement) {
-                info(">>> rootElement is TypeElement... <<<");
-            } else if(rootElement.getEnclosingElement() instanceof TypeElement) {
-                info(">>> rootElement getEnclosingElement is TypeElement... <<<");
-            } else {
-                info(">>> rootElement is not... <<<");
-            }
-        }
-
-        // 遍历所有被注解了@Factory的元素
-        for (Element annotatedElement : elements) {
-            if(annotatedElement instanceof TypeElement) {
-                info(">>> annotatedElement is TypeElement... <<<");
-            } else if(annotatedElement.getEnclosingElement() instanceof TypeElement) {
-                info(">>> annotatedElement getEnclosingElement is TypeElement... <<<");
-            } else {
-                info(">>> annotatedElement is not... <<<");
-            }
-
-            // 检查被注解为@Factory的元素是否是一个类
-            if (annotatedElement.getKind() != ElementKind.CLASS) {
-                error(annotatedElement, "Only classes can be annotated with @%s",
-                        LSYao.class.getSimpleName());
-                return true; // 退出处理
-            }
-
-            try {
-                analyzeAnnotated(annotatedElement);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        mComponenetGenerator.generate(elements);
+        mModuleGenerator.generate(elements);
 
         return true;
     }
+
+    String packageName = "com.vertical.app.di";
 
     private void analyzeAnnotated(Element element) throws ClassNotFoundException {
         TypeElement enclosingElement = (TypeElement) element;
@@ -136,11 +99,11 @@ public class LSYaoProcessor extends AbstractProcessor{
         ClassName bindingClassName = ClassName.get(elementPackage, className);
 
         AnnotationSpec annotationSpec = AnnotationSpec.builder(ClassName.get("dagger", "Component"))
-                                                    .addMember("modules", "$L.class", ClassName.get("com.vertical.app.di", "CatDIModule"))
+                                                    .addMember("modules", "$L.class", ClassName.get("com.vertical.app.di", "CatDIModuleEx"))
                                                     .build();
         ParameterSpec parameterSpec = ParameterSpec.builder(bindingClassName, "activity").build();
 
-        //generaInterface
+        //genera interface
         TypeSpec injectClass = TypeSpec.interfaceBuilder("CatDIComponentEx")
                 .addModifiers(Modifier.PUBLIC)
                 .addAnnotation(annotationSpec)
@@ -150,21 +113,15 @@ public class LSYaoProcessor extends AbstractProcessor{
                         .build())
                 .build();
 
-        String packageName = "com.vertical.app.di";
-
         try {
             JavaFile.builder(packageName, injectClass).build().writeTo(mFiler);
             //info(classElement, "[Lingshan] analyzeAnnotated injectClass = " + injectClass.toString());
         } catch (IOException e) {
-            error(element, "[Lingshan] analyzeAnnotated exception : " + e);
+            MessagerUtil.getInstance(mMessager).error(element, "[Lingshan] analyzeAnnotated exception : " + e);
         }
     }
 
     private void analysisAnnotated(Element classElement) {
-            LSYao annotation = classElement.getAnnotation(LSYao.class);
-            String name = annotation.name();
-            String text = annotation.text();
-
             MethodSpec bindViewMethod = MethodSpec.methodBuilder("inject")
                                                     .addModifiers(new javax.lang.model.element.Modifier[]{javax.lang.model.element.Modifier.PUBLIC, javax.lang.model.element.Modifier.ABSTRACT})
                                                     .addParameter(classElement.getClass(), "activity")
@@ -198,26 +155,8 @@ public class LSYaoProcessor extends AbstractProcessor{
                 // that occur from the file already existing after its first run, this is normal
             }
 
-            info(">>> analysisAnnotated is finish... <<<");
+            MessagerUtil.getInstance(mMessager).info(">>> analysisAnnotated is finish... <<<");
     }
 
-    private void error(Element e, String msg, Object... args) {
-        mMessager.printMessage(
-                Diagnostic.Kind.ERROR,
-                String.format(msg, args),
-                e);
-    }
 
-    private void info(String msg, Object... args) {
-        mMessager.printMessage(
-                Diagnostic.Kind.NOTE,
-                String.format(msg, args));
-    }
-
-    private void info(Element e, String msg, Object... args) {
-        mMessager.printMessage(
-                Diagnostic.Kind.NOTE,
-                String.format(msg, args),
-                e);
-    }
 }

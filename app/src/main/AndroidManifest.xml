@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".module.market.Market2Activity"
+            android:name=".module.member.MemberActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".module.member.MemberActivity" />
+        <activity android:name=".module.market.Market2Activity" />
         <activity android:name=".module.home.HomeActivity" />
         <activity android:name=".module.market.MarketActivity"></activity>
     </application>

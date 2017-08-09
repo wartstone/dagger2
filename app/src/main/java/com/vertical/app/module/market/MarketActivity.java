@@ -9,10 +9,10 @@ import android.widget.Button;
 //import com.vertical.api.LSCViewBinder;
 //import com.vertical.annotation.LSBindView;
 //import com.vertical.api.LSCViewBinder;
-import com.vertical.annotation.LSYao;
+import com.vertical.annotation.AutoWire;
 import com.vertical.app.R;
+import com.vertical.app.module.member.MemberPresenter;
 
-@LSYao
 public class MarketActivity extends Activity {
 
 //    @LSBindView(R.id.market_button)
