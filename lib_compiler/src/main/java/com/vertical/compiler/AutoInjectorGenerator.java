@@ -19,11 +19,11 @@ import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Types;
 
 import static com.google.auto.common.MoreElements.getPackage;
-import static com.vertical.compiler.Setting.AutoInjectorName;
-import static com.vertical.compiler.Setting.ComponentName;
-import static com.vertical.compiler.Setting.CorePackageName;
-import static com.vertical.compiler.Setting.ModuleName;
-import static com.vertical.compiler.Setting.PackageName;
+import static com.vertical.compiler.Configuration.AutoInjectorName;
+import static com.vertical.compiler.Configuration.ComponentName;
+import static com.vertical.compiler.Configuration.CorePackageName;
+import static com.vertical.compiler.Configuration.ModuleName;
+import static com.vertical.compiler.Configuration.PackageName;
 
 /**
  * Created by ls on 8/10/17.
@@ -71,7 +71,8 @@ public class AutoInjectorGenerator {
         String className = enclosingElement.getQualifiedName().toString().substring(elementPackage.length() + 1).replace('.', '$');
 
         ClassName bindingClassName = ClassName.get(elementPackage, className);
-        String code = String.format("%s.builder().catDIModule(new $L()).build().inject(($L)this)", "Dagger" + ComponentName);
+        String moduleMethodName = String.format("%s%s", ModuleName.substring(0, 1).toLowerCase(), ModuleName.substring(1));
+        String code = String.format("%s.builder().%s(new $L()).build().inject(($L)this)", "Dagger" + ComponentName, moduleMethodName);
         MessagerUtil.getInstance(mMessager).info("code is %s", code);
         CodeBlock codeBlock = CodeBlock.builder()
                                     .beginControlFlow("if(this instanceof $L)", bindingClassName)

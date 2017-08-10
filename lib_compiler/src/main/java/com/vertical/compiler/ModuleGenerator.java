@@ -22,8 +22,8 @@ import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Types;
 
 import static com.google.auto.common.MoreElements.getPackage;
-import static com.vertical.compiler.Setting.ModuleName;
-import static com.vertical.compiler.Setting.PackageName;
+import static com.vertical.compiler.Configuration.ModuleName;
+import static com.vertical.compiler.Configuration.PackageName;
 
 /**
  * Created by ls on 8/9/17.

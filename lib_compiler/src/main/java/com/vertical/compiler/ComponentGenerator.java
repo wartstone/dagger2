@@ -18,9 +18,9 @@ import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
 
 import static com.google.auto.common.MoreElements.getPackage;
-import static com.vertical.compiler.Setting.ComponentName;
-import static com.vertical.compiler.Setting.ModuleName;
-import static com.vertical.compiler.Setting.PackageName;
+import static com.vertical.compiler.Configuration.ComponentName;
+import static com.vertical.compiler.Configuration.ModuleName;
+import static com.vertical.compiler.Configuration.PackageName;
 
 /**
  * Created by ls on 8/9/17.
