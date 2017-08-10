@@ -27,9 +27,11 @@
    
    
    
+   
+   
   
   
-  ![image](http://github.com/zheng03/dagger2/raw/master/arch.png?raw=true) 
+  ![arch image](http://github.com/zheng03/dagger2/raw/master/arch.png?raw=true) 
   
    
    
