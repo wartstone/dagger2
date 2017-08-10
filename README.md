@@ -24,7 +24,7 @@
       |                       |                        |                      |
       |                       |                        |                      |
    B(Business)            BusinessActivity        BusinessPresenter      BusinessModel
-    ![image](http://github.com/zheng03/dagger2/raw/master/arch.png)
+    ![image](http://github.com/zheng03/dagger2/raw/master/arch.png?raw=true)
    
    
  3:
