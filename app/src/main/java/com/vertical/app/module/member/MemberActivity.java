@@ -23,10 +23,10 @@ public class MemberActivity extends BaseCatActivity<MemberContract.Presenter> im
         setContentView(R.layout.activity_home);
     }
 
-    @Override
-    protected void inject() {
-        getActivityComponent().inject(this);
-    }
+//    @Override
+//    protected void inject() {
+//        getActivityComponent().inject(this);
+//    }
 
     @Override
     protected int getLayout() {

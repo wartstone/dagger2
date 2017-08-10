@@ -22,6 +22,8 @@ import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Types;
 
 import static com.google.auto.common.MoreElements.getPackage;
+import static com.vertical.compiler.Setting.ModuleName;
+import static com.vertical.compiler.Setting.PackageName;
 
 /**
  * Created by ls on 8/9/17.
@@ -34,13 +36,11 @@ public class ModuleGenerator {
     private Messager mMessager;
     private Types mTypeUtils;
 
-    private String mPackageName = "com.vertical.app.di";
-
     public ModuleGenerator(Filer filer, Messager messager, Types typeUtils) {
         mFiler = filer;
         mMessager = messager;
         mTypeUtils = typeUtils;
-        mTypeSpecBuilder = TypeSpec.classBuilder("CatDIModuleEx").addModifiers(Modifier.PUBLIC);
+        mTypeSpecBuilder = TypeSpec.classBuilder(ModuleName).addModifiers(Modifier.PUBLIC);
     }
 
     private void generateAnnotation() {
@@ -98,7 +98,7 @@ public class ModuleGenerator {
 
     private void generateFile(TypeSpec typeSpec) {
         try {
-            JavaFile.builder(mPackageName, typeSpec).build().writeTo(mFiler);
+            JavaFile.builder(PackageName, typeSpec).build().writeTo(mFiler);
         } catch (IOException e) {
             MessagerUtil.getInstance(mMessager).error("[generateFile] exception : " + e);
         }

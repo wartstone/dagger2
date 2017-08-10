@@ -9,10 +9,8 @@ import android.widget.TextView;
 
 import com.vertical.app.R;
 //import com.vertical.app.di.CatDIComponent;
-import com.vertical.app.di.CatDIComponentEx;
 //import com.vertical.app.di.DaggerCatDIComponent;
-import com.vertical.app.di.CatDIModuleEx;
-import com.vertical.app.di.DaggerCatDIComponentEx;
+import com.vertical.app.di.BaseAutoInjectActivity;
 import com.vertical.base.BasePresenter;
 import com.vertical.base.BaseView;
 import com.vertical.core.base.BaseRxActivity;
@@ -27,7 +25,7 @@ import butterknife.Unbinder;
  * Created by katedshan on 17/8/5.
  */
 
-public abstract class BaseCatActivity<T extends BasePresenter> extends BaseRxActivity implements BaseView<T> {
+public abstract class BaseCatActivity<T extends BasePresenter> extends BaseAutoInjectActivity implements BaseView<T> {
     @Inject
     protected T mPresenter;
     private Unbinder mUnBinder;
@@ -51,7 +49,7 @@ public abstract class BaseCatActivity<T extends BasePresenter> extends BaseRxAct
 
         initParentViews();
 
-        mUnBinder = ButterKnife.bind(this);
+//        mUnBinder = ButterKnife.bind(this);
 
         onViewCreated();
 
@@ -61,16 +59,8 @@ public abstract class BaseCatActivity<T extends BasePresenter> extends BaseRxAct
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mUnBinder.unbind();
+//        mUnBinder.unbind();
         if (mPresenter != null) mPresenter.unsubscribe();
-    }
-
-    protected CatDIComponentEx getActivityComponent() {
-        return DaggerCatDIComponentEx.builder()
-                .catDIModuleEx(new CatDIModuleEx())
-                .build();
-
-//        return null;
     }
 
     private void initParentViews() {
@@ -83,6 +73,6 @@ public abstract class BaseCatActivity<T extends BasePresenter> extends BaseRxAct
     protected void onViewCreated() {}
     protected void initEventAndData() {}
 
-    protected abstract void inject();
+    protected void inject() {};
     protected abstract int getLayout();
 }

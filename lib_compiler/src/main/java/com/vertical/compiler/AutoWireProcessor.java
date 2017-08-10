@@ -40,10 +40,10 @@ public class AutoWireProcessor extends AbstractProcessor{
     private Elements mElementUtils;
     private Filer mFiler;
     private Messager mMessager;
-    private ProcessingEnvironment mProcessEnv;
 
     private ComponentGenerator mComponenetGenerator;
     private ModuleGenerator mModuleGenerator;
+    private AutoInjectorGenerator mAutoInjectorGenerator;
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnvironment) {
@@ -56,6 +56,7 @@ public class AutoWireProcessor extends AbstractProcessor{
         mMessager = processingEnv.getMessager();
         mComponenetGenerator = new ComponentGenerator(mFiler, mMessager);
         mModuleGenerator = new ModuleGenerator(mFiler, mMessager, mTypeUtils);
+        mAutoInjectorGenerator = new AutoInjectorGenerator(mFiler, mMessager, mTypeUtils);
     }
 
     @Override
@@ -83,80 +84,8 @@ public class AutoWireProcessor extends AbstractProcessor{
 
         mComponenetGenerator.generate(elements);
         mModuleGenerator.generate(elements);
+        mAutoInjectorGenerator.generate(elements);
 
         return true;
     }
-
-    String packageName = "com.vertical.app.di";
-
-    private void analyzeAnnotated(Element element) throws ClassNotFoundException {
-        TypeElement enclosingElement = (TypeElement) element;
-
-        String elementPackage = getPackage(enclosingElement).getQualifiedName().toString();
-        String className = enclosingElement.getQualifiedName().toString().substring(
-                elementPackage.length() + 1).replace('.', '$');
-
-        ClassName bindingClassName = ClassName.get(elementPackage, className);
-
-        AnnotationSpec annotationSpec = AnnotationSpec.builder(ClassName.get("dagger", "Component"))
-                                                    .addMember("modules", "$L.class", ClassName.get("com.vertical.app.di", "CatDIModuleEx"))
-                                                    .build();
-        ParameterSpec parameterSpec = ParameterSpec.builder(bindingClassName, "activity").build();
-
-        //genera interface
-        TypeSpec injectClass = TypeSpec.interfaceBuilder("CatDIComponentEx")
-                .addModifiers(Modifier.PUBLIC)
-                .addAnnotation(annotationSpec)
-                .addMethod(MethodSpec.methodBuilder("inject")
-                        .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
-                        .addParameter(parameterSpec)
-                        .build())
-                .build();
-
-        try {
-            JavaFile.builder(packageName, injectClass).build().writeTo(mFiler);
-            //info(classElement, "[Lingshan] analyzeAnnotated injectClass = " + injectClass.toString());
-        } catch (IOException e) {
-            MessagerUtil.getInstance(mMessager).error(element, "[Lingshan] analyzeAnnotated exception : " + e);
-        }
-    }
-
-    private void analysisAnnotated(Element classElement) {
-            MethodSpec bindViewMethod = MethodSpec.methodBuilder("inject")
-                                                    .addModifiers(new javax.lang.model.element.Modifier[]{javax.lang.model.element.Modifier.PUBLIC, javax.lang.model.element.Modifier.ABSTRACT})
-                                                    .addParameter(classElement.getClass(), "activity")
-                                                    .returns(TypeName.VOID)
-                                                    .build();
-
-//        TypeElement superClassName = mElementUtils.getTypeElement(name);
-            String newClassName = "CatDIComponentEx";
-
-            StringBuilder builder = new StringBuilder()
-                    .append("package com.vertical.app.di;\n\n")
-                    .append("import com.vertical.core.di.PerActivity;\n")
-                    .append("import dagger.Component;\n")
-                    .append("import com.vertical.app.module.member.MemberActivity;\n\n")
-                    .append("@PerActivity\n")
-                    .append("@Component(modules = CatDIModule.class)\n")
-                    .append(String.format("public interface %s {\n", newClassName))
-                    //.append("void inject(MemberActivity activity);\n}\n")
-                    .append(bindViewMethod.toString())
-                    .append("}\n");
-
-
-            try { // write the file
-                JavaFileObject source = mFiler.createSourceFile("com.vertical.app.di."+ newClassName);
-                Writer writer = source.openWriter();
-                writer.write(builder.toString());
-                writer.flush();
-                writer.close();
-            } catch (IOException e) {
-                // Note: calling e.printStackTrace() will print IO errors
-                // that occur from the file already existing after its first run, this is normal
-            }
-
-            MessagerUtil.getInstance(mMessager).info(">>> analysisAnnotated is finish... <<<");
-    }
-
-
 }

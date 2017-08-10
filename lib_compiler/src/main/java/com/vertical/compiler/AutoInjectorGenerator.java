@@ -1,10 +1,10 @@
 package com.vertical.compiler;
 
-import com.squareup.javapoet.AnnotationSpec;
 import com.squareup.javapoet.ClassName;
+import com.squareup.javapoet.CodeBlock;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
-import com.squareup.javapoet.ParameterSpec;
+import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 
 import java.io.IOException;
@@ -16,37 +16,47 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
+import javax.lang.model.util.Types;
 
 import static com.google.auto.common.MoreElements.getPackage;
+import static com.vertical.compiler.Setting.AutoInjectorName;
 import static com.vertical.compiler.Setting.ComponentName;
+import static com.vertical.compiler.Setting.CorePackageName;
 import static com.vertical.compiler.Setting.ModuleName;
 import static com.vertical.compiler.Setting.PackageName;
 
 /**
- * Created by ls on 8/9/17.
+ * Created by ls on 8/10/17.
  */
 
-public class ComponentGenerator {
+public class AutoInjectorGenerator {
     private TypeSpec mTypeSpec;
     private TypeSpec.Builder mTypeSpecBuilder;
+    private MethodSpec.Builder mMethodSpecBuilder;
     private Filer mFiler;
     private Messager mMessager;
+    private Types mTypeUtils;
 
-    public ComponentGenerator(Filer filer, Messager messager) {
+    public AutoInjectorGenerator(Filer filer, Messager messager, Types typeUtils) {
         mFiler = filer;
         mMessager = messager;
-        mTypeSpecBuilder = TypeSpec.interfaceBuilder(ComponentName).addModifiers(Modifier.PUBLIC);
+        mTypeUtils = typeUtils;
+        mTypeSpecBuilder = TypeSpec.classBuilder(AutoInjectorName);
     }
 
-    private void generateAnnotation() {
-        AnnotationSpec annotationSpec = AnnotationSpec.builder(ClassName.get("dagger", "Component"))
-                .addMember("modules", "$L.class", ClassName.get(PackageName, ModuleName))
-                .build();
-        mTypeSpecBuilder.addAnnotation(annotationSpec);
+    private void generateModifier() {
+        mTypeSpecBuilder.addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
+                        .superclass(ClassName.get(CorePackageName, "BaseRxActivity"));
     }
 
+    private void generateMethodWrapper() {
+        mMethodSpecBuilder = MethodSpec.methodBuilder("autoInject")
+                                       .addAnnotation(Override.class)
+                                       .addModifiers(Modifier.PROTECTED)
+                                       .returns(TypeName.VOID);
+    }
 
-    private void generateMethod(Element element) {
+    private void generateCodeBlock(Element element) {
         TypeElement enclosingElement;
 
         if(element instanceof TypeElement) {
@@ -61,16 +71,16 @@ public class ComponentGenerator {
         String className = enclosingElement.getQualifiedName().toString().substring(elementPackage.length() + 1).replace('.', '$');
 
         ClassName bindingClassName = ClassName.get(elementPackage, className);
-        ParameterSpec parameterSpec = ParameterSpec.builder(bindingClassName, "activity").build();
-
-        MethodSpec methodSpec = MethodSpec.methodBuilder("inject")
-                                    .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
-                                    .addParameter(parameterSpec)
+        String code = String.format("%s.builder().catDIModule(new $L()).build().inject(($L)this)", "Dagger" + ComponentName);
+        MessagerUtil.getInstance(mMessager).info("code is %s", code);
+        CodeBlock codeBlock = CodeBlock.builder()
+                                    .beginControlFlow("if(this instanceof $L)", bindingClassName)
+                                    .addStatement(code, ClassName.get(PackageName, ModuleName), bindingClassName)
+                                    .endControlFlow()
                                     .build();
 
-        mTypeSpecBuilder.addMethod(methodSpec);
+        mMethodSpecBuilder.addCode(codeBlock);
     }
-
 
     private void generateFile(TypeSpec typeSpec) {
         try {
@@ -82,25 +92,30 @@ public class ComponentGenerator {
 
     public boolean generate(Set<? extends Element> elements) {
         if (elements == null || elements.isEmpty()) {
-            MessagerUtil.getInstance(mMessager).info(">>> elements is null... <<<");
+            MessagerUtil.getInstance(mMessager).info(">>>[AutoInjectorGenerator] generate elements is null... <<<");
             return false;
         }
 
-        //1: generate annotation
-        generateAnnotation();
+        //1: generate modifier
+        generateModifier();
 
+        //2. generate method wrapper
+        generateMethodWrapper();
 
-        //2. generate each method
+        //3. generate method code blocks
         for(Element element : elements) {
             if (element.getKind() != ElementKind.CLASS) {
                 MessagerUtil.getInstance(mMessager).error("Only classes can be annotated");
                 return false;
             }
 
-            generateMethod(element);
+            generateCodeBlock(element);
         }
 
-        //3. generate whole file
+        //4. generate whole method
+        mTypeSpecBuilder.addMethod(mMethodSpecBuilder.build());
+
+        //5. generate whole file
         mTypeSpec = mTypeSpecBuilder.build();
         generateFile(mTypeSpec);
 
