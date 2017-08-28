@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_titlebar"
+    style="@style/app_title_style" >
+
+    <LinearLayout
+        android:id="@+id/mLeftGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/mLeftIcon"
+            android:layout_width="12.5dp"
+            android:layout_height="21dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/back_black" />
+
+        <TextView
+            android:id="@+id/mLeftText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="返回"
+            android:textColor="@color/orange"
+            android:textSize="@dimen/common_content_standard_sub_size" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/mTitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="@color/txt_color"
+        android:maxWidth="200dp"
+        android:lines="1"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textSize="@dimen/common_content_standard_size" />
+
+    <ImageView
+        android:id="@+id/mRightIcon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/mRightText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:textColor="@color/orange"
+        android:textSize="14sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/gray_line" />
+
+</RelativeLayout>

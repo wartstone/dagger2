@@ -39,7 +39,6 @@ dependencies {
 
 
 
-    compile project(':lib_api')
     compile project(':lib_annotation')
-    annotationProcessor  project(':lib_compiler')
+    annotationProcessor  project(':lib_annotation')
 }

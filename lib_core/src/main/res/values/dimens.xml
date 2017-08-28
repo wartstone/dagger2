@@ -1,0 +1,88 @@
+<resources>
+
+    <dimen name="common_outside_horizontal_margin">16dp</dimen>
+    <dimen name="common_outside_vertical_margin">16dp</dimen>
+    <dimen name="common_inside_horizontal_margin">16dp</dimen>
+    <dimen name="common_inside_vertical_margin">16dp</dimen>
+    <dimen name="common_nivagation_height">48dp</dimen>
+    <dimen name="common_listitem_height">65dp</dimen>
+    <dimen name="common_content_padding">10dp</dimen>
+    <dimen name="common_content_margin">10dp</dimen>
+    <dimen name="common_avatar">50dp</dimen>
+    <dimen name="common_content_vertical_spacing">10dp</dimen>
+    <dimen name="common_listitem_label_size">35dp</dimen>
+    <dimen name="common_listitem_horizontal_margin">15dp</dimen>
+    <dimen name="common_listitem_topmargin">12dp</dimen>
+    <dimen name="common_dividerline_height">0.5dp</dimen>
+    <dimen name="common_listitem_content_spacing">8dp</dimen>
+
+    <dimen name="common_content_standard_size">17sp</dimen>
+    <dimen name="common_content_standard_sub_size">15sp</dimen>
+    <dimen name="common_content_maximum_size">24sp</dimen>
+    <dimen name="common_content_minim_size">14sp</dimen>
+
+    <dimen name="app_daily_check_item_height">90dp</dimen>
+    <dimen name="listitem_avatar_marginright">13dp</dimen>
+    <dimen name="huge_listitem_vertical_margin">20dp</dimen>
+    <dimen name="huge_listitem_spacing">16dp</dimen>
+    <dimen name="huge_listitem_dividerline_width">302dp</dimen>
+    <dimen name="common_listitem_vipimg_size">16dp</dimen>
+    <dimen name="listitem_top_padding">12dp</dimen>
+    <dimen name="listitem_bottom_padding">14dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="txtsize_title">20sp</dimen>
+    <dimen name="txtsize_subhead">16sp</dimen>
+    <dimen name="size_avatar">50dp</dimen>
+    <dimen name="margin_chat_activity">5dp</dimen>
+    <dimen name="popmenu_width">126.0dip</dimen>
+    <dimen name="popmenu_x">-90dp</dimen>
+    <dimen name="popmenu_y">1dp</dimen>
+    <dimen name="max_img_width">160dp</dimen>
+    <dimen name="content_padding_horizontal">10dp</dimen>
+    <dimen name="content_padding_vertical">16.5dp</dimen>
+    <dimen name="common_bound_padding">8dp</dimen>
+    <dimen name="common_bound_margin">8dp</dimen>
+    <dimen name="rule_bound_margin">4dp</dimen>
+    <dimen name="ui_10_dip">10dp</dimen>
+    <dimen name="common_tab_height">48dp</dimen>
+    <dimen name="space">5dp</dimen>
+
+
+    <dimen name="margin_4">4dp</dimen>
+    <dimen name="margin_5">5dp</dimen>
+    <dimen name="margin_6">6dp</dimen>
+    <dimen name="margin_8">8dp</dimen>
+    <dimen name="margin_10">10dp</dimen>
+    <dimen name="margin_12">12dp</dimen>
+    <dimen name="margin_15">15dp</dimen>
+    <dimen name="margin_16">16dp</dimen>
+    <dimen name="margin_18">18dp</dimen>
+    <dimen name="margin_66">66dp</dimen>
+
+    <dimen name="text_size_12">12sp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="text_size_22">22sp</dimen>
+    <dimen name="text_size_24">24sp</dimen>
+    <dimen name="text_size_26">26sp</dimen>
+    <dimen name="text_size_28">28sp</dimen>
+
+    <!-- APP -->
+    <dimen name="app_title_center_size">17sp</dimen>
+    <dimen name="app_title_sub_size">15sp</dimen>
+    <dimen name="app_content_standard_size">17sp</dimen>
+    <dimen name="app_content_standard_sub_size">14sp</dimen>
+    <dimen name="app_item_height_size">50dp</dimen>
+    <dimen name="app_back_gauge_size">10dp</dimen>
+    <dimen name="app_interval_size">10dp</dimen>
+    <!-- POS -->
+    <dimen name="pos_title_center_size">26.7sp</dimen>
+    <dimen name="pos_title_sub_size">24sp</dimen>
+    <dimen name="pos_content_standard_size">26.7sp</dimen>
+    <dimen name="pos_content_standard_sub_size">20sp</dimen>
+    <dimen name="pos_item_height_size">80dp</dimen>
+    <dimen name="pos_back_gauge_size">13.3dp</dimen>
+    <dimen name="pos_interval_size">13.3dp</dimen>
+</resources>

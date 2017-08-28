@@ -1,0 +1,100 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="common_dialog_style" parent="@android:style/Theme.Holo.DialogWhenLarge">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.6</item>
+    </style>
+
+    <style name="BottomDialogAnimation" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@anim/dialog_bottom_enter</item>
+        <item name="@android:windowExitAnimation">@anim/dialog_bottom_exit</item>
+    </style>
+
+    <style name="split_line">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">5px</item>
+    </style>
+
+    <style name="app_title_style">
+        <item name="android:layout_height">@dimen/common_nivagation_height</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@android:color/white</item>
+    </style>
+
+    <style name="style_text_back">
+        <item name="android:textSize">@dimen/text_size_24</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/color_333333</item>
+    </style>
+
+    <style name="style_icon_back">
+        <item name="android:layout_width">16.7dp</item>
+        <item name="android:layout_height">28dp</item>
+        <item name="android:src">@drawable/back_black</item>
+    </style>
+
+    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog">
+        <!-- Used for the buttons -->
+        <item name="colorAccent">@color/orange</item>
+        <!-- Used for the title and text -->
+        <item name="android:textColorPrimary">@color/orange</item>
+        <!-- Used for the background -->
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="style_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:backgroundDimEnabled">false</item><!--activity不变暗-->
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
+    </style>
+
+    <style name="dateStyle">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Animations_BottomPush">
+        <item name="android:windowEnterAnimation">@anim/pw_push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/pw_push_bottom_out</item>
+    </style>
+
+    <style name="MyDialogStyleBottom" parent="android:Theme.Dialog">
+        <item name="android:windowAnimationStyle">@style/Animations_BottomPush</item>
+        <item name="android:windowFrame">@null</item>
+        <!-- 边框 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 背景透明 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 模糊 -->
+    </style>
+
+
+    <style name="CalendarViewHeader">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="CalendarViewWeekDay">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+</resources>

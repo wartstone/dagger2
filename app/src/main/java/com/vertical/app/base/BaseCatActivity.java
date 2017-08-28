@@ -7,10 +7,10 @@ import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.vertical.android.di.BaseAutoActivity;
 import com.vertical.app.R;
 //import com.vertical.app.di.CatDIComponent;
 //import com.vertical.app.di.DaggerCatDIComponent;
-import com.vertical.app.di.BaseAutoInjectActivity;
 import com.vertical.base.BasePresenter;
 import com.vertical.base.BaseView;
 import com.vertical.core.base.BaseRxActivity;
@@ -25,7 +25,7 @@ import butterknife.Unbinder;
  * Created by katedshan on 17/8/5.
  */
 
-public abstract class BaseCatActivity<T extends BasePresenter> extends BaseAutoInjectActivity implements BaseView<T> {
+public abstract class BaseCatActivity<T extends BasePresenter> extends BaseAutoActivity implements BaseView<T> {
     @Inject
     protected T mPresenter;
     private Unbinder mUnBinder;

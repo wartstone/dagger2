@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="zxjt_split_line">#e1e1e1</color>
+    <color name="zxjt_split_line_bg">#dbdbdb</color>
+    <color name="zxjt_bg">#f4f4f5</color>
+    <color name="zxjt_red">#ec1919</color>
+    <color name="zxjt_nomal_black">#333333</color>
+    <color name="zxjt_text_color_hint">#bbbbbb</color>
+    <color name="zxjt_seesion_log">#d2d2d2</color>
+    <color name="zxjt_gray">#f4f4f5</color>
+    <color name="pink1">#FEE1D3</color>
+
+    <!-- 产品主色调 -->
+    <color name="orange">#fc6a21</color>
+    <color name="orange_dark">#cf4d0b</color>
+    <color name="orange_light">#ff925c</color>
+
+    <!-- 白色 -->
+    <color name="white">#ffffff</color>
+    <!-- 透明 -->
+    <color name="transparent">#00000000</color>
+    <!-- 窗体颜色 -->
+    <color name="x_blue">#069dd5</color>
+    <color name="x_red">#f74c31</color>
+    <color name="black">#ff000000</color>
+    <color name="black1">#7A7E83</color>
+    <color name="black2">#ffeeeeee</color>
+    <color name="white_blue">#ff99ccff</color>
+    <color name="red">#FC2828</color>
+    <color name="red1">#F24949</color>
+    <color name="gray_white">#fff7f7f7</color>
+    <color name="gray_line">#DEDEDE</color>
+    <color name="gray1">#ffefefef</color>
+    <color name="red0">#ffb7393a</color>
+    <color name="gray">#ff808080</color>
+    <color name="gray_light">#FAF0E6</color>
+    <!-- <color name="transparent">#00000000</color> -->
+    <!-- <color name="alpha_white">#49ffffff</color> -->
+    <!-- <color name="black">#000000</color> -->
+    <!-- <color name="red">#ff403c</color> -->
+    <color name="txt_black">#232323</color>
+    <color name="bg_gray">#f2f2f2</color>
+    <color name="bg_agray">#49dddddd</color>
+    <color name="bg_gray_pressed">#e8e8e8</color>
+    <!-- 离线消息的颜色 -->
+    <color name="chat_send_offline_gray">#999999</color>
+    <!-- listview中item之间的颜色 -->
+    <color name="divider_list">#d4d4d4</color>
+    <!-- 浅灰色 -->
+    <color name="bg_transparent">#00000000</color>
+    <!-- 浅灰色 -->
+    <color name="bg_Gray_light">#EEEEEE</color>
+    <color name="canlendar_text_color">#323232</color>
+    <color name="pie_chart_red">#e15e68</color>
+    <color name="pie_chart_red_44">#99e15e68</color>
+    <color name="pie_chart_green">#84c348</color>
+    <color name="pie_chart_yellow">#eec459</color>
+    <color name="pie_chart_credit">#48bac3</color>
+    <color name="pie_chart_cash">#d15ee1</color>
+    <color name="pie_chart_other">#317fd3</color>
+    <color name="txt_color">#333333</color>
+    <color name="text_black">#FF666666</color>
+    <color name="c_f0f0f0">#f0f0f0</color>
+    <color name="c_e6edfa">#e6edfa</color>
+    <color name="c_5a87e0">#5a87e0</color>
+    <color name="chat_bg">#E0E4DD</color>
+    <color name="c_cccccc">#cccccc</color>
+    <color name="splip_line">#4d000000</color>
+    <color name="c_fafafa">#fafafa</color>
+    <color name="c_dddddd">#dddddd</color>
+    <color name="c_666666">#666666</color>
+    <color name="c_e3e3e3">#e3e3e3</color>
+    <color name="c_ffeee6">#ffeee6</color>
+    <color name="c_999999">#999999</color>
+    <color name="color_333333">#333333</color>
+
+</resources>
