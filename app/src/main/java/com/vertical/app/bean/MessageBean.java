@@ -7,4 +7,6 @@ import java.io.Serializable;
  */
 
 public class MessageBean implements Serializable {
+    String id;
+    String content;
 }

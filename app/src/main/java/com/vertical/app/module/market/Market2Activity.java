@@ -7,7 +7,16 @@ import android.widget.TextView;
 
 import com.vertical.annotation.AutoWire;
 import com.vertical.app.R;
+import com.vertical.app.bean.MessageBean;
 import com.vertical.app.module.member.MemberPresenter;
+import com.vertical.app.network.CatApis;
+import com.vertical.app.network.HttpModule;
+
+import java.util.List;
+import java.util.Observer;
+
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class Market2Activity extends Activity {
 
@@ -18,8 +27,29 @@ public class Market2Activity extends Activity {
     }
 
     public void changeText(View view) {
-//        LS$$ZYAO zyao$$ZYAO = new LS$$ZYAO();
-//        String message = zyao$$ZYAO.getMessage();
         ((TextView)view).setText("GENERATED");
+
+
+
+        HttpModule.getSharedInstance().createRetrofit(CatApis.class)
+                .fetchData()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new rx.Observer<MessageBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(MessageBean messageBean) {
+
+                    }
+                });
     }
 }
