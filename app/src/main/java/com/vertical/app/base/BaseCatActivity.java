@@ -1,5 +1,7 @@
 package com.vertical.app.base;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
@@ -30,26 +32,15 @@ public abstract class BaseCatActivity<T extends BasePresenter> extends BaseAutoA
     protected T mPresenter;
     private Unbinder mUnBinder;
 
-    protected TextView mTitleText;
-
     @BindView(R.id.layout_content)
     protected FrameLayout mFrameLayout;
-
-    protected FrameLayout mToolbarContainer;
-    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         if (mPresenter != null) mPresenter.subscribe();
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_base);
-
-        inject();
-
-        initParentViews();
-
-//        mUnBinder = ButterKnife.bind(this);
+        mUnBinder = ButterKnife.bind(this);
 
         onViewCreated();
 
@@ -57,22 +48,42 @@ public abstract class BaseCatActivity<T extends BasePresenter> extends BaseAutoA
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
-//        mUnBinder.unbind();
+        mUnBinder.unbind();
         if (mPresenter != null) mPresenter.unsubscribe();
     }
 
-    private void initParentViews() {
-        LayoutInflater inflater = LayoutInflater.from(BaseCatActivity.this);
-        if (getLayout() > 0) {
-            inflater.inflate(getLayout(), mFrameLayout);
+    public void launchScreen(Class<? extends Activity> target, Bundle... bd) {
+        Intent intent = new Intent();
+        intent.setClass(this, target);
+        if (bd != null && bd.length > 0) {
+            intent.putExtras(bd[0]);
         }
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        this.startActivity(intent);
+    }
+
+    public void launchScreenForResult(Class<?> target, int requestCode, Bundle... bd) {
+        Intent intent = new Intent();
+        intent.setClass(this, target);
+        if (bd != null && bd.length > 0) {
+            intent.putExtras(bd[0]);
+        }
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivityForResult(intent, requestCode);
     }
 
     protected void onViewCreated() {}
     protected void initEventAndData() {}
-
-    protected void inject() {};
-    protected abstract int getLayout();
 }
