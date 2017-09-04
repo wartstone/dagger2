@@ -2,8 +2,6 @@ package com.vertical.app.network;
 
 import android.util.Log;
 
-import com.henong.im.api.IMApis;
-
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;

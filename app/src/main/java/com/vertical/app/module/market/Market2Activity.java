@@ -2,6 +2,7 @@ package com.vertical.app.module.market;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class Market2Activity extends Activity {
+    private final String TAG = "Market2Activity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,17 +40,17 @@ public class Market2Activity extends Activity {
                 .subscribe(new rx.Observer<MessageBean>() {
                     @Override
                     public void onCompleted() {
-
+                        Log.d(TAG, "onCompleted");
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        Log.d(TAG, "onError");
                     }
 
                     @Override
                     public void onNext(MessageBean messageBean) {
-
+                        Log.d(TAG, "onNext");
                     }
                 });
     }
