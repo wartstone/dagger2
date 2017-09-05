@@ -17,8 +17,8 @@ import rx.Observable;
 
 public interface CatApis {
 
-    String HOST = String.format("http://192.168.31.16:11111");
-//    String HOST = String.format("http://139.198.11.77:8080");
+//    String HOST = String.format("http://192.168.31.16:11111");
+    String HOST= String.format("http://192.168.9.81:11111");
 
     @GET("greeting")
     Observable<MessageBean> fetchData();
