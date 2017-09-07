@@ -1,6 +1,7 @@
 package com.vertical.app.network;
 
 import com.vertical.app.bean.MessageBean;
+import com.vertical.app.bean.UserBean;
 
 import java.util.List;
 
@@ -21,4 +22,7 @@ public interface CatApis {
 
     @GET("greeting")
     Observable<MessageBean> fetchData();
+
+    @GET("users/")
+    Observable<UserBean> fetchUsers();
 }

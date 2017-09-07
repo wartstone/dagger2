@@ -11,7 +11,7 @@ import javax.lang.model.type.TypeKind;
 import javax.lang.model.type.TypeMirror;
 
 import static com.vertical.annotation.Configuration.ACTIVITY_TYPE;
-import static com.vertical.annotation.Configuration.InjectorActivityName;
+import static com.vertical.annotation.Configuration.AutoLayoutActivityName;
 import static com.vertical.annotation.Configuration.InjectorFragmentName;
 import static javax.lang.model.element.ElementKind.INTERFACE;
 
@@ -40,7 +40,7 @@ public class Utils {
 
     public static boolean isSubtypeOfActivity(TypeMirror typeMirror, Messager mMessager) {
         boolean isActivity = isSubtypeOfType(typeMirror, ACTIVITY_TYPE, mMessager);
-        boolean isBaseAutoActivity = isSubtypeOfType(typeMirror, InjectorActivityName, mMessager);
+        boolean isBaseAutoActivity = isSubtypeOfType(typeMirror, AutoLayoutActivityName, mMessager);
         return isActivity || isBaseAutoActivity;
     }
 

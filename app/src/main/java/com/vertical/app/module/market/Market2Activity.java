@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.vertical.annotation.AutoWire;
 import com.vertical.app.R;
 import com.vertical.app.bean.MessageBean;
+import com.vertical.app.bean.UserBean;
 import com.vertical.app.module.member.MemberPresenter;
 import com.vertical.app.network.CatApis;
 import com.vertical.app.network.HttpModule;
@@ -50,6 +51,28 @@ public class Market2Activity extends Activity {
 
                     @Override
                     public void onNext(MessageBean messageBean) {
+                        Log.d(TAG, "onNext");
+                    }
+                });
+
+
+        HttpModule.getSharedInstance().createRetrofit(CatApis.class)
+                .fetchUsers()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new rx.Observer<UserBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d(TAG, "onError");
+                    }
+
+                    @Override
+                    public void onNext(UserBean userBean) {
                         Log.d(TAG, "onNext");
                     }
                 });
