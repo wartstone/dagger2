@@ -25,4 +25,13 @@
         android:onClick="getUsers"
         android:text="getUsers"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dip"
+        android:layout_gravity="center"
+        android:onClick="addUser"
+        android:text="addUser"/>
+
+
 </FrameLayout>

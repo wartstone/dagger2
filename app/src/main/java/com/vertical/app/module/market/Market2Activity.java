@@ -103,4 +103,27 @@ public class Market2Activity extends Activity {
                     }
                 });
     }
+
+    public void addUser(View view) {
+        HttpModule.getSharedInstance().createRetrofit(CatApis.class)
+                .addUser("sss", 12)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new rx.Observer<BaseBean>() {
+                    @Override
+                    public void onCompleted() {
+                        Log.d(TAG, "getUsers onCompleted");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d(TAG, "getUsers onError : " + e);
+                    }
+
+                    @Override
+                    public void onNext(BaseBean baseBean) {
+                        Log.d(TAG, "getUsers onNext : success = " + baseBean.isSuccess() + ", message= " + baseBean.getMessage());
+                    }
+                });
+    }
 }

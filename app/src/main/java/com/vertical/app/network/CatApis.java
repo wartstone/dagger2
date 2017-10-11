@@ -30,4 +30,8 @@ public interface CatApis {
     @GET("users/db/")
     Observable<UserBean> getUsrs();
 
+    @FormUrlEncoded
+    @POST("users/db/add")
+    Observable<BaseBean> addUser(@Field("name") String name, @Field("age") int age);
+
 }
