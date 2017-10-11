@@ -56,7 +56,7 @@ public class HttpModule {
             HTTP_LOGGING_INTERCEPTOR = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
                 @Override
                 public void log(String message) {
-                    Log.d("Http:", message);
+                    Log.d("HttpLog:", message);
                 }
             }).setLevel(HttpLoggingInterceptor.Level.BODY);
 

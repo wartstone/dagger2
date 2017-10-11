@@ -1,5 +1,6 @@
 package com.vertical.app.network;
 
+import com.vertical.app.bean.BaseBean;
 import com.vertical.app.bean.MessageBean;
 import com.vertical.app.bean.UserBean;
 
@@ -20,9 +21,13 @@ public interface CatApis {
 //    String HOST = String.format("http://192.168.31.16:11111");
     String HOST= String.format("http://192.168.9.81:11111");
 
-    @GET("greeting")
+    @GET("/greeting/")
     Observable<MessageBean> fetchData();
 
     @GET("users/")
     Observable<UserBean> fetchUsers();
+
+    @GET("users/db/")
+    Observable<UserBean> getUsrs();
+
 }

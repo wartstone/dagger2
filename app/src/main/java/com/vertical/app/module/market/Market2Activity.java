@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.vertical.annotation.AutoWire;
 import com.vertical.app.R;
+import com.vertical.app.bean.BaseBean;
 import com.vertical.app.bean.MessageBean;
 import com.vertical.app.bean.UserBean;
 import com.vertical.app.module.member.MemberPresenter;
@@ -33,7 +34,6 @@ public class Market2Activity extends Activity {
         ((TextView)view).setText("GENERATED");
 
 
-
         HttpModule.getSharedInstance().createRetrofit(CatApis.class)
                 .fetchData()
                 .subscribeOn(Schedulers.io())
@@ -41,17 +41,43 @@ public class Market2Activity extends Activity {
                 .subscribe(new rx.Observer<MessageBean>() {
                     @Override
                     public void onCompleted() {
-                        Log.d(TAG, "onCompleted");
+                        Log.d(TAG, "greeting onCompleted");
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.d(TAG, "onError");
+                        Log.d(TAG, "greeting onError: " + e);
                     }
 
                     @Override
                     public void onNext(MessageBean messageBean) {
-                        Log.d(TAG, "onNext");
+                        Log.d(TAG, "greeting  onNext: id = " + messageBean.getId() + ", content = " + messageBean.getContent());
+                    }
+                });
+    }
+
+    public void getUsers(View view) {
+        HttpModule.getSharedInstance().createRetrofit(CatApis.class)
+                .getUsrs()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new rx.Observer<UserBean>() {
+                    @Override
+                    public void onCompleted() {
+                        Log.d(TAG, "getUsers onCompleted");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d(TAG, "getUsers onError : " + e);
+                    }
+
+                    @Override
+                    public void onNext(UserBean userBeanBaseBean) {
+                        Log.d(TAG, "getUsers onNext : size = " + userBeanBaseBean.getResultSize());
+                        for(int i = 0; i < userBeanBaseBean.getResultSize(); i++) {
+                            Log.d(TAG, "getUsers onNext : name = " + userBeanBaseBean.getResult().get(i).name + ",  age = " + userBeanBaseBean.getResult().get(i).age);
+                        }
                     }
                 });
 
