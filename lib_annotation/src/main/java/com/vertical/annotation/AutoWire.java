@@ -14,5 +14,5 @@ import java.lang.annotation.Target;
 public @interface AutoWire {
     Class<?> presenter();
 
-    Class<?> contract();
+    Class<?> contract() default Object.class;
 }

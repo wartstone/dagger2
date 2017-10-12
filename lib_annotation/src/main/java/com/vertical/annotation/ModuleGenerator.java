@@ -105,13 +105,16 @@ public class ModuleGenerator {
         TypeMirror presenterMirror = Utils.getPresenterTypeMirror(annotation);
         TypeElement presenter = (TypeElement) mTypeUtils.asElement(presenterMirror);
 
-        TypeMirror contractMirror = Utils.getContractTypeMirror(annotation);
+        TypeMirror contractMirror = Utils.getMVPContractClass(element.asType(), mMessager);
+        if(contractMirror == null) {
+            contractMirror = Utils.getContractTypeMirror(annotation);
+        }
         TypeElement contract = (TypeElement) mTypeUtils.asElement(contractMirror);
 
         MethodSpec presenterMethodSpec = MethodSpec.methodBuilder("provide" + presenter.getSimpleName())
                 .addAnnotation(annotationSpec)
                 .addModifiers(Modifier.PUBLIC)
-                .addStatement("return new $L(($L)mActivity)", presenter, ClassName.get(getPackage(contract).getQualifiedName().toString() + '.' + contract.getSimpleName(), "View"))
+                .addStatement("return new $T(($T)mActivity)", presenter, ClassName.get(getPackage(contract).getQualifiedName().toString() + '.' + contract.getSimpleName(), "View"))
                 .returns(ClassName.get(getPackage(contract).getQualifiedName().toString() + '.' + contract.getSimpleName(), "Presenter"))
                 .build();
 

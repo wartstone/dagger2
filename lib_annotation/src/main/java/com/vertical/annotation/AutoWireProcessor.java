@@ -101,14 +101,4 @@ public class AutoWireProcessor extends AbstractProcessor {
 
         return true;
     }
-
-    private TypeElement asTypeElement(Element element) {
-        if(element instanceof TypeElement) {
-            return (TypeElement) element;
-        } else if(element.getEnclosingElement() instanceof TypeElement) {
-            return (TypeElement) element.getEnclosingElement();
-        } else {
-            return null;
-        }
-    }
 }

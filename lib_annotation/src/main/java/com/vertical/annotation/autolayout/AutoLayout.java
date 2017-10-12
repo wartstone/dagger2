@@ -18,6 +18,4 @@ public @interface AutoLayout {
      int title_left_drawable() default 0;
      String title_right() default "";
      int title_right_drawable() default 0;
-
-     AutoLayoutEnum visible() default AutoLayoutEnum.VISIBLE;
 }

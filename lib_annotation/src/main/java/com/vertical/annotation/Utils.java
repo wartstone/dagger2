@@ -38,6 +38,30 @@ public class Utils {
         return null;
     }
 
+    public static TypeMirror getMVPContractClass(TypeMirror typeMirror, Messager messager) {
+        DeclaredType declaredType = (DeclaredType) typeMirror;
+        Element element = declaredType.asElement();
+        if (!(element instanceof TypeElement)) {
+            MessagerUtil.getInstance(messager).info(">>> Element not instance of TypeElement... <<<");
+            return null;
+        }
+
+        TypeElement typeElement = (TypeElement) element;
+        for (TypeMirror interfaceType : typeElement.getInterfaces()) {
+            MessagerUtil.getInstance(messager).info("||||||Type %s, interface is %s ", typeMirror, interfaceType.toString());
+            if(interfaceType.toString().contains("Contract") || interfaceType.toString().contains("contract")) {
+                DeclaredType interfaceDeclaredType = (DeclaredType) interfaceType;
+                Element interfaceElement = interfaceDeclaredType.asElement();
+                TypeElement interfaceTypeElement = (TypeElement) interfaceElement;
+                TypeElement enclosingElement = (TypeElement) interfaceTypeElement.getEnclosingElement();
+                MessagerUtil.getInstance(messager).info("||||||Type %s, enclosingType is %s", typeMirror, enclosingElement.asType());
+                return enclosingElement.asType();
+            }
+        }
+
+        return null;
+    }
+
     public static boolean isSubtypeOfActivity(TypeMirror typeMirror, Messager mMessager) {
         boolean isActivity = isSubtypeOfType(typeMirror, ACTIVITY_TYPE, mMessager);
         boolean isBaseAutoActivity = isSubtypeOfType(typeMirror, AutoLayoutActivityName, mMessager);
