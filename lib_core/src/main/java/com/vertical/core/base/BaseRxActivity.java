@@ -32,13 +32,9 @@ public abstract class BaseRxActivity extends SupportActivity implements Lifecycl
         lifecycleSubject.onNext(ActivityEvent.CREATE);
 
         autoInject();
-
-        autoLayout();
     }
 
     protected abstract void autoInject();
-
-    protected abstract void autoLayout();
 
     private final BehaviorSubject<ActivityEvent> lifecycleSubject = BehaviorSubject.create();
 

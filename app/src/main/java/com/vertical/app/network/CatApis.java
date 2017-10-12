@@ -1,6 +1,7 @@
 package com.vertical.app.network;
 
 import com.vertical.app.bean.BaseBean;
+import com.vertical.app.bean.MemberBean;
 import com.vertical.app.bean.MessageBean;
 import com.vertical.app.bean.UserBean;
 
@@ -33,5 +34,8 @@ public interface CatApis {
     @FormUrlEncoded
     @POST("users/db/add")
     Observable<BaseBean> addUser(@Field("name") String name, @Field("age") int age);
+
+    @GET("getMembers")
+    Observable<MemberBean> getMembers();
 
 }

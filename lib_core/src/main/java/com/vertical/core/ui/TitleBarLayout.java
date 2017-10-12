@@ -32,12 +32,6 @@ import com.vertical.core.util.TextUtil;
 
 import butterknife.BindView;
 
-/**
- * <p>Description: </p>
- * <p>Company: HeNong.Co.Ltd</p>
- * @author Ralken Liao
- * @date 2016-10-8 下午1:27:04
- */
 public class TitleBarLayout extends BaseFrameLayout implements OnClickListener {
 
 	@BindView(R2.id.mLeftGroup) LinearLayout mLeftGroup;
