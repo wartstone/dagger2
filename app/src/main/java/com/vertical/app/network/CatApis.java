@@ -1,8 +1,10 @@
 package com.vertical.app.network;
 
 import com.vertical.app.bean.BaseBean;
+import com.vertical.app.bean.BaseListBean;
 import com.vertical.app.bean.MemberBean;
 import com.vertical.app.bean.MessageBean;
+import com.vertical.app.bean.OrderBean;
 import com.vertical.app.bean.UserBean;
 
 import java.util.List;
@@ -37,5 +39,9 @@ public interface CatApis {
 
     @GET("getMembers")
     Observable<MemberBean> getMembers();
+
+    @FormUrlEncoded
+    @POST("order/create")
+    Observable<BaseListBean<OrderBean>> createOrder(@Field("id") long id, @Field("order_id") long order_id);
 
 }

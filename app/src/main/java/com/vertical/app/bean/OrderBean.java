@@ -11,7 +11,7 @@ import java.util.List;
 
 public class OrderBean implements Serializable {
     public long id;
-    public String order_id;
+    public long order_id;
     public Date order_date;
     public String product_name;
     public int quantity;
