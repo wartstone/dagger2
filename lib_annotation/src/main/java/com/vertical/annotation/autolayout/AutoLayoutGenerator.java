@@ -74,10 +74,10 @@ public class AutoLayoutGenerator {
 
     private void generateLayoutMethodWrapper() {
         mLayoutMethodSpecBuilder = MethodSpec.methodBuilder("autoLayout")
-                .addAnnotation(Override.class)
                 .addModifiers(Modifier.PROTECTED)
                 .addStatement("mTitleFrame = ($T) findViewById($T.id.layout_title)", ClassName.get("com.vertical.core.ui", "TitleBarLayout"), ClassName.get(ResPackageName, "R"))
                 .addStatement("mContentFrame = ($T) findViewById($T.id.layout_content)", ClassName.get("android.widget", "FrameLayout"), ClassName.get(ResPackageName, "R"))
+                .addStatement("mTitleFrame.setOnTitleBarClickListener(this)")
                 .returns(TypeName.VOID);
     }
 
@@ -117,9 +117,8 @@ public class AutoLayoutGenerator {
         int layoutID = annotation.layout();
 
         CodeBlock titlebarCodeBlock = CodeBlock.builder()
-                                               .add("\n")
-                                               .addStatement("mTitleFrame.setOnTitleBarClickListener(this)")
-                                               .build();
+                .add("\n")
+                .build();
 
         CodeBlock contentFrameCodeBlock;
         if(title.isEmpty()) {
