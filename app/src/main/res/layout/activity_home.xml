@@ -1,13 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#ffff00">
+    android:layout_height="match_parent">
 
     <FrameLayout
         android:id="@+id/contentFrame"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.vertical.app.common.NavigationTabStrip
+        android:id="@+id/nts_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:background="#ff252e39"
+        app:nts_active_color="#fff"
+        app:nts_color="#ff1748"
+        app:nts_factor="2.8"
+        app:nts_corners_radius="1.5dp"
+        app:nts_inactive_color="#81ffffff"
+        app:nts_titles="@array/titles"
+        app:nts_typeface="fonts/drugs.otf"
+        app:nts_weight="3dp"/>
 
 </FrameLayout>

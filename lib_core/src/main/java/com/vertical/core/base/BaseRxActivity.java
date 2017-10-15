@@ -6,6 +6,7 @@ import android.support.annotation.CheckResult;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.SupportActivity;
+import android.support.v7.app.AppCompatActivity;
 
 import com.trello.rxlifecycle2.LifecycleProvider;
 import com.trello.rxlifecycle2.LifecycleTransformer;
@@ -23,7 +24,7 @@ import io.reactivex.subjects.BehaviorSubject;
  *                     因而直接将observable过滤掉(observable.filter), 以实现内存不泄露.
  */
 
-public abstract class BaseRxActivity extends SupportActivity implements LifecycleProvider<ActivityEvent> {
+public abstract class BaseRxActivity extends AppCompatActivity implements LifecycleProvider<ActivityEvent> {
     @Override
     @CallSuper
     protected void onCreate(@Nullable Bundle savedInstanceState) {

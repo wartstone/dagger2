@@ -9,10 +9,11 @@ import me.yokeyword.fragmentation.SupportFragment;
  * Created by ls on 7/27/17.
  */
 
-public class HomeWorkFragment extends BaseFragment {
+public class HomeMineFragment extends BaseFragment {
+
     @Override
     protected int inflateContentView() {
-        return R.layout.fragment_work;
+        return R.layout.fragment_mine;
     }
 
     @Override
