@@ -27,7 +27,8 @@ public class CreateOrderPresenter extends BaseCatPresenter<CreateOrderContract.V
     @Override
     public void createOrder(OrderBean orderBean) {
         HttpModule.getSharedInstance().createRetrofit(CatApis.class)
-                .createOrder(orderBean.id, orderBean.order_id)
+//                .createOrder(orderBean.id, orderBean.order_id)
+                .createOrder2(orderBean)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<BaseListBean<OrderBean>>() {
