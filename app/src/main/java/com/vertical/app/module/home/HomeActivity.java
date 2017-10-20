@@ -34,21 +34,6 @@ public class HomeActivity extends BaseCatActivity {
 
     @Override
     protected void onViewCreated() {
-
-//        HomeWorkFragment singleChatFragment = (HomeWorkFragment) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
-//
-//        if (singleChatFragment == null) {
-//            singleChatFragment = HomeWorkFragment.newInstance();
-//            mView = singleChatFragment;
-//
-//            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//            transaction.add(R.id.contentFrame, singleChatFragment);
-//            transaction.commitNow();
-//        }
-//
-//        // Create the presenter
-//        mPresenter = new HomeWorkPresenter(new HomeWorkModel(), new HomeWorkFragment(), this);
-
         initUI();
     }
 
@@ -58,37 +43,10 @@ public class HomeActivity extends BaseCatActivity {
 
         initFragment();
 
-//        mViewPager.setAdapter(new PagerAdapter() {
-//            @Override
-//            public int getCount() {
-//                return 4;
-//            }
-//
-//            @Override
-//            public boolean isViewFromObject(final View view, final Object object) {
-//                return view.equals(object);
-//            }
-//
-//            @Override
-//            public void destroyItem(final View container, final int position, final Object object) {
-//                ((ViewPager) container).removeView((View) object);
-//            }
-//
-//            @Override
-//            public Object instantiateItem(final ViewGroup container, final int position) {
-//                container.addView((View)fragmentList.get(position));
-//                return viewLists.get(position);
-//
-////                final View view = new View(getBaseContext());
-////                container.addView(view);
-////                return view;
-//            }
-//        });
-
         mViewPager.setAdapter(mPagerAdapter);
 
-        mBottomNavigationTabStrip.setViewPager(mViewPager, 1);
-        mBottomNavigationTabStrip.setTabIndex(1, true);
+        mBottomNavigationTabStrip.setViewPager(mViewPager, 0);
+        mBottomNavigationTabStrip.setTabIndex(0, true);
     }
 
     private void initFragment() {
@@ -96,22 +54,6 @@ public class HomeActivity extends BaseCatActivity {
         mMineFragment = new HomeMineFragment();
         mIntelFragment = new HomeIntelFragment();
         mWorkFragment = new HomeWorkFragment();
-
-
-
-//        fragmentList.add();
-//        fragmentList.add(new HomeWorkFragment());
-//        fragmentList.add(new HomeMineFragment());
-//        fragmentList.add(new HomeIntelFragment());
-//        FragmentTransaction transaction = fm.beginTransaction();
-//        for (int i = 0; i < fragmentList.size(); i++) {
-//            Fragment fragment = fragmentList.get(i);
-//            transaction.add(R.id.contentFrame, fragment);
-//            if (i != 0) {
-//                transaction.hide(fragment);
-//            }
-//        }
-//        transaction.commitAllowingStateLoss();
     }
 
     public class HomeFragmentPagerAdapter extends FragmentPagerAdapter {
