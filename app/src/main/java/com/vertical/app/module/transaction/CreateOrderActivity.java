@@ -38,8 +38,8 @@ public class CreateOrderActivity extends BaseCatActivity<CreateOrderContract.Pre
         orderBean.create_date = timestamp;
         Date date = new Date(2017, 10, 10);
         orderBean.order_date = date;
-        orderBean.id = 111;
-        orderBean.order_id = 11;
+        orderBean.id = 656;
+        orderBean.order_id = 776;
         orderBean.quantity = 1;
         orderBean.product_name = "手表";
         orderBean.status = 0;

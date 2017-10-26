@@ -9,6 +9,8 @@ import com.vertical.app.bean.UserBean;
 
 import java.util.List;
 
+import okhttp3.RequestBody;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -42,10 +44,14 @@ public interface CatApis {
 
     @FormUrlEncoded
     @POST("order/create")
-    Observable<BaseListBean<OrderBean>> createOrder(@Field("id") long id, @Field("order_id") long order_id);
+    Observable<BaseListBean<OrderBean>> createOrder(@Field("id") long id, @Field("order_id") long order_id, @Field("product_name") String product_name,
+                                                    @Field("quantity") int quantity, @Field("amount") double amount, @Field("comments") String comments);
 
     @FormUrlEncoded
     @POST("order/create2")
     Observable<BaseListBean<OrderBean>> createOrder2(@Field("orderBean") OrderBean orderBean);
+
+    @POST("order/create3")
+    Observable<BaseListBean<OrderBean>> createOrder3(@Body OrderBean orderBean);
 
 }
