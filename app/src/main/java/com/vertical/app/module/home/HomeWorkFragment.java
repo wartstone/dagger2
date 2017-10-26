@@ -22,8 +22,5 @@ public class HomeWorkFragment extends BaseFragment {
 
     }
 
-    @OnClick(R.id.tv_createOrder)
-    public void onCreateOrder() {
-        launchScreen(CreateOrderActivity.class);
-    }
+
 }

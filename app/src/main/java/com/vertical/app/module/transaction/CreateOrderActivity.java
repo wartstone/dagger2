@@ -34,10 +34,10 @@ public class CreateOrderActivity extends BaseCatActivity<CreateOrderContract.Pre
         orderBean.amount = 1.1;
         orderBean.comments = "第一个商品";
         orderBean.create_by = 20171001;
-        Timestamp timestamp = new Timestamp(2017, 10, 10, 12, 11, 1, 0);
-        orderBean.create_date = timestamp;
-        Date date = new Date(2017, 10, 10);
-        orderBean.order_date = date;
+        Timestamp timestamp = new Timestamp(2017, 10, 10, 12, 11, 1, 123);
+        orderBean.create_date = timestamp.toString();
+        Date date = new Date(2017, 2, 30);
+        orderBean.order_date = date.toString();
         orderBean.id = 656;
         orderBean.order_id = 776;
         orderBean.quantity = 1;

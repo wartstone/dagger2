@@ -70,11 +70,11 @@ public class HomeActivity extends BaseCatActivity {
                 case 0:
                     return mMemberFragment;
                 case 1:
-                    return mMineFragment;
+                    return mWorkFragment;
                 case 2:
                     return mIntelFragment;
                 case 3:
-                    return mWorkFragment;
+                    return mMineFragment;
                 default:
                     return null;
             }

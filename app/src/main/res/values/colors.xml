@@ -3,4 +3,80 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="zxjt_split_line">#e1e1e1</color>
+    <color name="zxjt_split_line_bg">#dbdbdb</color>
+    <color name="zxjt_bg">#f4f4f5</color>
+    <color name="zxjt_red">#ec1919</color>
+    <color name="zxjt_nomal_black">#333333</color>
+    <color name="zxjt_text_color_hint">#bbbbbb</color>
+    <color name="zxjt_seesion_log">#d2d2d2</color>
+    <color name="zxjt_gray">#f4f4f5</color>
+    <color name="pink1">#FEE1D3</color>
+
+    <color name="orange">#fc6a21</color>
+    <color name="orange_dark">#cf4d0b</color>
+    <color name="orange_light">#ff925c</color>
+
+    <!-- 白色 -->
+    <color name="white">#ffffff</color>
+    <!-- 透明 -->
+    <color name="transparent">#00000000</color>
+    <!-- 窗体颜色 -->
+    <color name="x_blue">#069dd5</color>
+    <color name="x_red">#f74c31</color>
+    <color name="black">#ff000000</color>
+    <color name="black1">#7A7E83</color>
+    <color name="black2">#ffeeeeee</color>
+    <color name="white_blue">#ff99ccff</color>
+    <color name="red">#FC2828</color>
+    <color name="bg_orange">#FC6A21</color>
+    <color name="gray_white">#fff7f7f7</color>
+    <color name="gray_line">#DEDEDE</color>
+    <color name="gray1">#ffefefef</color>
+    <color name="red0">#ffb7393a</color>
+    <color name="gray">#ff808080</color>
+    <color name="gray_light">#FAF0E6</color>
+    <color name="txt_black">#232323</color>
+    <color name="bg_gray">#f2f2f2</color>
+    <color name="bg_agray">#49dddddd</color>
+    <color name="bg_gray_trans">#22222222</color>
+    <color name="bg_gray_pressed">#e8e8e8</color>
+    <!-- 离线消息的颜色 -->
+    <color name="chat_send_offline_gray">#999999</color>
+    <!-- listview中item之间的颜色 -->
+    <color name="divider_list">#d4d4d4</color>
+    <!-- 浅灰色 -->
+    <color name="bg_transparent">#00000000</color>
+    <!-- 浅灰色 -->
+    <color name="bg_Gray_light">#EEEEEE</color>
+    <color name="canlendar_text_color">#323232</color>
+    <color name="pie_chart_red">#e15e68</color>
+    <color name="pie_chart_red_44">#99e15e68</color>
+    <color name="pie_chart_green">#84c348</color>
+    <color name="pie_chart_yellow">#eec459</color>
+    <color name="pie_chart_credit">#48bac3</color>
+    <color name="pie_chart_cash">#d15ee1</color>
+    <color name="pie_chart_other">#317fd3</color>
+    <color name="txt_color">#333333</color>
+    <color name="text_black">#FF666666</color>
+
+    <color name="chat_bg">#E0E4DD</color>
+    <color name="divider">#e5e5e5</color>
+    <color name="text_suffix">#90a0c0</color>
+    <color name="text_column_title">#999999</color>
+    <color name="bg_divider">#dddddd</color>
+    <color name="bg_tips">#cc9966</color>
+    <color name="color_bbbbbb">#bbbbbb</color>
+    <color name="color_659c42">#659c42</color>
+    <!--扫描二维码-->
+
+    <color name="color_f8fdfc">#f8fdfc</color>
+    <color name="color_f8f8f8">#f8f8f8</color>
+    <color name="color_fff7f3">#fff7f3</color>
+    <color name="color_fffde1">#fffde1</color>
+    <color name="color_e69b22">#e69b22</color>
+    <color name="color_4c000000">#4c000000</color>
+    <color name="color_fafafa">#fafafa</color>
+    <color name="color_login">#f29700</color>
 </resources>

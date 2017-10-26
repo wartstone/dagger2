@@ -28,6 +28,8 @@ import butterknife.Unbinder;
  */
 
 public abstract class BaseCatActivity<T extends BasePresenter> extends BaseAutoActivity implements BaseView<T> {
+    protected final String TAG = getClass().getSimpleName();
+
     @Inject
     protected T mPresenter;
     private Unbinder mUnBinder;
