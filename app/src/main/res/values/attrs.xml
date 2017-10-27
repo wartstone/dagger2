@@ -25,4 +25,46 @@
         <attr name="nts_active_color" format="color"/>
     </declare-styleable>
 
+    <declare-styleable name="CatTextView">
+        <attr name="leftIcon" format="reference"/>
+        <attr name="rightIcon" format="reference"/>
+        <attr name="leftText" format="string"/>
+        <attr name="rightText" format="string"/>
+        <attr name="centerText" format="string"/>
+        <attr name="leftTextSize" format="dimension"/>
+        <attr name="rightTextSize" format="dimension"/>
+        <attr name="centerTextSize" format="dimension"/>
+        <attr name="leftTextColor" format="color"/>
+        <attr name="rightTextColor" format="color"/>
+        <attr name="centerTextColor" format="color"/>
+        <attr name="dividerLineColor" format="color"/>
+        <attr name="dividerLineHeight" format="dimension"/>
+        <attr name="dividerLineType" format="enum">
+            <enum name="none" value="0"/>
+            <enum name="top" value="1"/>
+            <enum name="bottom" value="2"/>
+            <enum name="both" value="3"/>
+        </attr>
+        <attr name="leftIconHeight" format="dimension"/>
+        <attr name="leftIconWidth" format="dimension"/>
+        <attr name="rightIconHeight" format="dimension"/>
+        <attr name="rightIconWidth" format="dimension"/>
+        <attr name="leftIconMarginLeft" format="dimension"/>
+        <attr name="rightIconMarginRight" format="dimension"/>
+        <attr name="leftTextMarginLeft" format="dimension"/>
+        <attr name="leftTextMarginRight" format="dimension"/>
+        <attr name="rightTextMarginLeft" format="dimension"/>
+        <attr name="rightTextMarginRight" format="dimension"/>
+        <attr name="centerTextMarginLeft" format="dimension"/>
+        <attr name="centerTextMarginRight" format="dimension"/>
+        <attr name="bottomDividerLineMarginLeft" format="dimension"/>
+        <attr name="topDividerLineMarginLeft" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="RefreshView">
+        <attr name="type" format="enum">
+            <enum name="sun" value="0" />
+        </attr>
+    </declare-styleable>
+
 </resources>

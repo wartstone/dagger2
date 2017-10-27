@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.vertical.app.module.market.Market2Activity">
+    tools:mContext="com.vertical.app.module.market.Market2Activity">
 
     <TextView
         android:id="@+id/tv_1"

@@ -52,7 +52,7 @@ public class HomeActivity extends BaseCatActivity {
     private void initFragment() {
         mMemberFragment = new HomeMemberFragment();
         mMineFragment = new HomeMineFragment();
-        mIntelFragment = new HomeIntelFragment();
+        mIntelFragment = new HomeRecyclerViewFragment();
         mWorkFragment = new HomeWorkFragment();
     }
 

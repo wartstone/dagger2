@@ -1,10 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_market2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dip"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:id="@+id/img_addMember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/img_createOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dip"/>
+
+        <ImageView
+            android:id="@+id/img_searchMember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dip"
+            android:layout_marginRight="20dip"/>
+
+    </LinearLayout>
+
+    <com.vertical.app.common.widget.WorkBoardLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.vertical.app.common.widget.CatTextView
+                android:id="@+id/tv_memberList"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                app:bottomDividerLineMarginLeft="10dp"
+                app:leftIcon="@drawable/profile_icon_authorization"
+                app:leftIconHeight="26dp"
+                app:leftIconWidth="26dp"
+                app:leftText="会员列表"
+                app:leftTextMarginLeft="14dp"
+                app:rightIcon="@drawable/right"/>
+
+            <com.vertical.app.common.widget.CatTextView
+                android:id="@+id/tv_saleBack"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                app:bottomDividerLineMarginLeft="10dp"
+                app:leftIcon="@drawable/mine_money"
+                app:leftIconHeight="26dp"
+                app:leftIconWidth="26dp"
+                app:leftText="销售回访"
+                app:leftTextMarginLeft="14dp"
+                app:rightIcon="@drawable/right"/>
+
+            <com.vertical.app.common.widget.CatTextView
+                android:id="@+id/tv_operation"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                app:bottomDividerLineMarginLeft="10dp"
+                app:leftIcon="@drawable/operationanalysis"
+                app:leftIconHeight="26dp"
+                app:leftIconWidth="26dp"
+                app:leftText="生日祝福"
+                app:leftTextMarginLeft="14dp"
+                app:rightIcon="@drawable/right"/>
+
+            <com.vertical.app.common.widget.CatTextView
+                android:id="@+id/tv_holiday"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                app:bottomDividerLineMarginLeft="10dp"
+                app:leftIcon="@drawable/icon_mine_store"
+                app:leftIconHeight="26dp"
+                app:leftIconWidth="26dp"
+                app:leftText="家庭节日"
+                app:leftTextMarginLeft="14dp"
+                app:rightIcon="@drawable/right"/>
+
+            <com.vertical.app.common.widget.CatTextView
+                android:id="@+id/tv_operation2"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                app:bottomDividerLineMarginLeft="10dp"
+                app:leftIcon="@drawable/icon_mine_service"
+                app:leftIconHeight="26dp"
+                app:leftIconWidth="26dp"
+                app:leftText="节日祝福"
+                app:leftTextMarginLeft="14dp"
+                app:rightIcon="@drawable/right"/>
+
+            <com.vertical.app.common.widget.CatTextView
+                android:id="@+id/tv_setting"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                app:bottomDividerLineMarginLeft="10dp"
+                app:leftIcon="@drawable/icon_mine_setting"
+                app:leftIconHeight="26dp"
+                app:leftIconWidth="26dp"
+                app:leftText="休眠激活"
+                app:leftTextMarginLeft="14dp"
+                app:rightIcon="@drawable/right"/>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 
 </LinearLayout>

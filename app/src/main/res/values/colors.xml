@@ -79,4 +79,8 @@
     <color name="color_4c000000">#4c000000</color>
     <color name="color_fafafa">#fafafa</color>
     <color name="color_login">#f29700</color>
+
+    <color name="saffron">#F4B63E</color>
+    <color name="eggplant">#663D4E</color>
+    <color name="sienna">#EB6460</color>
 </resources>

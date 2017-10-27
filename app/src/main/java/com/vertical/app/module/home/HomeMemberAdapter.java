@@ -1,0 +1,95 @@
+package com.vertical.app.module.home;
+
+import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.vertical.app.R;
+import com.vertical.app.common.widget.CatTextView;
+import com.vertical.app.common.widget.WorkBoardLayout;
+
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+/**
+ * Created by ls on 10/27/17.
+ */
+
+public class HomeMemberAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    public String TAG = getClass().getSimpleName();
+    final Context mContext;
+    private OnMenuClickListener onMenuClickListener;
+
+    public HomeMemberAdapter(Context mContext){
+        this.mContext = mContext;
+    }
+
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int pos) {
+        if(pos == 0) {
+            return new BoardViewHolder(new WorkBoardLayout(mContext));
+        } else {
+            return new ListViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_home_menu, null, false));
+        }
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if(position == 0) { // WorkBoardLayout
+            BoardViewHolder boardViewHolder = (BoardViewHolder)holder;
+        } else {
+            ListViewHolder listViewHolder = (ListViewHolder)holder;
+            final HomeMemberMenu menu = HomeMemberMenu.values()[position - 1];
+            Log.v(TAG, "[onBindViewHolder] menu = " + menu);
+            listViewHolder.content.setLeftIconRes(menu.getDrawable());
+            listViewHolder.content.setLeftTextString(menu.getTitle());
+
+            listViewHolder.root.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View view) {
+                    if (null != onMenuClickListener) {
+                        onMenuClickListener.onMenuClick(menu);
+                    }
+                }
+            });
+        }
+    }
+
+    @Override
+    public int getItemCount() {
+        return HomeMemberMenu.values().length + 1;
+    }
+
+    public interface OnMenuClickListener{
+        void onMenuClick(HomeMemberMenu menu);
+    }
+
+    public void setOnMenuClickListener(OnMenuClickListener onMenuClickListener) {
+        this.onMenuClickListener = onMenuClickListener;
+    }
+
+    class BoardViewHolder extends RecyclerView.ViewHolder {
+        public BoardViewHolder(View itemView) {
+            super(itemView);
+        }
+    }
+
+    class ListViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.root)
+        View root;
+        @BindView(R.id.content)
+        CatTextView content;
+
+        public ListViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
+    }
+}

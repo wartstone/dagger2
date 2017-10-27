@@ -38,7 +38,7 @@ public class WorkBoardLayout extends FrameLayout {
 
     private void initView() {
         LayoutInflater.from(mContext).inflate(R.layout.layout_workdboard, this, true);
-        ButterKnife.bind(this);  // TODO: 10/26/17  需要unBind.可能出现内存泄露
+        mUnbinder = ButterKnife.bind(this);
     }
 
     public void setMonthOutput(int amount) {

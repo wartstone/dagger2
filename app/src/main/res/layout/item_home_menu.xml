@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.vertical.app.common.widget.CatTextView
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        app:bottomDividerLineMarginLeft="10dp"
+        app:leftIconHeight="26dp"
+        app:leftIconWidth="26dp"
+        app:leftTextMarginLeft="14dp"
+        app:leftIconMarginLeft="10dip"
+        app:rightIcon="@drawable/right"/>
+
+</LinearLayout>
