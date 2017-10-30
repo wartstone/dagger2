@@ -27,14 +27,21 @@ public class HomeMemberAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public String TAG = getClass().getSimpleName();
     final Context mContext;
     private OnMenuClickListener onMenuClickListener;
+    private final int VIEW_WORKBAORD = 0;
+    private final int VIEW_LIST = 1;
 
     public HomeMemberAdapter(Context mContext){
         this.mContext = mContext;
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int pos) {
-        if(pos == 0) {
+    public int getItemViewType(int position) {
+        return position == 0 ? VIEW_WORKBAORD : VIEW_LIST;
+    }
+
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if(viewType == VIEW_WORKBAORD) {
             return new BoardViewHolder(new WorkBoardLayout(mContext));
         } else {
             return new ListViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_home_menu, null, false));
@@ -43,22 +50,24 @@ public class HomeMemberAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if(position == 0) { // WorkBoardLayout
-            BoardViewHolder boardViewHolder = (BoardViewHolder)holder;
-        } else {
-            ListViewHolder listViewHolder = (ListViewHolder)holder;
-            final HomeMemberMenu menu = HomeMemberMenu.values()[position - 1];
-            Log.v(TAG, "[onBindViewHolder] menu = " + menu);
-            listViewHolder.content.setLeftIconRes(menu.getDrawable());
-            listViewHolder.content.setLeftTextString(menu.getTitle());
+        switch (getItemViewType(position)) {
+            case VIEW_WORKBAORD:
+                break;
+            case VIEW_LIST:
+                ListViewHolder listViewHolder = (ListViewHolder)holder;
+                final HomeMemberMenu menu = HomeMemberMenu.values()[position - 1];
+                Log.v(TAG, "[onBindViewHolder] menu = " + menu);
+                listViewHolder.content.setLeftIconRes(menu.getDrawable());
+                listViewHolder.content.setLeftTextString(menu.getTitle());
 
-            listViewHolder.root.setOnClickListener(new View.OnClickListener() {
-                @Override public void onClick(View view) {
-                    if (null != onMenuClickListener) {
-                        onMenuClickListener.onMenuClick(menu);
+                listViewHolder.root.setOnClickListener(new View.OnClickListener() {
+                    @Override public void onClick(View view) {
+                        if (null != onMenuClickListener) {
+                            onMenuClickListener.onMenuClick(menu);
+                        }
                     }
-                }
-            });
+                });
+                break;
         }
     }
 
