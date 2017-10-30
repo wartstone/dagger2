@@ -6,15 +6,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.vertical.app.R;
+import com.vertical.app.common.widget.CatEditText;
 import com.vertical.app.common.widget.CatTextView;
 import com.vertical.app.common.widget.WorkBoardLayout;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

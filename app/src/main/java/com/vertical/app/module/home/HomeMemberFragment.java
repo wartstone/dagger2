@@ -17,6 +17,7 @@ import com.vertical.app.bean.BaseBean;
 import com.vertical.app.bean.MessageBean;
 import com.vertical.app.bean.UserBean;
 import com.vertical.app.common.widget.pullRefreshView.PullToRefreshView;
+import com.vertical.app.module.transaction.CreateOrderActivity;
 import com.vertical.app.network.CatApis;
 import com.vertical.app.network.HttpModule;
 import com.vertical.core.ui.BaseFrameLayout;
@@ -34,6 +35,7 @@ public class HomeMemberFragment extends Fragment implements HomeMemberAdapter.On
     private final String TAG = getClass().getSimpleName();
     private PullToRefreshView mPullToRefreshView;
     private final int REFRESH_DELAY = 1000;
+    private HomeMemberAdapter mMemberAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,7 +44,9 @@ public class HomeMemberFragment extends Fragment implements HomeMemberAdapter.On
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        recyclerView.setAdapter(new HomeMemberAdapter(getActivity()));
+        mMemberAdapter = new HomeMemberAdapter(getActivity());
+        mMemberAdapter.setOnMenuClickListener(this);
+        recyclerView.setAdapter(mMemberAdapter);
 
         mPullToRefreshView = (PullToRefreshView) rootView.findViewById(R.id.pull_to_refresh);
         mPullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
@@ -64,16 +68,22 @@ public class HomeMemberFragment extends Fragment implements HomeMemberAdapter.On
     public void onMenuClick(HomeMemberMenu menu) {
         switch (menu) {
             case MEMBERLIST:
+                ((HomeActivity)getActivity()).launchScreen(CreateOrderActivity.class);
                 break;
             case SALESBACK:
+                ((HomeActivity)getActivity()).launchScreen(CreateOrderActivity.class);
                 break;
             case OPERATION:
+                ((HomeActivity)getActivity()).launchScreen(CreateOrderActivity.class);
                 break;
             case HOLIDAY:
+                ((HomeActivity)getActivity()).launchScreen(CreateOrderActivity.class);
                 break;
             case OPERATION2:
+                ((HomeActivity)getActivity()).launchScreen(CreateOrderActivity.class);
                 break;
             case SETTING:
+                ((HomeActivity)getActivity()).launchScreen(CreateOrderActivity.class);
                 break;
         }
     }

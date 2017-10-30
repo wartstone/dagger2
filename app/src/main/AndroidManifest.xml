@@ -30,6 +30,7 @@
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name=".module.market.MarketActivity"></activity>
         <activity android:name=".module.market.Market2Activity"></activity>
+        <activity android:name=".module.mine.AccountActivity"></activity>
     </application>
 
 </manifest>

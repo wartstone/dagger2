@@ -212,35 +212,6 @@
                         android:text="¥0.00" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/white"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="1"
-                        android:text="是否送货"
-                        android:textColor="#333"
-                        android:textSize="17sp" />
-
-                    <ToggleButton
-                        android:id="@+id/switch_delivery"
-                        android:layout_width="55dp"
-                        android:layout_height="30dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/togglebutton_selector"
-                        android:checked="false"
-                        android:gravity="center_vertical"
-                        android:text=""
-                        android:textOff=""
-                        android:textOn="" />
-                </LinearLayout>
-
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="70dp" />

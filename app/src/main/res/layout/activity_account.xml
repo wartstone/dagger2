@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <com.vertical.app.common.widget.CatEditText
+        android:id="@+id/mine_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:bottomDividerLineMarginLeft="10dp"
+        app:leftText="昵称&#160;&#160;&#8201;&#160;&#160;&#8201;&#160;&#160;"
+        app:leftTextMarginLeft="14dp"
+        app:centerTextMarginLeft="10dp"/>
+
+    <com.vertical.app.common.widget.CatEditText
+        android:id="@+id/mine_sign"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:bottomDividerLineMarginLeft="10dp"
+        app:leftText="个人签名"
+        app:leftTextMarginLeft="14dp"
+        app:centerTextMarginLeft="10dp"/>
+
+    <com.vertical.app.common.widget.CatEditText
+        android:id="@+id/mine_operateKind"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:bottomDividerLineMarginLeft="10dp"
+        app:leftText="经营品类"
+        app:leftTextMarginLeft="14dp"
+        app:centerTextMarginLeft="10dp"/>
+
+    <com.vertical.app.common.widget.CatEditText
+        android:id="@+id/mine_operateName"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:bottomDividerLineMarginLeft="10dp"
+        app:leftText="经营品牌"
+        app:leftTextMarginLeft="14dp"
+        app:centerTextMarginLeft="10dp"/>
+
+    <com.vertical.app.common.widget.CatEditText
+        android:id="@+id/mine_operateTitle"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:bottomDividerLineMarginLeft="10dp"
+        app:leftText="个人岗位"
+        app:leftTextMarginLeft="14dp"
+        app:centerTextMarginLeft="10dp"/>
+
+</LinearLayout>

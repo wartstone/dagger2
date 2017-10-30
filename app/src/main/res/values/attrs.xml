@@ -25,7 +25,8 @@
         <attr name="nts_active_color" format="color"/>
     </declare-styleable>
 
-    <declare-styleable name="CatTextView">
+    <!--both CatTextView & CatEditText use this styleable-->
+    <declare-styleable name="CatTextStyle">
         <attr name="leftIcon" format="reference"/>
         <attr name="rightIcon" format="reference"/>
         <attr name="leftText" format="string"/>

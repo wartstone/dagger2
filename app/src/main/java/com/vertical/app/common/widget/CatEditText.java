@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -15,11 +16,10 @@ import com.vertical.app.R;
 import com.vertical.app.common.util.Utils;
 
 /**
- * Created by user on 2017/10/11.
- * Cat 通用TextView
+ * Created by ls on 10/30/17.
  */
 
-public class CatTextView extends RelativeLayout {
+public class CatEditText extends RelativeLayout {
     private Context mContext;
 
     private int defaultTextSize;
@@ -70,19 +70,20 @@ public class CatTextView extends RelativeLayout {
     private int mDividerLineType;
 
     private ImageView mLeftIconIV, mRightIconIV;
-    private TextView mLeftTextTV, mCenterTextTV, mRightTextTV;
+    private TextView mLeftTextTV, mRightTextTV;
     private View mTopDividerLineView, mBottomDividerLineView;
+    private EditText mCenterEditText;
 
 
-    public CatTextView(Context context) {
+    public CatEditText(Context context) {
         this(context, null);
     }
 
-    public CatTextView(Context context, AttributeSet attrs) {
+    public CatEditText(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public CatTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CatEditText(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
         defaultTextSize = Utils.dp2px(mContext, 17);
@@ -132,7 +133,7 @@ public class CatTextView extends RelativeLayout {
     }
 
     private void initView() {
-        initCatTextView();
+        initCatEditText();
         initLeftIcon();
         initLeftTextView();
         initRightIcon();
@@ -141,7 +142,7 @@ public class CatTextView extends RelativeLayout {
         initDividerLineView();
     }
 
-    private void initCatTextView() {
+    private void initCatEditText() {
         this.setBackgroundColor(mContext.getResources().getColor(R.color.white));
     }
 
@@ -220,8 +221,9 @@ public class CatTextView extends RelativeLayout {
     }
 
     private void initCenterTextView() {
-        if (mCenterTextTV == null) {
-            mCenterTextTV = new TextView(mContext);
+        if (mCenterEditText == null) {
+            mCenterEditText = new EditText(mContext);
+            mCenterEditText.setBackgroundColor(getResources().getColor(R.color.transparent));
         }
         LayoutParams mCenterTextParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         mCenterTextParams.addRule(RelativeLayout.CENTER_VERTICAL, TRUE);
@@ -229,11 +231,11 @@ public class CatTextView extends RelativeLayout {
         mCenterTextParams.addRule(RelativeLayout.RIGHT_OF, R.id.leftTextId);
         mCenterTextParams.setMargins(mCenterTextMarginLeft, 0, mCenterTextMarginRight, 0);
 
-        mCenterTextTV.setLayoutParams(mCenterTextParams);
-        mCenterTextTV.setTextColor(mCenterTextColor);
-        mCenterTextTV.setTextSize(TypedValue.COMPLEX_UNIT_PX, mCenterTextSize);
-        mCenterTextTV.setText(mCenterTextString);
-        addView(mCenterTextTV);
+        mCenterEditText.setLayoutParams(mCenterTextParams);
+        mCenterEditText.setTextColor(mCenterTextColor);
+        mCenterEditText.setTextSize(TypedValue.COMPLEX_UNIT_PX, mCenterTextSize);
+        mCenterEditText.setText(mCenterTextString);
+        addView(mCenterEditText);
     }
 
     private void initDividerLineView() {
@@ -284,8 +286,8 @@ public class CatTextView extends RelativeLayout {
     }
 
     public void setCenterTextString(CharSequence centerString) {
-        if (mCenterTextTV != null) {
-            mCenterTextTV.setText(centerString);
+        if (mCenterEditText != null) {
+            mCenterEditText.setText(centerString);
         }
     }
 
@@ -328,7 +330,7 @@ public class CatTextView extends RelativeLayout {
     }
 
     public String getCenterTextString() {
-        return mCenterTextTV != null ? mCenterTextTV.getText().toString().trim() : "";
+        return mCenterEditText != null ? mCenterEditText.getText().toString().trim() : "";
     }
 
     public String getRightTextString() {

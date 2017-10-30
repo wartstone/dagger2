@@ -2,6 +2,7 @@ package com.vertical.app.module.home;
 
 import com.vertical.app.R;
 import com.vertical.app.base.BaseFragment;
+import com.vertical.app.module.mine.AccountActivity;
 import com.vertical.app.module.transaction.CreateOrderActivity;
 
 import butterknife.OnClick;
@@ -23,8 +24,8 @@ public class HomeMineFragment extends BaseFragment {
 
     }
 
-    @OnClick(R.id.tv_createOrder)
-    public void onCreateOrder() {
-        launchScreen(CreateOrderActivity.class);
+    @OnClick(R.id.layout_account)
+    void clickAccount() {
+        launchScreen(AccountActivity.class);
     }
 }

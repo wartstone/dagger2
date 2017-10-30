@@ -1,22 +1,236 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_agray"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="2"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="115dp"
+        android:background="@drawable/bg_mine"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tv_createOrder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dip"
-        android:layout_gravity="center"
-        android:onClick="changeText"
-        android:text="销售开单"
-        android:background="@color/orange"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="22dip"
+            android:src="@drawable/defaultavatar_shopkepper"/>
+
+        <TextView
+            android:id="@+id/mine_ownername"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="17dip"
+            android:layout_weight="1"
+            android:text="店主名称"
+            android:textColor="@color/white"
+            android:textSize="17sp"/>
+
+        <LinearLayout
+            android:id="@+id/layout_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="我的账户"
+                android:textColor="@color/white"
+                android:textSize="12sp"/>
+
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/icon_next_small_white"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <!--账单金额-->
+        <LinearLayout
+            android:id="@+id/layout_billamount"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/bill_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:textColor="#333333"
+                android:textSize="17sp"
+                android:text="1800"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="账单金额"
+                android:textColor="#999999"
+                android:textSize="13sp"/>
+
+        </LinearLayout>
+
+        <!--返利金额-->
+        <LinearLayout
+            android:id="@+id/layout_rebateamount"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/rebate_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:textColor="@color/red"
+                android:textSize="15sp"
+                android:text="+10%"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="涨幅(%)"
+                android:textColor="#999999"
+                android:textSize="13sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_agray">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--我的门店-->
+            <com.vertical.app.common.widget.CatTextView
+                android:id="@+id/layout_outlet"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                app:bottomDividerLineMarginLeft="10dp"
+                app:leftIcon="@drawable/icon_mine_store"
+                app:leftIconHeight="26dp"
+                app:leftIconWidth="26dp"
+                app:leftText="我的门店"
+                app:leftTextMarginLeft="14dp"
+                app:rightIcon="@drawable/right"/>
+            <!--经营统计-->
+            <com.vertical.app.common.widget.CatTextView
+                android:visibility="gone"
+                android:id="@+id/layout_operating_statistics"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                app:bottomDividerLineMarginLeft="10dp"
+                app:leftIcon="@drawable/operationanalysis"
+                app:leftIconHeight="26dp"
+                app:leftIconWidth="26dp"
+                app:leftText="经营统计"
+                app:leftTextMarginLeft="14dp"
+                app:rightIcon="@drawable/right"/>
+            <!--钱包-->
+            <com.vertical.app.common.widget.CatTextView
+                android:id="@+id/layout_wallet"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                app:bottomDividerLineMarginLeft="10dp"
+                app:leftIcon="@drawable/mine_money"
+                app:leftIconHeight="26dp"
+                app:leftIconWidth="26dp"
+                app:leftText="钱包"
+                app:leftTextMarginLeft="14dp"
+                app:rightIcon="@drawable/right"/>
+
+            <!--授权管理-->
+            <com.vertical.app.common.widget.CatTextView
+                android:id="@+id/layout_authorization"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                app:bottomDividerLineMarginLeft="10dp"
+                app:dividerLineType="none"
+                app:leftIcon="@drawable/profile_icon_authorization"
+                app:leftIconHeight="26dp"
+                app:leftIconWidth="26dp"
+                app:leftText="授权管理"
+                app:leftTextMarginLeft="14dp"
+                app:rightIcon="@drawable/right"/>
+
+            <!--服务中心-->
+            <com.vertical.app.common.widget.CatTextView
+                android:id="@+id/layout_service"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                app:bottomDividerLineMarginLeft="10dp"
+                app:dividerLineType="none"
+                app:leftIcon="@drawable/icon_mine_service"
+                app:leftIconHeight="26dp"
+                app:leftIconWidth="26dp"
+                app:leftText="服务中心"
+                app:leftTextMarginLeft="14dp"
+                app:rightIcon="@drawable/right"/>
+
+            <!--关于我们-->
+            <com.vertical.app.common.widget.CatTextView
+                android:id="@+id/layout_aboutus"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                app:bottomDividerLineMarginLeft="10dp"
+                app:leftIcon="@drawable/icon_mine_aboutus"
+                app:leftIconHeight="26dp"
+                app:leftIconWidth="26dp"
+                app:leftText="关于我们"
+                app:leftTextMarginLeft="14dp"
+                app:rightIcon="@drawable/right"/>
+
+            <!--设置-->
+            <com.vertical.app.common.widget.CatTextView
+                android:id="@+id/layout_set"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                app:bottomDividerLineMarginLeft="10dp"
+                app:dividerLineType="none"
+                app:leftIcon="@drawable/icon_mine_setting"
+                app:leftIconHeight="26dp"
+                app:leftIconWidth="26dp"
+                app:leftText="设置"
+                app:leftTextMarginLeft="14dp"
+                app:rightIcon="@drawable/right"/>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>
