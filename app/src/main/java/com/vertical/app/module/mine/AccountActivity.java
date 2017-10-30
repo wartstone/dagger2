@@ -5,6 +5,7 @@ import com.vertical.app.R;
 import com.vertical.app.base.BaseCatActivity;
 import com.vertical.app.common.widget.ActionSheetDialog;
 import com.vertical.app.common.widget.CatEditText;
+import com.vertical.app.common.widget.CatTextView;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -20,13 +21,16 @@ public class AccountActivity extends BaseCatActivity {
     @BindView(R.id.mine_sign)
     CatEditText mSign;
     @BindView(R.id.mine_operateKind)
-    CatEditText mOperateKind;
+    CatTextView mOperateKind;
     @BindView(R.id.mine_operateName)
     CatEditText mOperateName;
     @BindView(R.id.mine_operateTitle)
-    CatEditText mOperateTitle;
+    CatTextView mOperateTitle;
 
+    @Override
+    public void onNavigationRightClicked() {
 
+    }
 
     @OnClick(R.id.mine_operateKind)
     void clickOperateKind() {
@@ -34,42 +38,35 @@ public class AccountActivity extends BaseCatActivity {
                 .builder()
                 .setCancelable(false)
                 .setCanceledOnTouchOutside(false)
-                .addSheetItem("发送给好友", ActionSheetDialog.SheetItemColor.Blue,
+                .addSheetItem("男装", ActionSheetDialog.SheetItemColor.Blue,
                         new ActionSheetDialog.OnSheetItemClickListener() {
                             @Override
                             public void onClick(int which) {
 
                             }
                         })
-                .addSheetItem("转载到空间相册", ActionSheetDialog.SheetItemColor.Blue,
+                .addSheetItem("女装", ActionSheetDialog.SheetItemColor.Blue,
                         new ActionSheetDialog.OnSheetItemClickListener() {
                             @Override
                             public void onClick(int which) {
 
                             }
                         })
-                .addSheetItem("上传到群相册", ActionSheetDialog.SheetItemColor.Blue,
+                .addSheetItem("童装", ActionSheetDialog.SheetItemColor.Blue,
                         new ActionSheetDialog.OnSheetItemClickListener() {
                             @Override
                             public void onClick(int which) {
 
                             }
                         })
-                .addSheetItem("保存到手机", ActionSheetDialog.SheetItemColor.Blue,
+                .addSheetItem("母婴用品", ActionSheetDialog.SheetItemColor.Blue,
                         new ActionSheetDialog.OnSheetItemClickListener() {
                             @Override
                             public void onClick(int which) {
 
                             }
                         })
-                .addSheetItem("收藏", ActionSheetDialog.SheetItemColor.Blue,
-                        new ActionSheetDialog.OnSheetItemClickListener() {
-                            @Override
-                            public void onClick(int which) {
-
-                            }
-                        })
-                .addSheetItem("查看聊天图片", ActionSheetDialog.SheetItemColor.Blue,
+                .addSheetItem("其他", ActionSheetDialog.SheetItemColor.Blue,
                         new ActionSheetDialog.OnSheetItemClickListener() {
                             @Override
                             public void onClick(int which) {
@@ -84,42 +81,35 @@ public class AccountActivity extends BaseCatActivity {
                 .builder()
                 .setCancelable(false)
                 .setCanceledOnTouchOutside(false)
-                .addSheetItem("发送给好友", ActionSheetDialog.SheetItemColor.Blue,
+                .addSheetItem("导购", ActionSheetDialog.SheetItemColor.Blue,
                         new ActionSheetDialog.OnSheetItemClickListener() {
                             @Override
                             public void onClick(int which) {
 
                             }
                         })
-                .addSheetItem("转载到空间相册", ActionSheetDialog.SheetItemColor.Blue,
+                .addSheetItem("店长", ActionSheetDialog.SheetItemColor.Blue,
                         new ActionSheetDialog.OnSheetItemClickListener() {
                             @Override
                             public void onClick(int which) {
 
                             }
                         })
-                .addSheetItem("上传到群相册", ActionSheetDialog.SheetItemColor.Blue,
+                .addSheetItem("督导", ActionSheetDialog.SheetItemColor.Blue,
                         new ActionSheetDialog.OnSheetItemClickListener() {
                             @Override
                             public void onClick(int which) {
 
                             }
                         })
-                .addSheetItem("保存到手机", ActionSheetDialog.SheetItemColor.Blue,
+                .addSheetItem("区域经理", ActionSheetDialog.SheetItemColor.Blue,
                         new ActionSheetDialog.OnSheetItemClickListener() {
                             @Override
                             public void onClick(int which) {
 
                             }
                         })
-                .addSheetItem("收藏", ActionSheetDialog.SheetItemColor.Blue,
-                        new ActionSheetDialog.OnSheetItemClickListener() {
-                            @Override
-                            public void onClick(int which) {
-
-                            }
-                        })
-                .addSheetItem("查看聊天图片", ActionSheetDialog.SheetItemColor.Blue,
+                .addSheetItem("老板", ActionSheetDialog.SheetItemColor.Blue,
                         new ActionSheetDialog.OnSheetItemClickListener() {
                             @Override
                             public void onClick(int which) {

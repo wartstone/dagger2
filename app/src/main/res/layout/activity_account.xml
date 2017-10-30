@@ -25,14 +25,16 @@
         app:leftTextMarginLeft="14dp"
         app:centerTextMarginLeft="10dp"/>
 
-    <com.vertical.app.common.widget.CatEditText
+    <com.vertical.app.common.widget.CatTextView
         android:id="@+id/mine_operateKind"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         app:bottomDividerLineMarginLeft="10dp"
         app:leftText="经营品类"
         app:leftTextMarginLeft="14dp"
-        app:centerTextMarginLeft="10dp"/>
+        app:centerText="女装"
+        app:centerTextMarginLeft="10dp"
+        app:rightIcon="@drawable/right"/>
 
     <com.vertical.app.common.widget.CatEditText
         android:id="@+id/mine_operateName"
@@ -43,13 +45,15 @@
         app:leftTextMarginLeft="14dp"
         app:centerTextMarginLeft="10dp"/>
 
-    <com.vertical.app.common.widget.CatEditText
+    <com.vertical.app.common.widget.CatTextView
         android:id="@+id/mine_operateTitle"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         app:bottomDividerLineMarginLeft="10dp"
         app:leftText="个人岗位"
         app:leftTextMarginLeft="14dp"
-        app:centerTextMarginLeft="10dp"/>
+        app:centerText="店长"
+        app:centerTextMarginLeft="10dp"
+        app:rightIcon="@drawable/right"/>
 
 </LinearLayout>
