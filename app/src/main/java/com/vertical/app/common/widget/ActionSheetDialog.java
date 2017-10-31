@@ -110,6 +110,16 @@ public class ActionSheetDialog {
         return this;
     }
 
+    public ActionSheetDialog addSheetItems(String[] strItems, SheetItemColor color, OnSheetItemClickListener listener) {
+        if (sheetItemList == null) {
+            sheetItemList = new ArrayList<SheetItem>();
+        }
+        for(String item : strItems) {
+            sheetItemList.add(new SheetItem(item, color, listener));
+        }
+        return this;
+    }
+
     /** 设置条目布局 */
     private void setSheetItems() {
         if (sheetItemList == null || sheetItemList.size() <= 0) {
@@ -128,9 +138,9 @@ public class ActionSheetDialog {
         }
 
         // 循环添加条目
-        for (int i = 1; i <= size; i++) {
+        for (int i = 0; i < size; i++) {
             final int index = i;
-            SheetItem sheetItem = sheetItemList.get(i - 1);
+            SheetItem sheetItem = sheetItemList.get(i);
             String strItem = sheetItem.name;
             SheetItemColor color = sheetItem.color;
             final OnSheetItemClickListener listener = (OnSheetItemClickListener) sheetItem.itemClickListener;
@@ -149,15 +159,15 @@ public class ActionSheetDialog {
                 }
             } else {
                 if (showTitle) {
-                    if (i >= 1 && i < size) {
+                    if (i >= 0 && i < size - 1) {
                         textView.setBackgroundResource(R.drawable.actionsheet_middle_selector);
                     } else {
                         textView.setBackgroundResource(R.drawable.actionsheet_bottom_selector);
                     }
                 } else {
-                    if (i == 1) {
+                    if (i == 0) {
                         textView.setBackgroundResource(R.drawable.actionsheet_top_selector);
-                    } else if (i < size) {
+                    } else if (i < size - 1) {
                         textView.setBackgroundResource(R.drawable.actionsheet_middle_selector);
                     } else {
                         textView.setBackgroundResource(R.drawable.actionsheet_bottom_selector);

@@ -1,5 +1,7 @@
 package com.vertical.app.module.mine;
 
+import android.widget.Toast;
+
 import com.vertical.annotation.autolayout.AutoLayout;
 import com.vertical.app.R;
 import com.vertical.app.base.BaseCatActivity;
@@ -27,6 +29,9 @@ public class AccountActivity extends BaseCatActivity {
     @BindView(R.id.mine_operateTitle)
     CatTextView mOperateTitle;
 
+    private final String[] mOperateKinds = new String[] {"男装", "女装", "童装", "母婴用品", "其他"};
+    private final String[] mOperateTitles = new String[]{"导购", "店长", "督导", "区域经理", "老板"};
+
     @Override
     public void onNavigationRightClicked() {
 
@@ -38,41 +43,12 @@ public class AccountActivity extends BaseCatActivity {
                 .builder()
                 .setCancelable(false)
                 .setCanceledOnTouchOutside(false)
-                .addSheetItem("男装", ActionSheetDialog.SheetItemColor.Blue,
-                        new ActionSheetDialog.OnSheetItemClickListener() {
-                            @Override
-                            public void onClick(int which) {
-
-                            }
-                        })
-                .addSheetItem("女装", ActionSheetDialog.SheetItemColor.Blue,
-                        new ActionSheetDialog.OnSheetItemClickListener() {
-                            @Override
-                            public void onClick(int which) {
-
-                            }
-                        })
-                .addSheetItem("童装", ActionSheetDialog.SheetItemColor.Blue,
-                        new ActionSheetDialog.OnSheetItemClickListener() {
-                            @Override
-                            public void onClick(int which) {
-
-                            }
-                        })
-                .addSheetItem("母婴用品", ActionSheetDialog.SheetItemColor.Blue,
-                        new ActionSheetDialog.OnSheetItemClickListener() {
-                            @Override
-                            public void onClick(int which) {
-
-                            }
-                        })
-                .addSheetItem("其他", ActionSheetDialog.SheetItemColor.Blue,
-                        new ActionSheetDialog.OnSheetItemClickListener() {
-                            @Override
-                            public void onClick(int which) {
-
-                            }
-                        }).show();
+                .addSheetItems(mOperateKinds, ActionSheetDialog.SheetItemColor.Blue, new ActionSheetDialog.OnSheetItemClickListener() {
+                    @Override
+                    public void onClick(int which) {
+                        mOperateKind.setCenterTextString(mOperateKinds[which]);
+                    }
+                }).show();
     }
 
     @OnClick(R.id.mine_operateTitle)
@@ -81,41 +57,12 @@ public class AccountActivity extends BaseCatActivity {
                 .builder()
                 .setCancelable(false)
                 .setCanceledOnTouchOutside(false)
-                .addSheetItem("导购", ActionSheetDialog.SheetItemColor.Blue,
-                        new ActionSheetDialog.OnSheetItemClickListener() {
-                            @Override
-                            public void onClick(int which) {
-
-                            }
-                        })
-                .addSheetItem("店长", ActionSheetDialog.SheetItemColor.Blue,
-                        new ActionSheetDialog.OnSheetItemClickListener() {
-                            @Override
-                            public void onClick(int which) {
-
-                            }
-                        })
-                .addSheetItem("督导", ActionSheetDialog.SheetItemColor.Blue,
-                        new ActionSheetDialog.OnSheetItemClickListener() {
-                            @Override
-                            public void onClick(int which) {
-
-                            }
-                        })
-                .addSheetItem("区域经理", ActionSheetDialog.SheetItemColor.Blue,
-                        new ActionSheetDialog.OnSheetItemClickListener() {
-                            @Override
-                            public void onClick(int which) {
-
-                            }
-                        })
-                .addSheetItem("老板", ActionSheetDialog.SheetItemColor.Blue,
-                        new ActionSheetDialog.OnSheetItemClickListener() {
-                            @Override
-                            public void onClick(int which) {
-
-                            }
-                        }).show();
+                .addSheetItems(mOperateTitles, ActionSheetDialog.SheetItemColor.Blue, new ActionSheetDialog.OnSheetItemClickListener() {
+                    @Override
+                    public void onClick(int which) {
+                        mOperateTitle.setCenterTextString(mOperateTitles[which]);
+                    }
+                }).show();
     }
 
 }
