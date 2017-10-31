@@ -1,27 +1,29 @@
 package com.vertical.app.module.home;
 
-import android.util.Log;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
 
 import com.vertical.app.R;
 import com.vertical.app.base.BaseFragment;
-import com.vertical.app.bean.BaseBean;
-import com.vertical.app.bean.MessageBean;
-import com.vertical.app.bean.UserBean;
+import com.vertical.app.module.member.CreateMemberActivity;
 import com.vertical.app.module.transaction.CreateOrderActivity;
-import com.vertical.app.network.CatApis;
-import com.vertical.app.network.HttpModule;
+import com.vertical.app.module.work.DividerGridItemDecoration;
+import com.vertical.app.module.work.HomeWorkMenu;
+import com.vertical.app.module.work.HomeWorkMenuAdapter;
 
-import butterknife.OnClick;
-import me.yokeyword.fragmentation.SupportFragment;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import butterknife.BindView;
 
 /**
- * Created by ls on 7/27/17.
+ * Created by ls on 10/31/17.
  */
 
-public class HomeWorkFragment extends BaseFragment {
+public class HomeWorkFragment extends BaseFragment implements HomeWorkMenuAdapter.OnMenuClickListener {
     private final String TAG = getClass().getSimpleName();
+    private HomeWorkMenuAdapter mWorkMenuAdapter;
+
+    @BindView(R.id.gridContent)
+    RecyclerView mGridView;
 
     @Override
     protected int inflateContentView() {
@@ -30,127 +32,32 @@ public class HomeWorkFragment extends BaseFragment {
 
     @Override
     protected void onInitializeView() {
+        mWorkMenuAdapter = new HomeWorkMenuAdapter(getActivity());
+        mWorkMenuAdapter.setOnMenuClickListener(this);
 
+        mGridView.setLayoutManager(new GridLayoutManager(getActivity(), 4));
+        mGridView.setHasFixedSize(true);
+        mGridView.addItemDecoration(new DividerGridItemDecoration(getActivity()));
+        mGridView.setAdapter(mWorkMenuAdapter);
     }
 
-    @OnClick(R.id.tv_1)
-    public void changeText() {
-        HttpModule.getSharedInstance().createRetrofit(CatApis.class)
-                .fetchData()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new rx.Observer<MessageBean>() {
-                    @Override
-                    public void onCompleted() {
-                        Log.d(TAG, "greeting onCompleted");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.d(TAG, "greeting onError: " + e);
-                    }
-
-                    @Override
-                    public void onNext(MessageBean messageBean) {
-                        Log.d(TAG, "greeting  onNext: id = " + messageBean.getId() + ", content = " + messageBean.getContent());
-                    }
-                });
-    }
-
-    @OnClick(R.id.tv_2)
-    public void getUsers() {
-        HttpModule.getSharedInstance().createRetrofit(CatApis.class)
-                .getUsrs()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new rx.Observer<UserBean>() {
-                    @Override
-                    public void onCompleted() {
-                        Log.d(TAG, "getUsers onCompleted");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.d(TAG, "getUsers onError : " + e);
-                    }
-
-                    @Override
-                    public void onNext(UserBean userBeanBaseBean) {
-                        Log.d(TAG, "getUsers onNext : size = " + userBeanBaseBean.getResultSize());
-                        for(int i = 0; i < userBeanBaseBean.getResultSize(); i++) {
-                            Log.d(TAG, "getUsers onNext : name = " + userBeanBaseBean.getResult().get(i).name + ",  age = " + userBeanBaseBean.getResult().get(i).age);
-                        }
-                    }
-                });
-
-
-        HttpModule.getSharedInstance().createRetrofit(CatApis.class)
-                .fetchUsers()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new rx.Observer<UserBean>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.d(TAG, "onError");
-                    }
-
-                    @Override
-                    public void onNext(UserBean userBean) {
-                        Log.d(TAG, "onNext");
-                    }
-                });
-    }
-
-    @OnClick(R.id.tv_3)
-    public void addUser() {
-        HttpModule.getSharedInstance().createRetrofit(CatApis.class)
-                .addUser("sss", 12)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new rx.Observer<BaseBean>() {
-                    @Override
-                    public void onCompleted() {
-                        Log.d(TAG, "getUsers onCompleted");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.d(TAG, "getUsers onError : " + e);
-                    }
-
-                    @Override
-                    public void onNext(BaseBean baseBean) {
-                        Log.d(TAG, "getUsers onNext : success = " + baseBean.isSuccess() + ", message= " + baseBean.getMessage());
-                    }
-                });
-    }
-
-    @OnClick(R.id.tv_4)
-    public void getMembers() {
-        HttpModule.getSharedInstance().createRetrofit(CatApis.class)
-                .addUser("sss", 12)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new rx.Observer<BaseBean>() {
-                    @Override
-                    public void onCompleted() {
-                        Log.d(TAG, "getUsers onCompleted");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.d(TAG, "getUsers onError : " + e);
-                    }
-
-                    @Override
-                    public void onNext(BaseBean baseBean) {
-                        Log.d(TAG, "getUsers onNext : success = " + baseBean.isSuccess() + ", message= " + baseBean.getMessage());
-                    }
-                });
+    @Override
+    public void onMenuClick(HomeWorkMenu menu) {
+        switch (menu) {
+            case TRADE:
+                launchScreen(CreateOrderActivity.class);
+                break;
+            case NOTICE:
+                break;
+            case GOODS:
+                break;
+            case OPERATION_MANAGEMENT:
+                break;
+            case OPERATION_ANALYSIS:
+                break;
+            case MEMBERMANAGEMENT:
+                launchScreen(CreateMemberActivity.class);
+                break;
+        }
     }
 }

@@ -217,7 +217,7 @@
 
             <!--设置-->
             <com.vertical.app.common.widget.CatTextView
-                android:id="@+id/layout_set"
+                android:id="@+id/layout_settting"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 app:bottomDividerLineMarginLeft="10dp"

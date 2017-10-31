@@ -28,9 +28,12 @@
             android:name=".module.transaction.CreateOrderActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity android:name=".module.market.MarketActivity"></activity>
-        <activity android:name=".module.market.Market2Activity"></activity>
-        <activity android:name=".module.mine.AccountActivity"></activity>
+        <activity android:name=".module.market.MarketActivity"/>
+        <activity android:name=".module.market.Market2Activity"/>
+        <activity android:name=".module.mine.AccountActivity"/>
+        <activity android:name=".module.mine.SettingActivity"/>
+        <activity android:name=".module.mine.SignatureActivity"/>
+        <activity android:name=".module.member.CreateMemberActivity"/>
     </application>
 
 </manifest>

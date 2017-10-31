@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.vertical.app.common.widget.CatTextView
+        android:id="@+id/setting_msgtemplate"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:bottomDividerLineMarginLeft="10dp"
+        app:leftText="短信模板"
+        app:leftTextMarginLeft="14dp"
+        app:rightIcon="@drawable/right"/>
+
+    <com.vertical.app.common.widget.CatTextView
+        android:id="@+id/setting_cardType"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:bottomDividerLineMarginLeft="10dp"
+        app:leftText="卡片管理"
+        app:leftTextMarginLeft="14dp"
+        app:rightIcon="@drawable/right"/>
+
+    <com.vertical.app.common.widget.CatTextView
+        android:id="@+id/setting_salesBackReminder"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:bottomDividerLineMarginLeft="10dp"
+        app:leftText="回访提醒天数"
+        app:leftTextMarginLeft="14dp"
+        app:rightIcon="@drawable/right"/>
+
+</LinearLayout>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.vertical.app.common.widget.CatEditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:bottomDividerLineMarginLeft="10dp"
+        app:leftText="姓名&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#8201;&#8201;"
+        app:leftTextMarginLeft="14dp"
+        app:centerText="请输入姓名"
+        app:rightIcon="@drawable/right"/>
+
+    <com.vertical.app.common.widget.CatEditText
+        android:id="@+id/mobileNo"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:bottomDividerLineMarginLeft="10dp"
+        app:leftText="手机号码"
+        app:leftTextMarginLeft="14dp"
+        app:centerText="请输入手机号码"
+        app:rightIcon="@drawable/right"/>
+
+    <com.vertical.app.common.widget.CatEditText
+        android:id="@+id/memberNo"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:bottomDividerLineMarginLeft="10dp"
+        app:leftText="会员卡号"
+        app:leftTextMarginLeft="14dp"
+        app:centerText="请输入会员卡号"
+        app:rightIcon="@drawable/right"/>
+
+    <com.vertical.app.common.widget.CatTextView
+        android:id="@+id/sexType"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:bottomDividerLineMarginLeft="10dp"
+        app:leftText="性别"
+        app:leftTextMarginLeft="14dp"
+        app:rightIcon="@drawable/right"/>
+
+    <com.vertical.app.common.widget.CatTextView
+        android:id="@+id/cardType"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:bottomDividerLineMarginLeft="10dp"
+        app:leftText="卡类型"
+        app:leftTextMarginLeft="14dp"
+        app:rightIcon="@drawable/right"/>
+
+    <com.vertical.app.common.widget.CatTextView
+        android:id="@+id/birthday"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:bottomDividerLineMarginLeft="10dp"
+        app:leftText="生日"
+        app:leftTextMarginLeft="14dp"
+        app:rightIcon="@drawable/right"/>
+
+    <com.vertical.app.common.widget.CatTextView
+        android:id="@+id/recommendPerson"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:bottomDividerLineMarginLeft="10dp"
+        app:leftText="推荐人"
+        app:leftTextMarginLeft="14dp"
+        app:rightIcon="@drawable/right"/>
+
+    <com.vertical.app.common.widget.CatEditText
+        android:id="@+id/remark"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:bottomDividerLineMarginLeft="10dp"
+        app:leftText="备注&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#8201;&#8201;"
+        app:leftTextMarginLeft="14dp"
+        app:centerText="请输入备注"
+        app:rightIcon="@drawable/right"/>
+
+    <com.vertical.app.common.widget.CatTextView
+        android:id="@+id/area"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:bottomDividerLineMarginLeft="10dp"
+        app:leftText="省市区"
+        app:leftTextMarginLeft="14dp"
+        app:rightIcon="@drawable/right"/>
+
+</LinearLayout>
