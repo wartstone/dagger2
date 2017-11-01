@@ -60,6 +60,7 @@
         <attr name="centerTextMarginRight" format="dimension"/>
         <attr name="bottomDividerLineMarginLeft" format="dimension"/>
         <attr name="topDividerLineMarginLeft" format="dimension"/>
+        <attr name="editTextHint" format="string"/>
     </declare-styleable>
 
     <declare-styleable name="RefreshView">

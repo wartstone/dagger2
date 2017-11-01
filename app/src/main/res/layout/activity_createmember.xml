@@ -10,10 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         app:bottomDividerLineMarginLeft="10dp"
-        app:leftText="姓名&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#8201;&#8201;"
+        app:leftText="姓名&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#8201;"
         app:leftTextMarginLeft="14dp"
-        app:centerText="请输入姓名"
-        app:rightIcon="@drawable/right"/>
+        app:editTextHint="请输入姓名"/>
 
     <com.vertical.app.common.widget.CatEditText
         android:id="@+id/mobileNo"
@@ -22,8 +21,7 @@
         app:bottomDividerLineMarginLeft="10dp"
         app:leftText="手机号码"
         app:leftTextMarginLeft="14dp"
-        app:centerText="请输入手机号码"
-        app:rightIcon="@drawable/right"/>
+        app:editTextHint="请输入手机号码"/>
 
     <com.vertical.app.common.widget.CatEditText
         android:id="@+id/memberNo"
@@ -32,15 +30,14 @@
         app:bottomDividerLineMarginLeft="10dp"
         app:leftText="会员卡号"
         app:leftTextMarginLeft="14dp"
-        app:centerText="请输入会员卡号"
-        app:rightIcon="@drawable/right"/>
+        app:editTextHint="请输入会员卡号"/>
 
     <com.vertical.app.common.widget.CatTextView
         android:id="@+id/sexType"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         app:bottomDividerLineMarginLeft="10dp"
-        app:leftText="性别"
+        app:leftText="性别&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#8201;"
         app:leftTextMarginLeft="14dp"
         app:rightIcon="@drawable/right"/>
 
@@ -49,7 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         app:bottomDividerLineMarginLeft="10dp"
-        app:leftText="卡类型"
+        app:leftText="卡类型&#160;&#160;&#160;&#160;"
         app:leftTextMarginLeft="14dp"
         app:rightIcon="@drawable/right"/>
 
@@ -58,7 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         app:bottomDividerLineMarginLeft="10dp"
-        app:leftText="生日"
+        app:leftText="生日&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#8201;"
         app:leftTextMarginLeft="14dp"
         app:rightIcon="@drawable/right"/>
 
@@ -67,7 +64,7 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         app:bottomDividerLineMarginLeft="10dp"
-        app:leftText="推荐人"
+        app:leftText="推荐人&#160;&#160;&#160;&#160;"
         app:leftTextMarginLeft="14dp"
         app:rightIcon="@drawable/right"/>
 
@@ -76,9 +73,9 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         app:bottomDividerLineMarginLeft="10dp"
-        app:leftText="备注&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#8201;&#8201;"
+        app:leftText="备注&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#8201;"
         app:leftTextMarginLeft="14dp"
-        app:centerText="请输入备注"
+        app:editTextHint="请输入备注"
         app:rightIcon="@drawable/right"/>
 
     <com.vertical.app.common.widget.CatTextView
@@ -86,7 +83,7 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         app:bottomDividerLineMarginLeft="10dp"
-        app:leftText="省市区"
+        app:leftText="省市区&#160;&#160;&#160;&#160;"
         app:leftTextMarginLeft="14dp"
         app:rightIcon="@drawable/right"/>
 

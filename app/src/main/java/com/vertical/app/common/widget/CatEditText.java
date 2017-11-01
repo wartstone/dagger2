@@ -37,6 +37,7 @@ public class CatEditText extends RelativeLayout {
     private String mLeftTextString;
     private String mRightTextString;
     private String mCenterTextString;
+    private String mEditTextHint;
 
 
     private Drawable mLeftIconRes;
@@ -98,6 +99,7 @@ public class CatEditText extends RelativeLayout {
         mLeftTextString = a.getString(R.styleable.CatTextStyle_leftText);
         mRightTextString = a.getString(R.styleable.CatTextStyle_rightText);
         mCenterTextString = a.getString(R.styleable.CatTextStyle_centerText);
+        mEditTextHint = a.getString(R.styleable.CatTextStyle_editTextHint);
 
         mLeftIconRes = a.getDrawable(R.styleable.CatTextStyle_leftIcon);
         mRightIconRes = a.getDrawable(R.styleable.CatTextStyle_rightIcon);
@@ -138,7 +140,7 @@ public class CatEditText extends RelativeLayout {
         initLeftTextView();
         initRightIcon();
         initRightTextView();
-        initCenterTextView();
+        initCenterEditText();
         initDividerLineView();
     }
 
@@ -220,7 +222,7 @@ public class CatEditText extends RelativeLayout {
         addView(mRightTextTV);
     }
 
-    private void initCenterTextView() {
+    private void initCenterEditText() {
         if (mCenterEditText == null) {
             mCenterEditText = new EditText(mContext);
             mCenterEditText.setBackgroundColor(getResources().getColor(R.color.transparent));
@@ -235,6 +237,7 @@ public class CatEditText extends RelativeLayout {
         mCenterEditText.setTextColor(mCenterTextColor);
         mCenterEditText.setTextSize(TypedValue.COMPLEX_UNIT_PX, mCenterTextSize);
         mCenterEditText.setText(mCenterTextString);
+        mCenterEditText.setHint(mEditTextHint);
         addView(mCenterEditText);
     }
 

@@ -1,6 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="horizontal"
+    style="@style/app_title_style">
+
+    <ImageView
+        android:id="@+id/mLeftIcon"
+        android:layout_width="12.5dp"
+        android:layout_height="21dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/back_black"/>
+
+    <TextView
+        android:id="@+id/mLeftText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="8dp"
+        android:text="返回"
+        android:textColor="@color/orange"
+        android:textSize="@dimen/common_content_standard_sub_size"/>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp">
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/list_icon_search" />
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:background="@color/transparent"
+            android:hint="搜索"
+            android:textColorHint="@color/actionsheet_gray"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="bottom"
+            android:background="@color/bg_orange"/>
+
+    </FrameLayout>
 
 </LinearLayout>
