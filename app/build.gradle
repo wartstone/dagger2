@@ -31,6 +31,7 @@ dependencies {
     compile project(':lib_core')
 
     compile 'com.android.support:recyclerview-v7:25.3.1'
+    compile 'com.android.support:design:25.1.1'
     compile 'me.yokeyword:fragmentation:0.10.7'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
 

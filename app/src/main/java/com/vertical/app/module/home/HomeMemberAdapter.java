@@ -21,13 +21,11 @@ import butterknife.ButterKnife;
 
 public class HomeMemberAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public String TAG = getClass().getSimpleName();
-    final Context mContext;
     private OnMenuClickListener onMenuClickListener;
     private final int VIEW_WORKBAORD = 0;
     private final int VIEW_LIST = 1;
 
-    public HomeMemberAdapter(Context mContext){
-        this.mContext = mContext;
+    public HomeMemberAdapter(){
     }
 
     @Override
@@ -38,9 +36,9 @@ public class HomeMemberAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if(viewType == VIEW_WORKBAORD) {
-            return new BoardViewHolder(new WorkBoardLayout(mContext));
+            return new BoardViewHolder(new WorkBoardLayout(parent.getContext()));
         } else {
-            return new ListViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_home_menu, null, false));
+            return new ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_home_menu, null, false));
         }
     }
 

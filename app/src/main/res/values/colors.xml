@@ -40,7 +40,6 @@
     <color name="txt_black">#232323</color>
     <color name="bg_gray">#f2f2f2</color>
     <color name="bg_agray">#49dddddd</color>
-    <color name="bg_gray_trans">#22222222</color>
     <color name="bg_gray_pressed">#e8e8e8</color>
     <!-- 离线消息的颜色 -->
     <color name="chat_send_offline_gray">#999999</color>
@@ -62,30 +61,10 @@
     <color name="text_black">#FF666666</color>
 
     <color name="chat_bg">#E0E4DD</color>
-    <color name="divider">#e5e5e5</color>
-    <color name="text_suffix">#90a0c0</color>
     <color name="text_column_title">#999999</color>
     <color name="bg_divider">#dddddd</color>
-    <color name="bg_tips">#cc9966</color>
-    <color name="color_bbbbbb">#bbbbbb</color>
-    <color name="color_659c42">#659c42</color>
     <!--扫描二维码-->
 
-    <color name="color_f8fdfc">#f8fdfc</color>
-    <color name="color_f8f8f8">#f8f8f8</color>
-    <color name="color_fff7f3">#fff7f3</color>
-    <color name="color_fffde1">#fffde1</color>
-    <color name="color_e69b22">#e69b22</color>
-    <color name="color_4c000000">#4c000000</color>
-    <color name="color_fafafa">#fafafa</color>
-    <color name="color_login">#f29700</color>
-
-    <color name="saffron">#F4B63E</color>
-    <color name="eggplant">#663D4E</color>
-    <color name="sienna">#EB6460</color>
-
-    <color name="alertdialog_line">#c6c6c6</color>
     <color name="actionsheet_blue">#037BFF</color>
-    <color name="actionsheet_red">#FD4A2E</color>
     <color name="actionsheet_gray">#8F8F8F</color>
 </resources>

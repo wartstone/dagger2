@@ -34,6 +34,7 @@
         <activity android:name=".module.mine.SettingActivity"/>
         <activity android:name=".module.mine.SignatureActivity"/>
         <activity android:name=".module.member.CreateMemberActivity"/>
+        <activity android:name=".module.work.salesvisit.SalesVisitActivity"/>
     </application>
 
 </manifest>
