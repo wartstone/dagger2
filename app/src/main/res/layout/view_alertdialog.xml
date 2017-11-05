@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_marginTop="10dp"
-        android:background="@color/alertdialog_line" />
+        android:background="@color/gray" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -54,7 +54,7 @@
             android:id="@+id/img_line"
             android:layout_width="0.5dp"
             android:layout_height="43dp"
-            android:background="@color/alertdialog_line" />
+            android:background="@color/gray" />
 
         <Button
             android:id="@+id/btn_pos"
