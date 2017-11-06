@@ -11,6 +11,7 @@ import com.vertical.app.module.transaction.CreateOrderActivity;
 import com.vertical.app.module.work.DividerGridItemDecoration;
 import com.vertical.app.module.work.HomeWorkMenu;
 import com.vertical.app.module.work.HomeWorkMenuAdapter;
+import com.vertical.app.module.work.operation.OperationManagementActivity;
 import com.vertical.app.module.work.salesvisit.SalesVisitActivity;
 
 import butterknife.BindView;
@@ -53,6 +54,7 @@ public class HomeWorkFragment extends BaseFragment implements HomeWorkMenuAdapte
             case GOODS:
                 break;
             case OPERATION_MANAGEMENT:
+                launchScreen(OperationManagementActivity.class);
                 break;
             case OPERATION_ANALYSIS:
                 launchScreen(SalesVisitActivity.class);
