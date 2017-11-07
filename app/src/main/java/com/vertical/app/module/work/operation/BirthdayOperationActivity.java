@@ -19,7 +19,7 @@ import butterknife.BindView;
  * Created by ls on 11/2/17.
  */
 
-@AutoLayout(layout = R.layout.activity_salesvisit, title = "销售回访")
+@AutoLayout(layout = R.layout.activity_salesvisit, title = "生日管理")
 public class BirthdayOperationActivity extends BaseCatActivity {
     @BindView(R.id.tab_layout)
     TabLayout mTabLayout;
@@ -52,7 +52,7 @@ public class BirthdayOperationActivity extends BaseCatActivity {
 
         @Override
         public int getCount() {
-            return 3;
+            return 2;
         }
 
         @Override

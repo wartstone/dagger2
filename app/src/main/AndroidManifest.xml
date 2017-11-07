@@ -36,6 +36,11 @@
         <activity android:name=".module.member.CreateMemberActivity"/>
         <activity android:name=".module.work.salesvisit.SalesVisitActivity"/>
         <activity android:name=".module.work.operation.OperationManagementActivity"/>
+        <activity android:name=".module.work.operation.BirthdayOperationActivity"/>
+        <activity android:name=".module.work.operation.HolidayOperationActivity"/>
+        <activity android:name=".module.work.operation.RevokeOperationActivity"/>
+        <activity android:name=".module.work.routine.RoutineManagementActivity"/>
+        <activity android:name=".module.work.routine.CustomerMemoActivity"/>
     </application>
 
 </manifest>

@@ -12,7 +12,8 @@ public enum HomeWorkMenu {
     GOODS("商品管理", R.drawable.goodsmanagement),
     OPERATION_MANAGEMENT("运营管理", R.drawable.operationmana),
     OPERATION_ANALYSIS("经营分析", R.drawable.operationanalysis),
-    MEMBERMANAGEMENT("会员管理", R.drawable.transactionmanagement);
+    MEMBERMANAGEMENT("会员管理", R.drawable.transactionmanagement),
+    TRANSACTIONMANAGEMENT("事务管理", R.drawable.operationmana);
 
     private String mTitle;
     private int mDrawable;

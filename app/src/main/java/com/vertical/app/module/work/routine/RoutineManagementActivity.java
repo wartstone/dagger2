@@ -1,4 +1,4 @@
-package com.vertical.app.module.work.operation;
+package com.vertical.app.module.work.routine;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,18 +18,17 @@ import butterknife.BindView;
  * Created by ls on 11/6/17.
  */
 
-@AutoLayout(layout = R.layout.activity_operationmanagement, title = "运营管理")
-public class OperationManagementActivity extends BaseCatActivity implements OperationManagementAdapter.Callback {
+@AutoLayout(layout = R.layout.activity_routinemanagement, title = "事务管理")
+public class RoutineManagementActivity extends BaseCatActivity implements RoutineManagementAdapter.Callback {
     @BindView(R.id.rv_operation_mgr)
     RecyclerView mRecyclerView;
 
     @Override
     protected void onViewCreated() {
-        SparseArray<List<OperationManagerMenu>> data = new SparseArray<>();
-        data.put(0, OperationManagerMenu.getDateManagementMenu());
-        data.put(1, OperationManagerMenu.getFuncManagementMenu());
+        SparseArray<List<RoutineManagementMenu>> data = new SparseArray<>();
+        data.put(0, Arrays.asList(RoutineManagementMenu.values()));
 
-        OperationManagementAdapter adapter = new OperationManagementAdapter(this,data);
+        RoutineManagementAdapter adapter = new RoutineManagementAdapter(this, data);
         GridLayoutManager manager = new GridLayoutManager(this,4);
         SectionedSpanSizeLookup lookup = new SectionedSpanSizeLookup(adapter,manager);
         manager.setSpanSizeLookup(lookup);
@@ -40,16 +39,10 @@ public class OperationManagementActivity extends BaseCatActivity implements Oper
     }
 
     @Override
-    public void onItemClick(OperationManagerMenu item) {
+    public void onItemClick(RoutineManagementMenu item) {
         switch (item) {
-            case BIRTHDAYMGR:
-                launchScreen(BirthdayOperationActivity.class);
-                break;
-            case HOLIDAYMGR:
-                launchScreen(HolidayOperationActivity.class);
-                break;
-            case REVOKE:
-                launchScreen(RevokeOperationActivity.class);
+            case DAILYPUSH:
+                launchScreen(CustomerMemoActivity.class);
             default:
                 break;
         }
