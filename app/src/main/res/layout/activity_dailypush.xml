@@ -47,105 +47,10 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/white"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="1"
-                        android:text="商品"
-                        android:textColor="#333"
-                        android:textSize="17sp" />
-
-                    <TextView
-                        android:id="@+id/select_goods"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="20dp"
-                        android:drawableRight="@drawable/rightarrow"
-                        android:gravity="center_vertical"
-                        android:hint="请选择"
-                        android:textColor="#333"
-                        android:textSize="17sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
                     android:id="@+id/container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" />
-
-                <LinearLayout
-                    android:id="@+id/layout_summary"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@color/white"
-                    android:gravity="center_vertical"
-                    android:visibility="gone">
-
-                    <TextView
-                        android:id="@+id/summary_number"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:textColor="#333"
-                        android:textSize="14sp"
-                        android:text="共100件商品" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="right"
-                        android:text="合计:"
-                        android:textColor="#333"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/summary_amount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
-                        android:textColor="@color/orange"
-                        android:textSize="14sp"
-                        android:text="¥60.00" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/white"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="结算金额"
-                        android:textColor="#333"
-                        android:textSize="17sp" />
-
-                    <EditText
-                        android:id="@+id/edit_amount"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="20dp"
-                        android:background="@null"
-                        android:hint="请输入结算金额"
-                        android:inputType="numberDecimal"
-                        android:textColor="#333"
-                        android:textColorHint="#cccc"
-                        android:textSize="17sp" />
-
-                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
@@ -163,7 +68,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
-                        android:text="支付方式"
+                        android:text="跟进类型"
                         android:textColor="#333"
                         android:textSize="17sp" />
 
@@ -174,7 +79,32 @@
                         android:layout_marginLeft="20dp"
                         android:drawableRight="@drawable/rightarrow"
                         android:gravity="center_vertical|right"
-                        android:hint="请选择"
+                        android:textColor="#333"
+                        android:textSize="17sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:text="跟进时间"
+                        android:textColor="#333"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:drawableRight="@drawable/rightarrow"
+                        android:gravity="center_vertical|right"
                         android:textColor="#333"
                         android:textSize="17sp" />
 
@@ -185,32 +115,11 @@
                     android:layout_height="1dp"
                     android:background="#ddd" />
 
-                <LinearLayout
+                <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@color/white"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:id="@+id/summary_payment_method"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="1"
-                        android:textColor="#333"
-                        android:textSize="17sp"
-                        android:text="现金" />
-
-                    <TextView
-                        android:id="@+id/summary_payment_amount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="10dp"
-                        android:gravity="center_vertical"
-                        android:textColor="#333"
-                        android:textSize="17sp"
-                        android:text="¥0.00" />
-                </LinearLayout>
+                    android:layout_height="120dp"
+                    android:gravity="top|left"
+                    android:hint="跟进内容描述"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -218,33 +127,15 @@
             </LinearLayout>
         </ScrollView>
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/submit"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignParentBottom="true">
-
-            <TextView
-                android:id="@+id/cancel"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#fff"
-                android:gravity="center"
-                android:text="撤销"
-                android:textColor="#333333"
-                android:textSize="17sp" />
-
-            <TextView
-                android:id="@+id/submit"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@color/orange"
-                android:gravity="center"
-                android:text="确定"
-                android:textColor="#ffffff"
-                android:textSize="17sp" />
-        </LinearLayout>
+            android:layout_height="48dp"
+            android:background="@color/orange"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="#ffffff"
+            android:textSize="17sp" />
 
     </LinearLayout>
 

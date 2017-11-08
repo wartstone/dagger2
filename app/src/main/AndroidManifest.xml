@@ -28,19 +28,24 @@
             android:name=".module.transaction.CreateOrderActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".module.work.routine.CustomerMemoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name=".module.market.MarketActivity"/>
         <activity android:name=".module.market.Market2Activity"/>
         <activity android:name=".module.mine.AccountActivity"/>
         <activity android:name=".module.mine.SettingActivity"/>
         <activity android:name=".module.mine.SignatureActivity"/>
         <activity android:name=".module.member.CreateMemberActivity"/>
-        <activity android:name=".module.work.salesvisit.SalesVisitActivity"/>
+        <activity android:name=".module.work.bizanalysis.salesvisit.SalesVisitActivity"/>
         <activity android:name=".module.work.operation.OperationManagementActivity"/>
         <activity android:name=".module.work.operation.BirthdayOperationActivity"/>
         <activity android:name=".module.work.operation.HolidayOperationActivity"/>
         <activity android:name=".module.work.operation.RevokeOperationActivity"/>
         <activity android:name=".module.work.routine.RoutineManagementActivity"/>
-        <activity android:name=".module.work.routine.CustomerMemoActivity"/>
+        <activity android:name=".module.work.bizanalysis.BizAnalysisActivity"/>
+        <activity android:name=".module.work.bizanalysis.salesquery.SalesQueryActivity"/>
     </application>
 
 </manifest>

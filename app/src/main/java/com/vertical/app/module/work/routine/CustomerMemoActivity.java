@@ -24,28 +24,8 @@ public class CustomerMemoActivity extends BaseCatActivity<CreateOrderContract.Pr
     public void onOrderCreation(boolean success) {
     }
 
-    @OnClick(R.id.cancel)
-    protected void cancel() {
-        finish();
-    }
-
     @OnClick(R.id.submit)
     protected void submit() {
-        OrderBean orderBean = new OrderBean();
-        orderBean.amount = 1.1;
-        orderBean.comments = "第一个商品";
-        orderBean.create_by = 20171001;
-        Timestamp timestamp = new Timestamp(2017, 10, 10, 12, 11, 1, 123);
-        orderBean.create_date = timestamp.toString();
-        Date date = new Date(2017, 2, 30);
-        orderBean.order_date = date.toString();
-        orderBean.id = 656;
-        orderBean.order_id = 776;
-        orderBean.quantity = 1;
-        orderBean.product_name = "手表";
-        orderBean.status = 0;
-        orderBean.order_picture_id = 11;
-
-        mPresenter.createOrder(orderBean);
+        finish();
     }
 }

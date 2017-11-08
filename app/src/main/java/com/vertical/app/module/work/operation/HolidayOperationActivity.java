@@ -9,9 +9,9 @@ import android.support.v4.view.ViewPager;
 import com.vertical.annotation.autolayout.AutoLayout;
 import com.vertical.app.R;
 import com.vertical.app.base.BaseCatActivity;
-import com.vertical.app.module.work.salesvisit.GratitudeVisitFragment;
-import com.vertical.app.module.work.salesvisit.MaintenanceFragment;
-import com.vertical.app.module.work.salesvisit.SatisficationFragment;
+import com.vertical.app.module.work.bizanalysis.salesvisit.GratitudeVisitFragment;
+import com.vertical.app.module.work.bizanalysis.salesvisit.MaintenanceFragment;
+import com.vertical.app.module.work.bizanalysis.salesvisit.SatisficationFragment;
 
 import butterknife.BindView;
 

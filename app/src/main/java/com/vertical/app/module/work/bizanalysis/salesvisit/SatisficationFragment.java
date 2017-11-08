@@ -1,4 +1,4 @@
-package com.vertical.app.module.work.salesvisit;
+package com.vertical.app.module.work.bizanalysis.salesvisit;
 
 import com.vertical.app.core.BaseRefreshFragment;
 

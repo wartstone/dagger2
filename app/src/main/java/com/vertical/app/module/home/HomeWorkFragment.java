@@ -2,7 +2,6 @@ package com.vertical.app.module.home;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.TextView;
 
 import com.vertical.app.R;
 import com.vertical.app.base.BaseFragment;
@@ -11,9 +10,11 @@ import com.vertical.app.module.transaction.CreateOrderActivity;
 import com.vertical.app.module.work.DividerGridItemDecoration;
 import com.vertical.app.module.work.HomeWorkMenu;
 import com.vertical.app.module.work.HomeWorkMenuAdapter;
+import com.vertical.app.module.work.bizanalysis.BizAnalysisActivity;
+import com.vertical.app.module.work.bizanalysis.BizAnalysisMenu;
 import com.vertical.app.module.work.operation.OperationManagementActivity;
 import com.vertical.app.module.work.routine.RoutineManagementActivity;
-import com.vertical.app.module.work.salesvisit.SalesVisitActivity;
+import com.vertical.app.module.work.bizanalysis.salesvisit.SalesVisitActivity;
 
 import butterknife.BindView;
 
@@ -58,7 +59,7 @@ public class HomeWorkFragment extends BaseFragment implements HomeWorkMenuAdapte
                 launchScreen(OperationManagementActivity.class);
                 break;
             case OPERATION_ANALYSIS:
-                launchScreen(SalesVisitActivity.class);
+                launchScreen(BizAnalysisActivity.class);
                 break;
             case MEMBERMANAGEMENT:
                 launchScreen(CreateMemberActivity.class);

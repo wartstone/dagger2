@@ -1,4 +1,4 @@
-package com.vertical.app.module.work.salesvisit;
+package com.vertical.app.module.work.bizanalysis.salesquery;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -16,8 +16,8 @@ import butterknife.BindView;
  * Created by ls on 11/2/17.
  */
 
-@AutoLayout(layout = R.layout.activity_salesvisit, title = "销售回访")
-public class SalesVisitActivity extends BaseCatActivity {
+@AutoLayout(layout = R.layout.activity_salesvisit, title = "销售查询")
+public class SalesQueryActivity extends BaseCatActivity {
     @BindView(R.id.tab_layout)
     TabLayout mTabLayout;
     @BindView(R.id.pager)
@@ -39,32 +39,40 @@ public class SalesVisitActivity extends BaseCatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return new GratitudeVisitFragment();
+                    return new YesterdaySaleQueryFragment();
                 case 1:
-                    return new MaintenanceFragment();
+                    return new TodaySaleQueryFragment();
                 case 2:
-                    return new SatisficationFragment();
+                    return new WeekSaleQueryFragment();
+                case 3:
+                    return new MonthSaleQueryFragment();
+                case 4:
+                    return new CustomSaleQueryFragment();
                 default:
-                    return new GratitudeVisitFragment();
+                    return new YesterdaySaleQueryFragment();
             }
         }
 
         @Override
         public int getCount() {
-            return 3;
+            return 5;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "感恩回访";
+                    return "昨日";
                 case 1:
-                    return "洗涤保养";
+                    return "今日";
                 case 2:
-                    return "满意度回访";
+                    return "本周";
+                case 3:
+                    return "本月";
+                case 4:
+                    return "自定义";
                 default:
-                    return "感恩回访";
+                    return "昨日";
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.vertical.app.module.work.operation;
+package com.vertical.app.module.work.bizanalysis.salesvisit;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -9,9 +9,6 @@ import android.support.v4.view.ViewPager;
 import com.vertical.annotation.autolayout.AutoLayout;
 import com.vertical.app.R;
 import com.vertical.app.base.BaseCatActivity;
-import com.vertical.app.module.work.bizanalysis.salesvisit.GratitudeVisitFragment;
-import com.vertical.app.module.work.bizanalysis.salesvisit.MaintenanceFragment;
-import com.vertical.app.module.work.bizanalysis.salesvisit.SatisficationFragment;
 
 import butterknife.BindView;
 
@@ -19,8 +16,8 @@ import butterknife.BindView;
  * Created by ls on 11/2/17.
  */
 
-@AutoLayout(layout = R.layout.activity_salesvisit, title = "生日管理")
-public class BirthdayOperationActivity extends BaseCatActivity {
+@AutoLayout(layout = R.layout.activity_salesvisit, title = "销售回访")
+public class SalesVisitActivity extends BaseCatActivity {
     @BindView(R.id.tab_layout)
     TabLayout mTabLayout;
     @BindView(R.id.pager)
@@ -42,28 +39,32 @@ public class BirthdayOperationActivity extends BaseCatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return new TodayBirthdayFragment();
+                    return new GratitudeVisitFragment();
                 case 1:
-                    return new ComingBirthdayFragment();
+                    return new MaintenanceFragment();
+                case 2:
+                    return new SatisficationFragment();
                 default:
-                    return new TodayBirthdayFragment();
+                    return new GratitudeVisitFragment();
             }
         }
 
         @Override
         public int getCount() {
-            return 2;
+            return 3;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "今日生日";
+                    return "感恩回访";
                 case 1:
-                    return "临近生日";
+                    return "洗涤保养";
+                case 2:
+                    return "满意度回访";
                 default:
-                    return "今日生日";
+                    return "感恩回访";
             }
         }
     }
