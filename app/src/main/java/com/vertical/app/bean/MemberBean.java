@@ -16,13 +16,13 @@ public class MemberBean implements Serializable {
     public long member_id;
     public String name;
     public boolean gender;
-    public Date birthdate;
+    public String birthdate;
     public String phone;
     public String card_no;
     public int card_type_id;
     public int recommend_by;
-    //        public Drawable avatar;
+    public String avatarUrl;
     public int create_by;
     public String comments;
-    public Timestamp create_date;
+    public String create_date;
 }
