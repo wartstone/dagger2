@@ -1,5 +1,7 @@
 package com.vertical.app.module.member;
 
+import android.util.Log;
+
 import com.vertical.annotation.AutoWire;
 import com.vertical.annotation.autolayout.AutoLayout;
 import com.vertical.app.R;
@@ -9,6 +11,11 @@ import com.vertical.app.common.widget.ActionSheetDialog;
 import com.vertical.app.common.widget.CatEditText;
 import com.vertical.app.common.widget.CatTextView;
 import com.vertical.app.module.transaction.CreateOrderContract;
+
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -53,16 +60,17 @@ public class CreateMemberActivity extends BaseCatActivity<CreateMemberContract.P
         MemberBean memberBean = new MemberBean();
         memberBean.user_id = 1;
         memberBean.name = "one";
-        memberBean.gender = true;
-        memberBean.birthdate = "1989/10/01";
+        memberBean.gender = 1;
+        memberBean.birthday = "1989/10/01";
         memberBean.phone = "18201878233";
         memberBean.card_no = "00000000001";
         memberBean.card_type_id = 1;
         memberBean.recommend_by = 1;
-        memberBean.avatarUrl = "";
+        memberBean.avatar_picture_id = 1;
         memberBean.create_by = 1;
         memberBean.comments = "第一个会员";
-        memberBean.create_date = "2017/11/08";
+        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss.SSS");
+        memberBean.create_date = format.format(new Timestamp(System.currentTimeMillis()));
 
         mPresenter.createMember(memberBean);
     }

@@ -54,7 +54,7 @@ public interface CatApis {
     @POST("order/create3")
     Observable<BaseListBean<OrderBean>> createOrder3(@Body OrderBean orderBean);
 
-    @POST("member/create3")
+    @POST("member/create")
     Observable<String> createMember(@Body MemberBean memberBean);
 
 }
