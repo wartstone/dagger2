@@ -57,4 +57,7 @@ public interface CatApis {
     @POST("member/create")
     Observable<String> createMember(@Body MemberBean memberBean);
 
+    @GET("member/get")
+    Observable<BaseListBean<MemberBean>> fetchMembers();
+
 }
