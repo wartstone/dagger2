@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.vertical.app.R;
 import com.vertical.app.common.widget.pullRefreshView.PullToRefreshView;
-import com.vertical.app.module.home.HomeMemberAdapter;
+import com.vertical.app.module.home.HomeAdapter;
 
 /**
  * Created by ls on 11/2/17.
@@ -29,7 +29,7 @@ public class BaseRefreshFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        mAdapter = new HomeMemberAdapter();
+        mAdapter = new HomeAdapter();
         recyclerView.setAdapter(mAdapter);
 
         mPullToRefreshView = (PullToRefreshView) rootView.findViewById(R.id.pull_to_refresh);

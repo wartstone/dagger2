@@ -1,6 +1,8 @@
 package com.vertical.app.module.member;
 
+import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.vertical.annotation.AutoWire;
 import com.vertical.annotation.autolayout.AutoLayout;
@@ -57,9 +59,15 @@ public class CreateMemberActivity extends BaseCatActivity<CreateMemberContract.P
 
     @Override
     public void onNavigationRightClicked() {
+        String name = mName.getCenterTextString();
+        if(TextUtils.isEmpty(name)) {
+            Toast.makeText(this, "会员名不应为空!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         MemberBean memberBean = new MemberBean();
         memberBean.user_id = 1;
-        memberBean.name = "one";
+        memberBean.name = name;
         memberBean.gender = 1;
         memberBean.birthday = "1989/10/01";
         memberBean.phone = "18201878233";
@@ -105,6 +113,6 @@ public class CreateMemberActivity extends BaseCatActivity<CreateMemberContract.P
 
     @Override
     public void onMemberCreated(boolean result) {
-        finish();
+        Toast.makeText(this, "创建会员成功!", Toast.LENGTH_LONG).show();
     }
 }

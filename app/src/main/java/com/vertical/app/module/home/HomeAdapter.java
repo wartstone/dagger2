@@ -19,13 +19,13 @@ import butterknife.ButterKnife;
  * Created by ls on 10/27/17.
  */
 
-public class HomeMemberAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public String TAG = getClass().getSimpleName();
     private OnMenuClickListener onMenuClickListener;
     private final int VIEW_WORKBAORD = 0;
     private final int VIEW_LIST = 1;
 
-    public HomeMemberAdapter(){
+    public HomeAdapter(){
     }
 
     @Override

@@ -1,10 +1,5 @@
 package com.vertical.app.module.work.operation;
 
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -12,7 +7,6 @@ import com.vertical.annotation.autolayout.AutoLayout;
 import com.vertical.app.R;
 import com.vertical.app.base.BaseCatActivity;
 import com.vertical.app.common.widget.pullRefreshView.PullToRefreshView;
-import com.vertical.app.module.home.HomeMemberAdapter;
 import com.vertical.app.module.home.HomeMemberMenu;
 
 import butterknife.BindView;

@@ -9,22 +9,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.vertical.app.R;
-import com.vertical.app.base.BaseFragment;
 import com.vertical.app.common.widget.pullRefreshView.PullToRefreshView;
 import com.vertical.app.module.transaction.CreateOrderActivity;
-
-import me.yokeyword.fragmentation.SupportFragment;
 
 /**
  * Created by ls on 7/27/17.
  */
 
-public class HomeIntelFragment extends Fragment implements HomeMemberAdapter.OnMenuClickListener {
+public class HomeIntelFragment extends Fragment implements HomeAdapter.OnMenuClickListener {
 
     private final String TAG = getClass().getSimpleName();
     private PullToRefreshView mPullToRefreshView;
     private final int REFRESH_DELAY = 1000;
-    private HomeMemberAdapter mMemberAdapter;
+    private HomeAdapter mMemberAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -33,7 +30,7 @@ public class HomeIntelFragment extends Fragment implements HomeMemberAdapter.OnM
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        mMemberAdapter = new HomeMemberAdapter();
+        mMemberAdapter = new HomeAdapter();
         mMemberAdapter.setOnMenuClickListener(this);
         recyclerView.setAdapter(mMemberAdapter);
 
