@@ -4,7 +4,8 @@ import com.google.auto.service.AutoService;
 import com.vertical.annotation.autoinject.InjectorActivityGenerator;
 import com.vertical.annotation.autoinject.InjectorFragmentGenerator;
 import com.vertical.annotation.autolayout.AutoLayout;
-import com.vertical.annotation.autolayout.AutoLayoutGenerator;
+import com.vertical.annotation.autolayout.AutoLayoutActivityGenerator;
+import com.vertical.annotation.autolayout.AutoLayoutFragmentGenerator;
 
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -41,7 +42,8 @@ public class AutoWireProcessor extends AbstractProcessor {
     private ModuleGenerator mModuleGenerator;
     private InjectorActivityGenerator mInjectorActivityGenerator;
     private InjectorFragmentGenerator mInjectorFragmentGenerator;
-    private AutoLayoutGenerator mAutoLayoutGenerator;
+    private AutoLayoutActivityGenerator mAutoLayoutActivityGenerator;
+    private AutoLayoutFragmentGenerator mAutoLayoutFragmentGenerator;
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnvironment) {
@@ -56,7 +58,8 @@ public class AutoWireProcessor extends AbstractProcessor {
         mModuleGenerator = new ModuleGenerator(mFiler, mMessager, mTypeUtils);
         mInjectorActivityGenerator = new InjectorActivityGenerator(mFiler, mMessager, mTypeUtils);
         mInjectorFragmentGenerator = new InjectorFragmentGenerator(mFiler, mMessager, mTypeUtils);
-        mAutoLayoutGenerator=new AutoLayoutGenerator(mFiler, mMessager, mTypeUtils);
+        mAutoLayoutActivityGenerator =new AutoLayoutActivityGenerator(mFiler, mMessager, mTypeUtils);
+        mAutoLayoutFragmentGenerator = new AutoLayoutFragmentGenerator(mFiler, mMessager, mTypeUtils);
     }
 
     @Override
@@ -97,7 +100,20 @@ public class AutoWireProcessor extends AbstractProcessor {
         mInjectorFragmentGenerator.generate(fragmentElements);
 
         Set<? extends Element> autoLayoutelements = roundEnvironment.getElementsAnnotatedWith(AutoLayout.class);
-        mAutoLayoutGenerator.generateEx(autoLayoutelements);
+
+        activityElements.clear();
+        fragmentElements.clear();
+        for(Element element : autoLayoutelements) {
+            if(isSubtypeOfActivity(element.asType(), mMessager)) {
+                activityElements.add(element);
+            } else if(isSubtypeOfFragment(element.asType(), mMessager)) {
+                fragmentElements.add(element);
+            }
+        }
+
+
+        mAutoLayoutActivityGenerator.generateEx(activityElements);
+        mAutoLayoutFragmentGenerator.generateEx(fragmentElements);
 
         return true;
     }

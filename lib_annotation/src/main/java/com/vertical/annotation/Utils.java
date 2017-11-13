@@ -12,6 +12,8 @@ import javax.lang.model.type.TypeMirror;
 
 import static com.vertical.annotation.Configuration.ACTIVITY_TYPE;
 import static com.vertical.annotation.Configuration.AutoLayoutActivityName;
+import static com.vertical.annotation.Configuration.AutoLayoutFragmentName;
+import static com.vertical.annotation.Configuration.FRAGMENT_TYPE;
 import static com.vertical.annotation.Configuration.InjectorFragmentName;
 import static javax.lang.model.element.ElementKind.INTERFACE;
 
@@ -69,9 +71,9 @@ public class Utils {
     }
 
     public static boolean isSubtypeOfFragment(TypeMirror typeMirror, Messager mMessager) {
-        boolean isActivity = isSubtypeOfType(typeMirror, ACTIVITY_TYPE, mMessager);
-        boolean isBaseAutoFragment = isSubtypeOfType(typeMirror, InjectorFragmentName, mMessager);
-        return isActivity || isBaseAutoFragment;
+        boolean isFragment = isSubtypeOfType(typeMirror, FRAGMENT_TYPE, mMessager);
+        boolean isBaseAutoFragment = isSubtypeOfType(typeMirror, AutoLayoutFragmentName, mMessager);
+        return isFragment || isBaseAutoFragment;
     }
 
     public static boolean isSubtypeOfType(TypeMirror typeMirror, String otherType, Messager mMessager) {

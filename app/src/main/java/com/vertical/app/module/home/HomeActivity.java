@@ -62,9 +62,9 @@ public class HomeActivity extends BaseCatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return mMemberFragment;
-                case 1:
                     return mWorkFragment;
+                case 1:
+                    return mMemberFragment;
                 case 2:
                     return mIntelFragment;
                 case 3:

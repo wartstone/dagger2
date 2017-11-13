@@ -2,8 +2,8 @@
 <resources>
 
     <string-array name="titles">
+        <item>工作</item>
         <item>会员</item>
-        <item>记事</item>
         <item>智能</item>
         <item>我的</item>
     </string-array>

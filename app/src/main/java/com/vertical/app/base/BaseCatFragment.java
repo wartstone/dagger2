@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.vertical.android.di.BaseAutoFragment;
 import com.vertical.android.di.BaseAutoInjectFragment;
 import com.vertical.base.BasePresenter;
 import com.vertical.base.BaseView;
@@ -16,7 +17,7 @@ import javax.inject.Inject;
  * Mvp arch with Rxjava support.
  */
 
-public abstract class BaseCatFragment<T extends BasePresenter> extends BaseAutoInjectFragment implements BaseView<T> {
+public abstract class BaseCatFragment<T extends BasePresenter> extends BaseAutoFragment implements BaseView<T> {
 
     @Inject
     protected T mPresenter;

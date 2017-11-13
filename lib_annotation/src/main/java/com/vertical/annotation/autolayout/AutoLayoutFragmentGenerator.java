@@ -7,11 +7,9 @@ import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.ParameterSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
-import com.vertical.annotation.Configuration;
 import com.vertical.annotation.MessagerUtil;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Set;
 
 import javax.annotation.processing.Filer;
@@ -22,8 +20,8 @@ import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Types;
 
 import static com.google.auto.common.MoreElements.getPackage;
-import static com.vertical.annotation.Configuration.AutoLayoutActivityName;
-import static com.vertical.annotation.Configuration.InjectorActivityName;
+import static com.vertical.annotation.Configuration.AutoLayoutFragmentName;
+import static com.vertical.annotation.Configuration.InjectorFragmentName;
 import static com.vertical.annotation.Configuration.PackageName;
 import static com.vertical.annotation.Configuration.ResPackageName;
 
@@ -31,26 +29,28 @@ import static com.vertical.annotation.Configuration.ResPackageName;
  * Created by user on 2017/8/21.
  */
 
-public class AutoLayoutGenerator {
+public class AutoLayoutFragmentGenerator {
     private static final String methodName = "bindLayout";
     private TypeSpec.Builder mTypeSpecBuilder;
     private MethodSpec.Builder mLayoutMethodSpecBuilder, mCreateMethodSpecBuilder;
+    private MethodSpec.Builder mCreateViewMethodSpecBuilder, mViewCreatedMethodSpecBuilder;
     private MethodSpec.Builder onLeftClickedMethodBuidler, onRightClickedMethodBuidler;
+    private MethodSpec.Builder mHandleArgumentMethodBuilder, mFindViewMethodBuilder;
     private TypeSpec mTypeSpec;
     private Types mTypeUtils;
     private Filer mFiler;
     private Messager mMessager;
 
-    public AutoLayoutGenerator(Filer filer, Messager messager, Types typeUtils) {
+    public AutoLayoutFragmentGenerator(Filer filer, Messager messager, Types typeUtils) {
         mFiler = filer;
         mMessager = messager;
         mTypeUtils = typeUtils;
-        mTypeSpecBuilder = TypeSpec.classBuilder(AutoLayoutActivityName).addModifiers(Modifier.PUBLIC);
+        mTypeSpecBuilder = TypeSpec.classBuilder(AutoLayoutFragmentName).addModifiers(Modifier.PUBLIC);
     }
 
     private void generateModifier() {
         mTypeSpecBuilder.addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
-                .superclass(ClassName.get(PackageName, InjectorActivityName))
+                .superclass(ClassName.get(PackageName, InjectorFragmentName))
                 .addSuperinterface(ClassName.get("com.vertical.core.ui", "TitleBarLayout.OnTitleBarClickListener"));
     }
 
@@ -64,11 +64,42 @@ public class AutoLayoutGenerator {
 
         mCreateMethodSpecBuilder = MethodSpec.methodBuilder("onCreate")
                 .addAnnotation(Override.class)
-                .addModifiers(Modifier.PROTECTED)
+                .addModifiers(Modifier.PUBLIC)
                 .addStatement("super.onCreate(savedInstanceState)")
-                .addStatement("setContentView($T.layout.activity_base)", ClassName.get(ResPackageName, "R"))
-                .addStatement("autoLayout()")
+                .addStatement("Bundle arguments = getArguments()")
+                .beginControlFlow("if(arguments != null)")
+                .addStatement("onHandleArguments(arguments)")
+                .endControlFlow()
                 .addParameter(parameterSpec)
+                .returns(TypeName.VOID);
+    }
+
+    private void generateCreateViewMethod() {
+        ParameterSpec inflaterParam = ParameterSpec.builder(ClassName.get("android.view", "LayoutInflater"), "inflater").build();
+        ParameterSpec containerParam = ParameterSpec.builder(ClassName.get("android.view", "ViewGroup"), "container").build();
+        ParameterSpec instanceParam = ParameterSpec.builder(ClassName.get("android.os", "Bundle"), "savedInstanceState").build();
+
+        mCreateViewMethodSpecBuilder = MethodSpec.methodBuilder("onCreateView")
+                .addAnnotation(Override.class)
+                .addModifiers(Modifier.PUBLIC)
+                .addStatement("$T root = inflater.inflate(R.layout.fragment_base, container, false);", ClassName.get("android.view", "View"))
+                .addStatement("return root")
+                .addParameter(inflaterParam)
+                .addParameter(containerParam)
+                .addParameter(instanceParam)
+                .returns(ClassName.get("android.view", "View"));
+    }
+
+    private void generateViewCreatedMethod() {
+        ParameterSpec containerParam = ParameterSpec.builder(ClassName.get("android.view", "View"), "view").build();
+        ParameterSpec instanceParam = ParameterSpec.builder(ClassName.get("android.os", "Bundle"), "savedInstanceState").build();
+
+        mViewCreatedMethodSpecBuilder = MethodSpec.methodBuilder("onViewCreated")
+                .addAnnotation(Override.class)
+                .addModifiers(Modifier.PUBLIC)
+                .addStatement("autoLayout()")
+                .addParameter(containerParam)
+                .addParameter(instanceParam)
                 .returns(TypeName.VOID);
     }
 
@@ -85,11 +116,32 @@ public class AutoLayoutGenerator {
         onLeftClickedMethodBuidler = MethodSpec.methodBuilder("onNavigationLeftClicked")
                                                         .addAnnotation(Override.class)
                                                         .addModifiers(Modifier.PUBLIC)
-                                                        .addStatement("super.onBackPressed()");
+                                                        .addStatement("getActivity().onBackPressed()");
 
         onRightClickedMethodBuidler = MethodSpec.methodBuilder("onNavigationRightClicked")
                                                         .addAnnotation(Override.class)
                                                         .addModifiers(Modifier.PUBLIC);
+    }
+
+    private void generateHandleArgumentMethod() {
+        ParameterSpec parameterSpec = ParameterSpec.builder(ClassName.get("android.os", "Bundle"), "extras").addModifiers(Modifier.FINAL).build();
+
+        mHandleArgumentMethodBuilder = MethodSpec.methodBuilder("onHandleArguments")
+                                                        .addModifiers(Modifier.PROTECTED)
+                                                        .addParameter(parameterSpec);
+    }
+
+    private void generateFindViewMethod() {
+        ParameterSpec parameterSpec = ParameterSpec.builder(int.class, "res").build();
+
+        mFindViewMethodBuilder = MethodSpec.methodBuilder("findViewById")
+                .addModifiers(Modifier.PROTECTED)
+                .beginControlFlow("if(getView() != null)")
+                .addStatement("return getView().findViewById(res)")
+                .endControlFlow()
+                .addStatement("return null")
+                .addParameter(parameterSpec)
+                .returns(ClassName.get("android.view", "View"));
     }
 
     private void generateCodeblock(Element element) {
@@ -126,7 +178,7 @@ public class AutoLayoutGenerator {
                     .add("\n")
                     .beginControlFlow("if(this instanceof $T)", bindingClassName)
                     .addStatement("mTitleFrame.setVisibility($L);", ClassName.get("android.view.View", "GONE"))
-                    .addStatement("getLayoutInflater().inflate($L, mContentFrame, true)", layoutID)
+                    .addStatement("$T.from(getActivity()).inflate($L, mContentFrame, true)", ClassName.get("android.view", "LayoutInflater"), layoutID)
                     .endControlFlow()
                     .build();
         } else {
@@ -134,7 +186,7 @@ public class AutoLayoutGenerator {
                     .add("\n")
                     .beginControlFlow("if(this instanceof $T)", bindingClassName)
                     .addStatement("mTitleFrame.configTitleBar($L, $S, $S, $L, $S);", leftDrawable, leftTitle, title, rightDrawable, rightTitle)
-                    .addStatement("getLayoutInflater().inflate($L, mContentFrame, true)", layoutID)
+                    .addStatement("$T.from(getActivity()).inflate($L, mContentFrame, true)", ClassName.get("android.view", "LayoutInflater"), layoutID)
                     .endControlFlow()
                     .build();
         }
@@ -154,18 +206,27 @@ public class AutoLayoutGenerator {
 
         //3. generate methods
         generateCreateMethod();
+        generateCreateViewMethod();
+        generateViewCreatedMethod();
         generateLayoutMethodWrapper();
         generateTitlebarMethods();
+        generateHandleArgumentMethod();
+        generateFindViewMethod();
 
         for(Element element : elements) {
+            MessagerUtil.getInstance(mMessager).info("======================================= LLLLLLLLLLLL: %s === ", element.getSimpleName());
             generateCodeblock(element);
         }
 
         //4. assemble methods
         mTypeSpecBuilder.addMethod(mCreateMethodSpecBuilder.build());
+        mTypeSpecBuilder.addMethod(mCreateViewMethodSpecBuilder.build());
+        mTypeSpecBuilder.addMethod(mViewCreatedMethodSpecBuilder.build());
         mTypeSpecBuilder.addMethod(mLayoutMethodSpecBuilder.build());
         mTypeSpecBuilder.addMethod(onLeftClickedMethodBuidler.build());
         mTypeSpecBuilder.addMethod(onRightClickedMethodBuidler.build());
+        mTypeSpecBuilder.addMethod(mHandleArgumentMethodBuilder.build());
+        mTypeSpecBuilder.addMethod(mFindViewMethodBuilder.build());
 
         //5. generate whole file
         mTypeSpec = mTypeSpecBuilder.build();

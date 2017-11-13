@@ -14,9 +14,9 @@ public class Configuration {
     public static String InjectorActivityName = "BaseAutoInjectActivity";
     public static String InjectorFragmentName = "BaseAutoInjectFragment";
     public static String AutoLayoutActivityName = "BaseAutoActivity"; // 之后考虑将BaseAutoActivity与BaseAutoInjectActivity合并, 减少层级
+    public static String AutoLayoutFragmentName = "BaseAutoFragment";
 
     static final String VIEW_TYPE = "android.view.View";
     static final String ACTIVITY_TYPE = "android.app.Activity";
-    static final String FRAGMENT_TYPE = "android.app.Fragment";
-    static final String FRAGMENT_TYPE2 = "android.support.v4.app.Fragment";
+    static final String FRAGMENT_TYPE = "android.support.v4.app.Fragment";
 }
