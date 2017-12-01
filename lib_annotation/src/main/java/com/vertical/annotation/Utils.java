@@ -40,6 +40,16 @@ public class Utils {
         return null;
     }
 
+    public static boolean isValidPresenter(TypeElement presenter, Messager messager) {
+        if(presenter.toString().equals(Object.class.toString().substring(6))) { // Object.class.toString = class java.lang.Object
+            MessagerUtil.getInstance(messager).info("[isValidPresenter] EQUAL | presenter class = %s, Object.class.toString = %s", presenter.toString(), Object.class.toString());
+            return false;
+        } else {
+            MessagerUtil.getInstance(messager).info("[isValidPresenter] NOT EQUAL | presenter class = %s, Object.class.toString = %s", presenter.toString(), Object.class.toString());
+            return true;
+        }
+    }
+
     public static TypeMirror getMVPContractClass(TypeMirror typeMirror, Messager messager) {
         DeclaredType declaredType = (DeclaredType) typeMirror;
         Element element = declaredType.asElement();

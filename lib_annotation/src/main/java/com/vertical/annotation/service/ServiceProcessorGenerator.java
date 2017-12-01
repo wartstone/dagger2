@@ -30,7 +30,7 @@ import static com.vertical.annotation.Configuration.PackageName;
  * Created by ls on 8/10/17.
  */
 
-public class ServiceGenerator {
+public class ServiceProcessorGenerator {
     private TypeSpec mTypeSpec;
     private TypeSpec.Builder mTypeSpecBuilder;
     private MethodSpec.Builder mMethodSpecBuilder;
@@ -38,7 +38,7 @@ public class ServiceGenerator {
     private Messager mMessager;
     private Types mTypeUtils;
 
-    public ServiceGenerator(Filer filer, Messager messager, Types typeUtils) {
+    public ServiceProcessorGenerator(Filer filer, Messager messager, Types typeUtils) {
         mFiler = filer;
         mMessager = messager;
         mTypeUtils = typeUtils;

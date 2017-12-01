@@ -111,11 +111,29 @@ public class ModuleGenerator {
         }
         TypeElement contract = (TypeElement) mTypeUtils.asElement(contractMirror);
 
+        if(!Utils.isValidPresenter(presenter, mMessager)) {
+            MessagerUtil.getInstance(mMessager).info("[generatePresenterProvider] Presenter not valid");
+            return;
+        }
+
         MethodSpec presenterMethodSpec = MethodSpec.methodBuilder("provide" + presenter.getSimpleName())
                 .addAnnotation(annotationSpec)
                 .addModifiers(Modifier.PUBLIC)
                 .addStatement("return new $T(($T)mActivity)", presenter, ClassName.get(getPackage(contract).getQualifiedName().toString() + '.' + contract.getSimpleName(), "View"))
                 .returns(ClassName.get(getPackage(contract).getQualifiedName().toString() + '.' + contract.getSimpleName(), "Presenter"))
+                .build();
+
+        mTypeSpecBuilder.addMethod(presenterMethodSpec);
+    }
+
+    private void generateEmptyPresenterProvider() {
+        AnnotationSpec annotationSpec = AnnotationSpec.builder(ClassName.get("dagger", "Provides")).build();
+
+        MethodSpec presenterMethodSpec = MethodSpec.methodBuilder("provideBasePresenter")
+                .addAnnotation(annotationSpec)
+                .addModifiers(Modifier.PUBLIC)
+                .addStatement("return null")
+                .returns(ClassName.get("com.henong.base", "BasePresenter"))
                 .build();
 
         mTypeSpecBuilder.addMethod(presenterMethodSpec);
