@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.vertical.app.R;
+import com.vertical.app.common.util.Trace;
 import com.vertical.app.common.widget.pullRefreshView.PullToRefreshView;
+import com.vertical.app.module.devtool.CatDevService;
 import com.vertical.app.module.transaction.CreateOrderActivity;
 
 /**
