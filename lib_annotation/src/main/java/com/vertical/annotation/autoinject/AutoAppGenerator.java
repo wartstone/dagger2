@@ -1,17 +1,14 @@
-package com.vertical.annotation.service;
+package com.vertical.annotation.autoinject;
 
-import com.google.common.collect.Lists;
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.CodeBlock;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
-import com.squareup.javapoet.TypeVariableName;
 import com.vertical.annotation.MessagerUtil;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Set;
 
 import javax.annotation.processing.Filer;
@@ -20,10 +17,10 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
-import javax.lang.model.element.TypeParameterElement;
 import javax.lang.model.util.Types;
 
 import static com.google.auto.common.MoreElements.getPackage;
+import static com.vertical.annotation.Configuration.AutoApp;
 import static com.vertical.annotation.Configuration.ComponentName;
 import static com.vertical.annotation.Configuration.CorePackageName;
 import static com.vertical.annotation.Configuration.InjectorActivityName;
@@ -34,7 +31,7 @@ import static com.vertical.annotation.Configuration.PackageName;
  * Created by ls on 12/1/17.
  */
 
-public class ServiceProcessorGenerator {
+public class AutoAppGenerator {
     private TypeSpec mTypeSpec;
     private TypeSpec.Builder mTypeSpecBuilder;
     private MethodSpec.Builder mMethodSpecBuilder;
@@ -42,16 +39,16 @@ public class ServiceProcessorGenerator {
     private Messager mMessager;
     private Types mTypeUtils;
 
-    public ServiceProcessorGenerator(Filer filer, Messager messager, Types typeUtils) {
+    public AutoAppGenerator(Filer filer, Messager messager, Types typeUtils) {
         mFiler = filer;
         mMessager = messager;
         mTypeUtils = typeUtils;
-        mTypeSpecBuilder = TypeSpec.classBuilder(InjectorActivityName);
+        mTypeSpecBuilder = TypeSpec.classBuilder(AutoApp);
     }
 
     private void generateModifier() {
         mTypeSpecBuilder.addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
-                .superclass(ClassName.get(CorePackageName, "BaseRxActivity"));
+                .superclass(ClassName.get(CorePackageName, "CoreApp"));
     }
 
     private void generateMethodWrapper() {
@@ -96,7 +93,7 @@ public class ServiceProcessorGenerator {
         }
     }
 
-    public boolean generate(Set<? extends Element> elements) {
+    public boolean generate() {
         //1: generate modifier
         generateModifier();
 
@@ -104,16 +101,16 @@ public class ServiceProcessorGenerator {
         generateMethodWrapper();
 
         //3. generate method code blocks
-        if (elements != null && !elements.isEmpty()) {
-            for(Element element : elements) {
-                if (element.getKind() != ElementKind.CLASS) {
-                    MessagerUtil.getInstance(mMessager).error("Only classes can be annotated");
-                    return false;
-                }
-
-                generateCodeBlock(element);
-            }
-        }
+//        if (elements != null && !elements.isEmpty()) {
+//            for(Element element : elements) {
+//                if (element.getKind() != ElementKind.CLASS) {
+//                    MessagerUtil.getInstance(mMessager).error("Only classes can be annotated");
+//                    return false;
+//                }
+//
+//                generateCodeBlock(element);
+//            }
+//        }
 
         //4. generate whole method
         mTypeSpecBuilder.addMethod(mMethodSpecBuilder.build());
@@ -124,12 +121,4 @@ public class ServiceProcessorGenerator {
 
         return true;
     }
-
-//    public void testGetInjectedFields() {
-//        List<TypeVariableName> typeParameters = Lists.newArrayList();
-//        for (TypeParameterElement typeParameter : binding.bindingTypeElement().getTypeParameters()) {
-//            typeParameters.add(TypeVariableName.fromTypeParameterElement(typeParameter));
-//        }
-//        injectorWriter.addTypeParameters(typeParameters);
-//    }
 }

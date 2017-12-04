@@ -1,6 +1,7 @@
 package com.vertical.annotation;
 
 import com.google.auto.service.AutoService;
+import com.vertical.annotation.autoinject.AutoAppGenerator;
 import com.vertical.annotation.autoinject.InjectorActivityGenerator;
 import com.vertical.annotation.autoinject.InjectorFragmentGenerator;
 import com.vertical.annotation.autolayout.AutoLayout;
@@ -32,7 +33,7 @@ import static com.vertical.annotation.Utils.isSubtypeOfFragment;
  */
 
 @AutoService(Processor.class)
-public class AutoWireProcessor extends AbstractProcessor {
+public class CatProcessor extends AbstractProcessor {
     private Types mTypeUtils;
     private Elements mElementUtils;
     private Filer mFiler;
@@ -44,6 +45,7 @@ public class AutoWireProcessor extends AbstractProcessor {
     private InjectorFragmentGenerator mInjectorFragmentGenerator;
     private AutoLayoutActivityGenerator mAutoLayoutActivityGenerator;
     private AutoLayoutFragmentGenerator mAutoLayoutFragmentGenerator;
+    private AutoAppGenerator mAutoAppGenerator;
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnvironment) {
@@ -60,6 +62,7 @@ public class AutoWireProcessor extends AbstractProcessor {
         mInjectorFragmentGenerator = new InjectorFragmentGenerator(mFiler, mMessager, mTypeUtils);
         mAutoLayoutActivityGenerator =new AutoLayoutActivityGenerator(mFiler, mMessager, mTypeUtils);
         mAutoLayoutFragmentGenerator = new AutoLayoutFragmentGenerator(mFiler, mMessager, mTypeUtils);
+        mAutoAppGenerator = new AutoAppGenerator(mFiler, mMessager, mTypeUtils);
     }
 
     @Override
@@ -114,6 +117,8 @@ public class AutoWireProcessor extends AbstractProcessor {
 
         mAutoLayoutActivityGenerator.generateEx(activityElements);
         mAutoLayoutFragmentGenerator.generateEx(fragmentElements);
+
+//        mAutoAppGenerator.generate();
 
         return true;
     }

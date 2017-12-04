@@ -1,4 +1,4 @@
-package com.vertical.core;
+package com.vertical.core.base;
 
 import android.app.Application;
 
