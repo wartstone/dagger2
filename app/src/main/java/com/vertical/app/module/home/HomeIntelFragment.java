@@ -12,6 +12,7 @@ import com.vertical.app.R;
 import com.vertical.app.common.util.Trace;
 import com.vertical.app.common.widget.pullRefreshView.PullToRefreshView;
 import com.vertical.app.module.devtool.CatDevService;
+import com.vertical.app.module.login.GuideActivity;
 import com.vertical.app.module.transaction.CreateOrderActivity;
 
 /**
@@ -56,7 +57,7 @@ public class HomeIntelFragment extends Fragment implements HomeAdapter.OnMenuCli
     public void onMenuClick(HomeMemberMenu menu) {
         switch (menu) {
             case MEMBERLIST:
-                ((HomeActivity)getActivity()).launchScreen(CreateOrderActivity.class);
+                ((HomeActivity)getActivity()).launchScreen(GuideActivity.class);
                 break;
             case SALESBACK:
                 ((HomeActivity)getActivity()).launchScreen(CreateOrderActivity.class);

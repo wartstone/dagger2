@@ -1,6 +1,8 @@
 package com.vertical.app.module.member;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.vertical.app.base.BaseCatPresenter;
 import com.vertical.app.bean.BaseBean;
@@ -38,6 +40,7 @@ public class CreateMemberPresenter extends BaseCatPresenter<CreateMemberContract
                     @Override
                     public void onError(Throwable e) {
                         Log.d(TAG, "createOrder onError : " + e);
+                        Toast.makeText((Context)mView, "创建会员失敗: " + e, Toast.LENGTH_LONG).show();
                     }
 
                     @Override
