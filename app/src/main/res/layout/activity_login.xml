@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F8F8"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/edittext_bg_stroke">
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:src="@drawable/icon_phone" />
+
+        <View
+            android:id="@+id/imageView2"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/imageView1"
+            android:background="#ccc" />
+
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/imageView2"
+            android:background="@null"
+            android:digits="0123456789"
+            android:hint="手机号"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:maxLines="1"
+            android:textColor="#cccccc"
+            android:textSize="17sp">
+
+        </EditText>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1.3"
+            android:background="@drawable/edittext_bg_stroke">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="10dp"
+                android:src="@drawable/icon_code" />
+
+            <View
+                android:id="@+id/imageView4"
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/imageView3"
+                android:background="#ccc" />
+
+            <EditText
+                android:id="@+id/et_register"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/imageView4"
+                android:background="@null"
+                android:digits="0123456789"
+                android:hint="验证码"
+                android:inputType="number"
+                android:maxLength="6"
+                android:maxLines="1"
+                android:textColor="#cccccc"
+                android:textSize="17sp" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/get_reguster_code_btn"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_marginLeft="6dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/bg_orange_radius_5"
+            android:text="获取验证码"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/bg_white_radius_5"
+        android:enabled="false"
+        android:text="登录"
+        android:textColor="#ffffff"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/tv_free_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="未收到验证码，请拨打免费热线获取帮助"
+        android:textSize="13sp" />
+
+</LinearLayout>

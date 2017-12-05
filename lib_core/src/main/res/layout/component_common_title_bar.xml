@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:text="返回"
-            android:textColor="@color/orange"
+            android:textColor="@color/x_blue"
             android:textSize="@dimen/common_content_standard_sub_size"/>
     </LinearLayout>
 

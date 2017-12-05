@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f8fcff">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="225dip"
+        android:scaleType="fitXY"
+        android:src="@drawable/guide_bg"/>
+    
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="167dip"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/logo_with_title"/>
+    
+    <Button
+        android:id="@+id/tv_register"
+        android:layout_width="300dip"
+        android:layout_height="50dip"
+        android:layout_marginTop="357dip"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:text="新用户注册"
+        android:background="@drawable/bg_btn_login"/>
+
+    <Button
+        android:id="@+id/tv_login"
+        android:layout_width="300dip"
+        android:layout_height="50dip"
+        android:layout_marginTop="443dip"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:textSize="17sp"
+        android:textColor="#55606a"
+        android:text="已有账号，去登录"
+        android:background="@drawable/bg_btn_update_white"/>
+
+    <View
+        android:id="@+id/dev_tool"
+        android:layout_width="100dip"
+        android:layout_height="100dip"/>
+
+</FrameLayout>

@@ -11,6 +11,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Environment;
+import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -28,6 +29,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * Created by user on 2016/8/4.
@@ -278,5 +280,34 @@ public class Utils {
     public static int convertDpToPixel(Context context, int dp) {
         float density = context.getResources().getDisplayMetrics().density;
         return Math.round((float) dp * density);
+    }
+
+    /**
+     * 随机生成6位验证码
+     * @return
+     */
+    public static String getVerificationCode() {
+        int max=999999;
+        int min=100000;
+        Random random = new Random();
+
+        String result = (random.nextInt(max)%(max-min+1) + min)+"";
+        return result;
+    }
+
+    /**
+     * 网络是否连接
+     * @param pContext
+     * @return
+     */
+    public static boolean isInternetConnected(final Context pContext) {
+        final ConnectivityManager conManager = (ConnectivityManager) pContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+        final NetworkInfo networkInfo = conManager.getActiveNetworkInfo();
+
+        if (networkInfo != null) {
+            return networkInfo.isAvailable();
+        }
+
+        return false;
     }
 }
