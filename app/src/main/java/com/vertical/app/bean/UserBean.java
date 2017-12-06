@@ -1,29 +1,66 @@
 package com.vertical.app.bean;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
-<<<<<<< ff1158b4e963a7efbbcc08d49d047a8e08a2fb72
  * Created by ls on 9/5/17.
  */
 
 public class UserBean implements Serializable {
-    private int status;
-    private List<UserInfo> result;
+    private long id;
+    private String name;
+    private int gender;
+    private Date birthday;
+    private String phone;
+    private String comments;
 
-    public List<UserInfo> getResult() {
-        return result;
+    public long getId() {
+        return id;
     }
 
-    public int getResultSize() {
-        return result == null ? 0 : result.size();
+    public void setId(long id) {
+        this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
 
-    public class UserInfo implements Serializable {
-        public long id;
-        public String name;
-        public int age;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getGender() {
+        return gender;
+    }
+
+    public void setGender(int gender) {
+        this.gender = gender;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 }

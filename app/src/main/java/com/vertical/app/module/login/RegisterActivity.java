@@ -1,6 +1,7 @@
 package com.vertical.app.module.login;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -11,6 +12,7 @@ import android.text.TextPaint;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,16 +21,27 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vertical.annotation.autolayout.AutoLayout;
+import com.vertical.app.BuildConfig;
 import com.vertical.app.R;
 import com.vertical.app.base.BaseCatActivity;
+import com.vertical.app.bean.BaseBean;
+import com.vertical.app.bean.BaseBeanEx;
+import com.vertical.app.bean.UserBean;
 import com.vertical.app.common.util.CountDownTimerTool;
 import com.vertical.app.common.util.InputUtil;
+import com.vertical.app.common.util.PreferenceHelper;
 import com.vertical.app.common.util.Utils;
+import com.vertical.app.network.CatApis;
+import com.vertical.app.network.HttpModule;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import rx.Observer;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by ls on 12/5/17.
@@ -56,6 +69,8 @@ public class RegisterActivity extends BaseCatActivity implements View.OnClickLis
     private Date curDate;
     private Date endDate;
     private long diff;
+
+    private final static String KEY_USERTOKEN = "cat_usertoken";
 
     @Override
     protected void onViewCreated() {
@@ -196,7 +211,11 @@ public class RegisterActivity extends BaseCatActivity implements View.OnClickLis
                     Toast.makeText(getApplicationContext(), "当前网络不可用，请检查网络连接", Toast.LENGTH_LONG).show();
                     return;
                 } else {
-                    checkNum = Utils.getVerificationCode();
+                    if ("Product".equalsIgnoreCase(BuildConfig.FLAVOR)) {
+                        checkNum = Utils.getVerificationCode();
+                    } else {
+                        checkNum = "666666";
+                    }
 
                     CountDownTimerTool mCountDownTimerUtils = new CountDownTimerTool(get_reguster_code_btn, 60000, 1000);
                     mCountDownTimerUtils.start();
@@ -230,11 +249,11 @@ public class RegisterActivity extends BaseCatActivity implements View.OnClickLis
                 }
                 if (!firstInPhone.equals(nextInPhone)) {
                     Toast.makeText(getApplicationContext(), "您输入的手机号码已改变，请重新输入手机号或重新获取验证码", Toast.LENGTH_LONG).show();
-                } else {
-                    registerCheck();
-                    break;
+                    return;
                 }
 
+                registerUser();
+                break;
             default:
                 break;
         }
@@ -261,20 +280,30 @@ public class RegisterActivity extends BaseCatActivity implements View.OnClickLis
 
     }
 
-    private void requestLoginToken(String mobile, String deviceId) {
-    }
+    private void registerUser() {
+        UserBean userBean = new UserBean();
+        userBean.setPhone(et_register.getText().toString().trim());
 
-    private void registerCheck() {
-        register = et_register.getText().toString().trim();
-        if (!register.equals(checkNum)) {
-            Toast.makeText(this, "验证码错误", Toast.LENGTH_SHORT).show();
-        } else if (!Utils.isInternetConnected(getApplicationContext())) {
-            Toast.makeText(getApplicationContext(), "当前网络不可用，请检查网络连接", Toast.LENGTH_LONG).show();
-        } else {
+        HttpModule.getSharedInstance().createRetrofit(CatApis.class)
+                .createUser(userBean)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<BaseBeanEx<String>>() {
+                    @Override
+                    public void onCompleted() {
+                        Log.d(TAG, "createUser onCompleted");
+                    }
 
-        }
-    }
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d(TAG, "createUser onError : " + e);
+                    }
 
-    private void defaultLogin() {
+                    @Override
+                    public void onNext(BaseBeanEx<String> stringBaseBeanEx) {
+                        String token = stringBaseBeanEx.getData();
+                        PreferenceHelper.getInstance(RegisterActivity.this).saveString(KEY_USERTOKEN, token);
+                    }
+                });
     }
 }

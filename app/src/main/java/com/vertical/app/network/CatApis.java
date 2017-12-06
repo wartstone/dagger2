@@ -1,6 +1,7 @@
 package com.vertical.app.network;
 
 import com.vertical.app.bean.BaseBean;
+import com.vertical.app.bean.BaseBeanEx;
 import com.vertical.app.bean.BaseListBean;
 import com.vertical.app.bean.MemberBean;
 import com.vertical.app.bean.MessageBean;
@@ -59,5 +60,8 @@ public interface CatApis {
 
     @GET("member/get")
     Observable<BaseListBean<MemberBean>> fetchMembers();
+
+    @POST("user/register")
+    Observable<BaseBeanEx<String>> createUser(@Body UserBean userBean);
 
 }

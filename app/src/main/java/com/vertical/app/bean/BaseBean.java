@@ -9,7 +9,6 @@ import java.io.Serializable;
 public class BaseBean implements Serializable {
     private int status;
     private String message;
-//    private T result;
 
     public boolean isSuccess(){
         return status == 0;
@@ -18,8 +17,4 @@ public class BaseBean implements Serializable {
     public String getMessage() {
         return message;
     }
-
-//    public T getData() {
-//        return result;
-//    }
 }

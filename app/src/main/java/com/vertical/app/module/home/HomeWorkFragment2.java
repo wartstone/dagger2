@@ -74,10 +74,10 @@ public class HomeWorkFragment2 extends BaseFragment {
 
                     @Override
                     public void onNext(UserBean userBeanBaseBean) {
-                        Log.d(TAG, "getUsers onNext : size = " + userBeanBaseBean.getResultSize());
-                        for(int i = 0; i < userBeanBaseBean.getResultSize(); i++) {
-                            Log.d(TAG, "getUsers onNext : name = " + userBeanBaseBean.getResult().get(i).name + ",  age = " + userBeanBaseBean.getResult().get(i).age);
-                        }
+//                        Log.d(TAG, "getUsers onNext : size = " + userBeanBaseBean.getResultSize());
+//                        for(int i = 0; i < userBeanBaseBean.getResultSize(); i++) {
+//                            Log.d(TAG, "getUsers onNext : name = " + userBeanBaseBean.getResult().get(i).name + ",  age = " + userBeanBaseBean.getResult().get(i).age);
+//                        }
                     }
                 });
 

@@ -57,29 +57,29 @@ public class Market2Activity extends Activity {
     }
 
     public void getUsers(View view) {
-        HttpModule.getSharedInstance().createRetrofit(CatApis.class)
-                .getUsrs()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new rx.Observer<UserBean>() {
-                    @Override
-                    public void onCompleted() {
-                        Log.d(TAG, "getUsers onCompleted");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.d(TAG, "getUsers onError : " + e);
-                    }
-
-                    @Override
-                    public void onNext(UserBean userBeanBaseBean) {
-                        Log.d(TAG, "getUsers onNext : size = " + userBeanBaseBean.getResultSize());
-                        for(int i = 0; i < userBeanBaseBean.getResultSize(); i++) {
-                            Log.d(TAG, "getUsers onNext : name = " + userBeanBaseBean.getResult().get(i).name + ",  age = " + userBeanBaseBean.getResult().get(i).age);
-                        }
-                    }
-                });
+//        HttpModule.getSharedInstance().createRetrofit(CatApis.class)
+//                .getUsrs()
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new rx.Observer<UserBean>() {
+//                    @Override
+//                    public void onCompleted() {
+//                        Log.d(TAG, "getUsers onCompleted");
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        Log.d(TAG, "getUsers onError : " + e);
+//                    }
+//
+//                    @Override
+//                    public void onNext(UserBean userBeanBaseBean) {
+//                        Log.d(TAG, "getUsers onNext : size = " + userBeanBaseBean.getResultSize());
+//                        for(int i = 0; i < userBeanBaseBean.getResultSize(); i++) {
+//                            Log.d(TAG, "getUsers onNext : name = " + userBeanBaseBean.getResult().get(i).name + ",  age = " + userBeanBaseBean.getResult().get(i).age);
+//                        }
+//                    }
+//                });
 
 
         HttpModule.getSharedInstance().createRetrofit(CatApis.class)
