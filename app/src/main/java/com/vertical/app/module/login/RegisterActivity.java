@@ -30,6 +30,7 @@ import com.vertical.app.bean.UserBean;
 import com.vertical.app.common.util.CountDownTimerTool;
 import com.vertical.app.common.util.InputUtil;
 import com.vertical.app.common.util.PreferenceHelper;
+import com.vertical.app.common.util.Trace;
 import com.vertical.app.common.util.Utils;
 import com.vertical.app.network.CatApis;
 import com.vertical.app.network.HttpModule;
@@ -291,18 +292,19 @@ public class RegisterActivity extends BaseCatActivity implements View.OnClickLis
                 .subscribe(new Observer<BaseBeanEx<String>>() {
                     @Override
                     public void onCompleted() {
-                        Log.d(TAG, "createUser onCompleted");
+                        Trace.d(TAG, "createUser onCompleted");
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.d(TAG, "createUser onError : " + e);
+                        Trace.d(TAG, "createUser onError : " + e);
                     }
 
                     @Override
                     public void onNext(BaseBeanEx<String> stringBaseBeanEx) {
                         String token = stringBaseBeanEx.getData();
                         PreferenceHelper.getInstance(RegisterActivity.this).saveString(KEY_USERTOKEN, token);
+                        Trace.d(TAG, "token = " + token);
                     }
                 });
     }
