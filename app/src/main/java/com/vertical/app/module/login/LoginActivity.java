@@ -21,9 +21,21 @@ import com.vertical.annotation.autolayout.AutoLayout;
 import com.vertical.app.BuildConfig;
 import com.vertical.app.R;
 import com.vertical.app.base.BaseCatActivity;
+import com.vertical.app.bean.BaseBeanEx;
+import com.vertical.app.bean.UserBean;
 import com.vertical.app.common.util.CountDownTimerTool;
 import com.vertical.app.common.util.InputUtil;
+import com.vertical.app.common.util.PreferenceHelper;
+import com.vertical.app.common.util.Trace;
 import com.vertical.app.common.util.Utils;
+import com.vertical.app.network.CatApis;
+import com.vertical.app.network.HttpModule;
+
+import rx.Observer;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+
+import static com.vertical.app.module.login.RegisterActivity.KEY_USERTOKEN;
 
 /**
  * Created by ls on 12/5/17.
@@ -179,22 +191,50 @@ public class LoginActivity extends BaseCatActivity implements View.OnClickListen
                 }
                 if (!firstInPhone.equals(nextInPhone)) {
                     Toast.makeText(this, "您输入的手机号码已改变，请重新输入手机号或重新获取验证码", Toast.LENGTH_LONG).show();
-                } else {
-                    //requestQueryUser();
-                    requestLoginToken(firstInPhone, Utils.getIMEIDeviceId(getApplicationContext()));
+                    return;
                 }
+
+                loginUser(firstInPhone);
                 break;
             default:
                 break;
         }
     }
 
-    private void requestLoginToken(String mobile, String deviceId){
+    private void loginUser(String phone) {
+        UserBean userBean = new UserBean();
+        userBean.setName("");
+        userBean.setPhone(phone);
 
+        HttpModule.getSharedInstance().createRetrofit(CatApis.class)
+                .login(userBean)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<BaseBeanEx<String>>() {
+                    @Override
+                    public void onCompleted() {
+                        Trace.d(TAG, "loginUser onCompleted");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Trace.d(TAG, "loginUser onError : " + e);
+                    }
+
+                    @Override
+                    public void onNext(BaseBeanEx<String> stringBaseBeanEx) {
+                        if(!stringBaseBeanEx.isSuccess()) {
+                            Toast.makeText(LoginActivity.this, stringBaseBeanEx.getData(), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+                        String token = stringBaseBeanEx.getData();
+                        PreferenceHelper.getInstance(LoginActivity.this).saveString(KEY_USERTOKEN, token);
+                        Trace.d(TAG, "token = " + token);
+                    }
+                });
     }
 
-    private void requestQueryUser(){
-    }
 
     private class TextClick extends ClickableSpan {
 

@@ -24,8 +24,8 @@ import rx.Observable;
 
 public interface CatApis {
 
-    String HOST = String.format("http://192.168.1.4:11111");
-//    String HOST= String.format("http://192.168.9.81:11111");
+//    String HOST = String.format("http://192.168.1.4:11111");
+    String HOST= String.format("http://192.168.9.81:11111");
 
     @GET("/greeting/")
     Observable<MessageBean> fetchData();
@@ -63,5 +63,14 @@ public interface CatApis {
 
     @POST("user/create")
     Observable<BaseBeanEx<String>> createUser(@Body UserBean userBean);
+
+    @POST("auth/register")
+    Observable<BaseBeanEx<String>> register(@Body UserBean userBean);
+
+    @POST("auth/login")
+    Observable<BaseBeanEx<String>> login(@Body UserBean userBean);
+
+    @POST("auth/logout")
+    Observable<BaseBeanEx<String>> logout(@Body UserBean userBean);
 
 }

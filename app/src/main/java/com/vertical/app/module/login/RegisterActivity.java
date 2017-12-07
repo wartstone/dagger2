@@ -71,7 +71,7 @@ public class RegisterActivity extends BaseCatActivity implements View.OnClickLis
     private Date endDate;
     private long diff;
 
-    private final static String KEY_USERTOKEN = "cat_usertoken";
+    public final static String KEY_USERTOKEN = "cat_usertoken";
 
     @Override
     protected void onViewCreated() {
@@ -283,10 +283,11 @@ public class RegisterActivity extends BaseCatActivity implements View.OnClickLis
 
     private void registerUser() {
         UserBean userBean = new UserBean();
-        userBean.setPhone(et_register.getText().toString().trim());
+        userBean.setName("");
+        userBean.setPhone(et_phone.getText().toString().trim());
 
         HttpModule.getSharedInstance().createRetrofit(CatApis.class)
-                .createUser(userBean)
+                .register(userBean)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<BaseBeanEx<String>>() {
@@ -302,6 +303,11 @@ public class RegisterActivity extends BaseCatActivity implements View.OnClickLis
 
                     @Override
                     public void onNext(BaseBeanEx<String> stringBaseBeanEx) {
+                        if(!stringBaseBeanEx.isSuccess()) {
+                            Toast.makeText(RegisterActivity.this, stringBaseBeanEx.getData(), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
                         String token = stringBaseBeanEx.getData();
                         PreferenceHelper.getInstance(RegisterActivity.this).saveString(KEY_USERTOKEN, token);
                         Trace.d(TAG, "token = " + token);
