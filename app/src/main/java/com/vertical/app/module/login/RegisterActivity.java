@@ -1,7 +1,5 @@
 package com.vertical.app.module.login;
 
-import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -12,7 +10,6 @@ import android.text.TextPaint;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,25 +21,26 @@ import com.vertical.annotation.autolayout.AutoLayout;
 import com.vertical.app.BuildConfig;
 import com.vertical.app.R;
 import com.vertical.app.base.BaseCatActivity;
-import com.vertical.app.bean.BaseBean;
 import com.vertical.app.bean.BaseBeanEx;
 import com.vertical.app.bean.UserBean;
+import com.vertical.app.common.Constant;
 import com.vertical.app.common.util.CountDownTimerTool;
 import com.vertical.app.common.util.InputUtil;
 import com.vertical.app.common.util.PreferenceHelper;
 import com.vertical.app.common.util.Trace;
 import com.vertical.app.common.util.Utils;
+import com.vertical.app.module.home.HomeActivity;
 import com.vertical.app.network.CatApis;
 import com.vertical.app.network.HttpModule;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+
+import static com.vertical.app.common.Constant.KEY_USERPHONE;
 
 /**
  * Created by ls on 12/5/17.
@@ -70,8 +68,6 @@ public class RegisterActivity extends BaseCatActivity implements View.OnClickLis
     private Date curDate;
     private Date endDate;
     private long diff;
-
-    public final static String KEY_USERTOKEN = "cat_usertoken";
 
     @Override
     protected void onViewCreated() {
@@ -253,7 +249,7 @@ public class RegisterActivity extends BaseCatActivity implements View.OnClickLis
                     return;
                 }
 
-                registerUser();
+                registerUser(et_phone.getText().toString().trim());
                 break;
             default:
                 break;
@@ -281,12 +277,12 @@ public class RegisterActivity extends BaseCatActivity implements View.OnClickLis
 
     }
 
-    private void registerUser() {
+    private void registerUser(final String phone) {
         UserBean userBean = new UserBean();
         userBean.setName("");
-        userBean.setPhone(et_phone.getText().toString().trim());
+        userBean.setPhone(phone);
 
-        HttpModule.getSharedInstance().createRetrofit(CatApis.class)
+        HttpModule.getSharedInstance().createNonTokenRetrofit(CatApis.class)
                 .register(userBean)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -309,8 +305,11 @@ public class RegisterActivity extends BaseCatActivity implements View.OnClickLis
                         }
 
                         String token = stringBaseBeanEx.getData();
-                        PreferenceHelper.getInstance(RegisterActivity.this).saveString(KEY_USERTOKEN, token);
+                        PreferenceHelper.getInstance(RegisterActivity.this).saveString(Constant.KEY_USERTOKEN, token);
+                        PreferenceHelper.getInstance(RegisterActivity.this).saveString(KEY_USERPHONE, phone);
                         Trace.d(TAG, "token = " + token);
+
+                        launchScreen(HomeActivity.class);
                     }
                 });
     }

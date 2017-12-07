@@ -6,7 +6,7 @@ import android.widget.Toast;
 import com.vertical.annotation.autolayout.AutoLayout;
 import com.vertical.app.R;
 import com.vertical.app.base.BaseCatActivity;
-import com.vertical.app.common.util.Constant;
+import com.vertical.app.common.Constant;
 import com.vertical.app.common.util.InputUtil;
 import com.vertical.app.common.util.PreferenceHelper;
 

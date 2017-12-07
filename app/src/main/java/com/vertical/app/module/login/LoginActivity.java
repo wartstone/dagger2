@@ -1,6 +1,5 @@
 package com.vertical.app.module.login;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -28,6 +27,7 @@ import com.vertical.app.common.util.InputUtil;
 import com.vertical.app.common.util.PreferenceHelper;
 import com.vertical.app.common.util.Trace;
 import com.vertical.app.common.util.Utils;
+import com.vertical.app.module.home.HomeActivity;
 import com.vertical.app.network.CatApis;
 import com.vertical.app.network.HttpModule;
 
@@ -35,7 +35,8 @@ import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-import static com.vertical.app.module.login.RegisterActivity.KEY_USERTOKEN;
+import static com.vertical.app.common.Constant.KEY_USERPHONE;
+import static com.vertical.app.common.Constant.KEY_USERTOKEN;
 
 /**
  * Created by ls on 12/5/17.
@@ -201,12 +202,12 @@ public class LoginActivity extends BaseCatActivity implements View.OnClickListen
         }
     }
 
-    private void loginUser(String phone) {
+    private void loginUser(final String phone) {
         UserBean userBean = new UserBean();
         userBean.setName("");
         userBean.setPhone(phone);
 
-        HttpModule.getSharedInstance().createRetrofit(CatApis.class)
+        HttpModule.getSharedInstance().createNonTokenRetrofit(CatApis.class)
                 .login(userBean)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -230,7 +231,10 @@ public class LoginActivity extends BaseCatActivity implements View.OnClickListen
 
                         String token = stringBaseBeanEx.getData();
                         PreferenceHelper.getInstance(LoginActivity.this).saveString(KEY_USERTOKEN, token);
+                        PreferenceHelper.getInstance(LoginActivity.this).saveString(KEY_USERPHONE, phone);
                         Trace.d(TAG, "token = " + token);
+
+                        launchScreen(HomeActivity.class);
                     }
                 });
     }

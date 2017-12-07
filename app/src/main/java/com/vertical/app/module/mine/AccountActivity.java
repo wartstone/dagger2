@@ -1,11 +1,9 @@
 package com.vertical.app.module.mine;
 
-import android.widget.Toast;
-
 import com.vertical.annotation.autolayout.AutoLayout;
 import com.vertical.app.R;
 import com.vertical.app.base.BaseCatActivity;
-import com.vertical.app.common.util.Constant;
+import com.vertical.app.common.Constant;
 import com.vertical.app.common.util.PreferenceHelper;
 import com.vertical.app.common.widget.ActionSheetDialog;
 import com.vertical.app.common.widget.CatEditText;

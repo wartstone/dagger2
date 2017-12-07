@@ -1,10 +1,19 @@
 package com.vertical.app.network;
 
-import android.util.Log;
+import android.text.TextUtils;
 
+import com.vertical.app.common.Constant;
+import com.vertical.app.common.util.PreferenceHelper;
+import com.vertical.app.common.util.Trace;
+import com.vertical.app.core.CatApp;
+
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -21,9 +30,9 @@ public class HttpModule {
 
     private static HttpModule INSTANCE;
 
-    private Retrofit mRetrofit, mIMRetrofit;
-    private static OkHttpClient mOkHttpClient;
-    private static HttpLoggingInterceptor HTTP_LOGGING_INTERCEPTOR;
+    private Retrofit mRetrofit, mIMRetrofit, mNonTokenRetrofit;
+    private static OkHttpClient mTokenClient, mNonTokenClient;
+    private static HttpLoggingInterceptor mLogInterceptor;
 
     private HttpModule() {}
 
@@ -39,6 +48,10 @@ public class HttpModule {
         return createRetrofit().create(tClass);
     }
 
+    public <T> T createNonTokenRetrofit(Class<T> tClass){
+        return createNonTokenRetrofit().create(tClass);
+    }
+
     public Retrofit createRetrofit() {
         if(mRetrofit == null){
             mRetrofit = new Retrofit.Builder()
@@ -51,21 +64,73 @@ public class HttpModule {
         return mRetrofit;
     }
 
+    public Retrofit createNonTokenRetrofit() {
+        if(mNonTokenRetrofit == null){
+            mNonTokenRetrofit = new Retrofit.Builder()
+                    .baseUrl(CatApis.HOST)
+                    .client(getNonTokenClient())
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .build();
+        }
+        return mNonTokenRetrofit;
+    }
+
     private OkHttpClient getClient() {
-        if (mOkHttpClient == null) {
-            HTTP_LOGGING_INTERCEPTOR = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+        if (mTokenClient == null) {
+            mLogInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
                 @Override
                 public void log(String message) {
-                    Log.d("HttpLog:", message);
+                    Trace.d("HttpLog:", message);
                 }
             }).setLevel(HttpLoggingInterceptor.Level.BODY);
 
-            mOkHttpClient = new OkHttpClient.Builder()
+            final String token = PreferenceHelper.getInstance(CatApp.getAppContext()).getString(Constant.KEY_USERTOKEN, "");
+            if(TextUtils.isEmpty(token)) {
+                Trace.e(TAG, "token is null");
+                return null;
+            }
+
+            Interceptor networkInterceptor = new Interceptor() {
+                @Override
+                public Response intercept(Chain chain) throws IOException {
+                    Request originalRequest = chain.request();
+                    Request request = originalRequest.newBuilder()
+                            .method(originalRequest.method(), originalRequest.body())
+                            .header("token", token)
+                            .build();
+                    Trace.d("header:" + request.headers());
+                    return chain.proceed(request);
+                }
+            };
+
+            mTokenClient = new OkHttpClient.Builder()
                     //log 拦截器
-                    .addInterceptor(HTTP_LOGGING_INTERCEPTOR)
+                    .addInterceptor(mLogInterceptor)
+                    .addNetworkInterceptor(networkInterceptor)
                     .connectTimeout(10, TimeUnit.SECONDS)
                     .build();
         }
-        return mOkHttpClient;
+
+        return mTokenClient;
+    }
+
+    private OkHttpClient getNonTokenClient() {
+        if (mNonTokenClient == null) {
+            mLogInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+                @Override
+                public void log(String message) {
+                    Trace.d("HttpLog:", message);
+                }
+            }).setLevel(HttpLoggingInterceptor.Level.BODY);
+
+            mNonTokenClient = new OkHttpClient.Builder()
+                    //log 拦截器
+                    .addInterceptor(mLogInterceptor)
+                    .connectTimeout(10, TimeUnit.SECONDS)
+                    .build();
+        }
+
+        return mNonTokenClient;
     }
 }

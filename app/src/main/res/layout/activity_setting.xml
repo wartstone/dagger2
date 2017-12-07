@@ -32,4 +32,17 @@
         app:leftTextMarginLeft="14dp"
         app:rightIcon="@drawable/right"/>
 
+    <Button
+        android:id="@+id/btn_exit"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:background="@drawable/bg_btn_update_white"
+        android:text="退出登录"
+        android:textSize="17sp"
+        android:textColor="@color/x_blue" />
+
 </LinearLayout>
