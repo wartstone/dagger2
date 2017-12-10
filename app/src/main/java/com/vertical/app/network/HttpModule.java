@@ -97,7 +97,7 @@ public class HttpModule {
                     Request originalRequest = chain.request();
                     Request request = originalRequest.newBuilder()
                             .method(originalRequest.method(), originalRequest.body())
-                            .header("token", token)
+                            .header("Authorization", token)
                             .build();
                     Trace.d("header:" + request.headers());
                     return chain.proceed(request);
