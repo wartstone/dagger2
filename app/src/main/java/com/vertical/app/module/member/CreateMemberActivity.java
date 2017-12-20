@@ -76,7 +76,7 @@ public class CreateMemberActivity extends BaseCatActivity<CreateMemberContract.P
         memberBean.recommend_by = 1;
         memberBean.avatar_picture_id = 1;
         memberBean.create_by = 1;
-        memberBean.comments = "first member";
+        memberBean.comments = "debug member";
         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss.SSS");
         memberBean.create_date = format.format(new Timestamp(System.currentTimeMillis()));
 

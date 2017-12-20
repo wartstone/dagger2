@@ -7,6 +7,7 @@ import com.vertical.app.bean.MemberBean;
 import com.vertical.app.bean.MessageBean;
 import com.vertical.app.bean.OrderBean;
 import com.vertical.app.bean.UserBean;
+import com.vertical.app.module.work.bizanalysis.salesquery.SaleRecordBean;
 
 import java.util.List;
 
@@ -24,8 +25,8 @@ import rx.Observable;
 
 public interface CatApis {
 
-    String HOST = String.format("http://192.168.1.4:11111");
-//    String HOST= String.format("http://192.168.9.81:11111");
+//    String HOST = String.format("http://192.168.1.4:11111");
+    String HOST= String.format("http://192.168.9.81:11111");
 
     @GET("/greeting/")
     Observable<MessageBean> fetchData();
@@ -48,12 +49,8 @@ public interface CatApis {
     Observable<BaseListBean<OrderBean>> createOrder(@Field("id") long id, @Field("order_id") long order_id, @Field("product_name") String product_name,
                                                     @Field("quantity") int quantity, @Field("amount") double amount, @Field("comments") String comments);
 
-    @FormUrlEncoded
-    @POST("order/create2")
-    Observable<BaseListBean<OrderBean>> createOrder2(@Field("orderBean") OrderBean orderBean);
-
     @POST("order/create3")
-    Observable<BaseListBean<OrderBean>> createOrder3(@Body OrderBean orderBean);
+    Observable<BaseListBean<OrderBean>> createOrder(@Body OrderBean orderBean);
 
     @POST("member/create")
     Observable<BaseBean> createMember(@Body MemberBean memberBean);
@@ -72,5 +69,8 @@ public interface CatApis {
 
     @POST("auth/logout")
     Observable<BaseBeanEx<String>> logout(@Body UserBean userBean);
+
+    @GET("sale/query")
+    Observable<BaseListBean<SaleRecordBean>> querySaleRecords();
 
 }

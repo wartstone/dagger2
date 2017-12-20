@@ -20,7 +20,7 @@ public class BaseRefreshFragment extends Fragment {
     private final String TAG = getClass().getSimpleName();
     private PullToRefreshView mPullToRefreshView;
     private final int REFRESH_DELAY = 1000;
-    private RecyclerView.Adapter mAdapter;
+    protected RecyclerView.Adapter mAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
