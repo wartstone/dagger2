@@ -46,8 +46,8 @@ public interface CatApis {
 
     @FormUrlEncoded
     @POST("order/create")
-    Observable<BaseListBean<OrderBean>> createOrder(@Field("id") long id, @Field("order_id") long order_id, @Field("product_name") String product_name,
-                                                    @Field("quantity") int quantity, @Field("amount") double amount, @Field("comments") String comments);
+    Observable<BaseListBean<OrderBean>> createOrder(@Field("receiver_id") long receiver_id, @Field("goods_id") long goods_id, @Field("payment") int payment,
+                                                    @Field("goods_count") int goods_count, @Field("order_bill") double order_bill, @Field("comments") String comments);
 
     @POST("order/create3")
     Observable<BaseListBean<OrderBean>> createOrder(@Body OrderBean orderBean);

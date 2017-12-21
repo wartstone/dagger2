@@ -45,6 +45,14 @@ public class CreateOrderActivity extends BaseCatActivity<CreateOrderContract.Pre
         orderBean.status = 0;
         orderBean.order_picture_id = 11;
 
-        mPresenter.createOrder(orderBean);
+        long receiver_id = 1;
+        long goods_id = 1;
+        int payment = 1;
+        int goods_count = 1;
+        double order_bill = 100.00;
+        String comments = "nice try";
+
+
+        mPresenter.createOrder(receiver_id, goods_id, payment, goods_count, order_bill, comments);
     }
 }

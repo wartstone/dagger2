@@ -18,13 +18,6 @@ public interface CreateOrderContract {
     }
 
     public interface Presenter extends BasePresenter {
-//        void submit(String farmerId, Retail retail, List<RetailDetail> retailDetail, List<RetailPrescription> prescription);
-//
-//        void getContent();
-//
-//        void result(int requestCode, int resultCode, Intent data);
-//
-//        void queryPrepaymentAmount(String id);
-        void createOrder(OrderBean orderBean);
+        void createOrder(long receiver_id, long goods_id, int payment, int goods_count, double order_bill, String comments);
     }
 }
