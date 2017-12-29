@@ -1,0 +1,148 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_f0f0f0"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.vertical.app.common.widget.CatEditText
+                android:id="@+id/register_number"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                app:bottomDividerLineMarginLeft="10dp"
+                app:leftText="登记证号&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#8201;"
+                app:leftTextMarginLeft="14dp"
+                app:editTextHint="必填"/>
+
+            <com.vertical.app.common.widget.CatEditText
+                android:id="@+id/register_name"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                app:bottomDividerLineMarginLeft="10dp"
+                app:leftText="登记名称&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#8201;"
+                app:leftTextMarginLeft="14dp"
+                app:editTextHint="必填"/>
+
+            <com.vertical.app.common.widget.CatEditText
+                android:id="@+id/goods_name"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                app:bottomDividerLineMarginLeft="10dp"
+                app:leftText="商品名称&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#8201;"
+                app:leftTextMarginLeft="14dp"
+                app:editTextHint="必填"/>
+
+            <com.vertical.app.common.widget.CatEditText
+                android:id="@+id/goods_category"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                app:bottomDividerLineMarginLeft="10dp"
+                app:leftText="商品分类&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#8201;"
+                app:leftTextMarginLeft="14dp"
+                app:editTextHint="必填"/>
+
+            <com.vertical.app.common.widget.CatEditText
+                android:id="@+id/goods_saleprice"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                app:bottomDividerLineMarginLeft="10dp"
+                app:leftText="销售价&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#8201;"
+                app:leftTextMarginLeft="14dp"
+                app:editTextHint="必填"/>
+
+            <com.vertical.app.common.widget.CatEditText
+                android:id="@+id/goods_stockprice"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                app:bottomDividerLineMarginLeft="10dp"
+                app:leftText="进货价&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#8201;"
+                app:leftTextMarginLeft="14dp"
+                app:editTextHint="必填"/>
+
+            <com.vertical.app.common.widget.CatEditText
+                android:id="@+id/goods_stockcount"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                app:bottomDividerLineMarginLeft="10dp"
+                app:leftText="库存数&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#8201;"
+                app:leftTextMarginLeft="14dp"
+                app:editTextHint="必填"/>
+
+            <com.vertical.app.common.widget.CatEditText
+                android:id="@+id/goods_product_date"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                app:bottomDividerLineMarginLeft="10dp"
+                app:leftText="生产日期&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#8201;"
+                app:leftTextMarginLeft="14dp"
+                app:editTextHint="必填"/>
+
+            <com.vertical.app.common.widget.CatEditText
+                android:id="@+id/goods_comments"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                app:bottomDividerLineMarginLeft="10dp"
+                app:leftText="备注&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#8201;"
+                app:leftTextMarginLeft="14dp"
+                app:editTextHint="必填"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <LinearLayout
+            android:id="@+id/ptuaway_layout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="12dp"
+                android:text="是否上架"/>
+
+            <ToggleButton
+                android:id="@+id/btn_putaway"
+                style="@style/text_17_333333"
+                android:layout_width="55dp"
+                android:layout_height="30dp"
+                android:background="@drawable/togglebutton_selector"
+                android:checked="true"
+                android:text=""
+                android:textOff=""
+                android:textOn=""/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/save_btn"
+            style="@style/text_17_ffffff"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_buttom_bg_orange"
+            android:gravity="center"
+            android:text="保存"/>
+    </LinearLayout>
+
+</LinearLayout>
